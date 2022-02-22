@@ -10,20 +10,18 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Models
     {
         public int Id { get; set; }
 
-        public int Author { get; set; }
-
         public DateTime Date { get; set; }
 
-        public DateTime DateModification { get; set; }
-
-        public string Type { get; set; }
+        public DateTime ModificationDate { get; set; }
 
         public string Name { get; set; }
 
         public string Slug { get; set; }
 
-        public string Url { get; set; }
+        public string Link { get; set; }
 
-        public int PostParent { get; set; }
+        public int ExtensionId { get; set; }
+
+        public int AuthorId { get; set; }
     }
 }

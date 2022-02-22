@@ -10,7 +10,7 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Models
     {
         public int Id { get; set; }
 
-        public string Type { get; set; }
+        public int TypeId { get; set; }
         
         public string Title { get; set; }
 
@@ -22,12 +22,10 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Models
 
         public DateTime Date { get; set; }
 
-        public DateTime DateModification { get; set; }
+        public DateTime ModificationDate { get; set; }
 
-        public int Author { get; set; }
+        public int AuthorId { get; set; }
 
-        public string Status { get; set; }
-
-        public string ImageUrl { get; set; }
+        public int StatusId { get; set; }
     }
 }

@@ -14,12 +14,10 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Models
 
         public string Slug { get; set; }
 
-        public string Type { get; set; }
-
         public int Parent { get; set; }
 
-        public int Author { get; set; }
+        public int TypeId { get; set; }
 
-        public int Count { get; set; }
+        public int AuthorId { get; set; }
     }
 }
