@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace TMS_DotNet02_Online_Naumenko.Data.Models
 {
-    public class RefTermType
+    public class TermType
     {
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        public string? Name { get; set; }
+
+        public List<Term>? Term { get; set; } = new();
     }
 }

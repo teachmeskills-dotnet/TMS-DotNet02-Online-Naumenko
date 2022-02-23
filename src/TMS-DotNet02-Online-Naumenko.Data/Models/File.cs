@@ -14,14 +14,18 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Models
 
         public DateTime ModificationDate { get; set; }
 
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
-        public string Slug { get; set; }
+        public string? Slug { get; set; }
 
-        public string Link { get; set; }
+        public string? Link { get; set; }
 
-        public int ExtensionId { get; set; }
+        public int FileExtensionId { get; set; }
+        public FileExtension? FileExtension { get; set; }
 
-        public int AuthorId { get; set; }
+        public int UserId { get; set; }
+        public User? User { get; set; }
+
+        public List<Term>? Terms { get; set; } = new();
     }
 }
