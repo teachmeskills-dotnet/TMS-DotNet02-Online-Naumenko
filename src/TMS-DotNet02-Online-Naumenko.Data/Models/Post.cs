@@ -28,6 +28,7 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Models
         public PostStatus PostStatusId { get; set; }
 
         public int UserId { get; set; }
+
         public User? User { get; set; }
 
         public List<Term>? Terms { get; set; } = new();

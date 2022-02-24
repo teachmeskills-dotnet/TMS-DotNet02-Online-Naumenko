@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace TMS_DotNet02_Online_Naumenko.Data.Enums
 {
-    internal class TermType
+    public enum TermType
     {
+        Unknown = 0,
+
+        Category = 1,
+
+        Tag = 2
     }
 }

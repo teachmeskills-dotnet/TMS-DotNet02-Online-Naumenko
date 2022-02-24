@@ -18,6 +18,7 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Models
         public int Parent { get; set; }
 
         public int UserId { get; set; }
+
         public User? User { get; set; }
 
         public TermType? TermTypeId { get; set; }

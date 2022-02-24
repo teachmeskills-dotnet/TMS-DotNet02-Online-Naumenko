@@ -29,6 +29,7 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Models
         public List<File>? Files { get; set; } = new();
 
         public int UserRoleId { get; set; }
+
         public UserRole? UserRole { get; set; }
     }
 }
