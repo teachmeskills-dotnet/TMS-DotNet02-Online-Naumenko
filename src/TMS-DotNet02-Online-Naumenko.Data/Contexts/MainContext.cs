@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TMS_DotNet02_Online_Naumenko.Data
+namespace TMS_DotNet02_Online_Naumenko.Data.Contexts
 {
-    internal class DataDBContext 
+    internal class MainContext
     {
     }
 }

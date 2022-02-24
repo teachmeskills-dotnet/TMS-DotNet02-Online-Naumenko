@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TMS_DotNet02_Online_Naumenko.Data.Enums;
 
 namespace TMS_DotNet02_Online_Naumenko.Data.Models
 {
@@ -24,8 +25,7 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Models
 
         public DateTime ModificationDate { get; set; }
 
-        public int PostStatusId { get; set; }
-        public PostStatus? PostStatus { get; set; }
+        public PostStatus PostStatusId { get; set; }
 
         public int UserId { get; set; }
         public User? User { get; set; }
