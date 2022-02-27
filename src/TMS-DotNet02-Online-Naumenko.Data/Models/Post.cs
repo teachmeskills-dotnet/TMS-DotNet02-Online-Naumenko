@@ -31,6 +31,6 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Models
 
         public User? User { get; set; }
 
-        public List<Term>? Terms { get; set; } = new();
+        public List<PostTerm>? PostTerms { get; set; }
     }
 }
