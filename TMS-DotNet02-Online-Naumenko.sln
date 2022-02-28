@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TMS-DotNet02-Online-Naumenk
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "TMS-DotNet02-Online-Naumenko.UI", "src\TMS-DotNet02-Online-Naumenko.UI\TMS-DotNet02-Online-Naumenko.UI.esproj", "{EE227040-C5B0-48E5-A645-BC8A447B42D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMS-DotNet02-Online-Naumenko.WebApi", "src\TMS-DotNet02-Online-Naumenko.WebApi\TMS-DotNet02-Online-Naumenko.WebApi.csproj", "{12B093D1-1938-4A34-8AC7-F59D0D43291E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TMS-DotNet02-Online-Naumenko.WebApi", "src\TMS-DotNet02-Online-Naumenko.WebApi\TMS-DotNet02-Online-Naumenko.WebApi.csproj", "{12B093D1-1938-4A34-8AC7-F59D0D43291E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMS-DotNet02-Online-Naumenko.Logic", "src\TMS-DotNet02-Online-Naumenko.Logic\TMS-DotNet02-Online-Naumenko.Logic.csproj", "{4F8BDDA7-74DC-42F6-A67C-77D658E8F21C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{12B093D1-1938-4A34-8AC7-F59D0D43291E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12B093D1-1938-4A34-8AC7-F59D0D43291E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12B093D1-1938-4A34-8AC7-F59D0D43291E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F8BDDA7-74DC-42F6-A67C-77D658E8F21C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F8BDDA7-74DC-42F6-A67C-77D658E8F21C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F8BDDA7-74DC-42F6-A67C-77D658E8F21C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F8BDDA7-74DC-42F6-A67C-77D658E8F21C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
