@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using TMS_DotNet02_Online_Naumenko.Data.Contexts;
 using TMS_DotNet02_Online_Naumenko.Data.Interfaces;
 
 namespace TMS_DotNet02_Online_Naumenko.Data.Repository
@@ -15,7 +16,7 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
         private readonly DbSet<T> _dbSet;
         private readonly DbContext _context;
 
-        public Repository(ApplicationContext context)
+        public Repository(MainContext context)
         {
             _context = context;
             _dbSet = context.Set<T>();
@@ -49,17 +50,6 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
         public IQueryable<T> GetAll()
         {
             return _dbSet.AsNoTracking();
-        }
-
-        /// <inheritdoc/>
-        public async Task<T> GetEntityAsync(Expression<Func<T, bool>> predicate)
-        {
-            return await _dbSet.FirstOrDefaultAsync(predicate);
-        }
-
-        public Task<T> GetEntityAsync(Expression<Func<T, bool>> predicate)
-        {
-            throw new NotImplementedException();
         }
 
         /// <inheritdoc/>

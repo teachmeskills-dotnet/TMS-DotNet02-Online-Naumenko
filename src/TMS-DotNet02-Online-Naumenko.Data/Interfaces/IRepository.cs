@@ -20,13 +20,6 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Interfaces
         IQueryable<T> GetAll();
 
         /// <summary>
-        /// Get entity async by predicate.
-        /// </summary>
-        /// <param name="predicate">LINQ predicate.</param>
-        /// <returns>T entity.</returns>
-        Task<T> GetEntityAsync(Expression<Func<T, bool>> predicate);
-
-        /// <summary>
         /// Add new entity async.
         /// </summary>
         /// <param name="entity">Entity object</param>
