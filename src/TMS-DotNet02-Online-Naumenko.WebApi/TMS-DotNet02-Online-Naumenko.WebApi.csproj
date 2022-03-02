@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TMS-DotNet02-Online-Naumenko.Data\TMS-DotNet02-Online-Naumenko.Data.csproj" />
+    <ProjectReference Include="..\TMS-DotNet02-Online-Naumenko.Logic\TMS-DotNet02-Online-Naumenko.Logic.csproj" />
   </ItemGroup>
 
 </Project>
