@@ -16,6 +16,6 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Models
 
         public int TermId { get; set; }
 
-        public Term? Term { get; set; }
+        public TermDTO? Term { get; set; }
     }
 }

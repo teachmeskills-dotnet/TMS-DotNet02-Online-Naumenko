@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TMS_DotNet02_Online_Naumenko.Logic.Models
 {
-    public class PostTerm
+    public class PostTermDTO
     {
         public int Id { get; set; }
 
@@ -16,6 +16,6 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Models
 
         public int TermId { get; set; }
 
-        public Term? Term { get; set; }
+        public TermDTO? Term { get; set; }
     }
 }

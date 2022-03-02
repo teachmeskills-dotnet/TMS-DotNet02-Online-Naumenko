@@ -7,7 +7,7 @@ using TMS_DotNet02_Online_Naumenko.Data.Enums;
 
 namespace TMS_DotNet02_Online_Naumenko.Logic.Models
 {
-    public class Post
+    public class PostDTO
     {
         public int Id { get; set; }
 
@@ -29,8 +29,8 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Models
 
         public int UserId { get; set; }
 
-        public User? User { get; set; }
+        public UserDTO? User { get; set; }
 
-        public IEnumerable<PostTerm>? PostTerms { get; set; }
+        public IEnumerable<PostTermDTO>? PostTerms { get; set; }
     }
 }
