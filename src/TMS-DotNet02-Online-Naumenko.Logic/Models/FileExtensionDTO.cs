@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace TMS_DotNet02_Online_Naumenko.Logic.Models
 {
-    public class UserRole
+    public class FileExtensionDTO
     {
         public int Id { get; set; }
 
         public string? Name { get; set; }
 
-        public IEnumerable<User>? User { get; set; }
+        public IEnumerable<FileDTO>? Files { get; set; }
     }
 }

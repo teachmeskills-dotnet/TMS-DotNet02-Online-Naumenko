@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace TMS_DotNet02_Online_Naumenko.Logic.Models
 {
-    public class PostTerm
+    public class FileTermDTO
     {
         public int Id { get; set; }
 
-        public int PostId { get; set; }
+        public int FileId { get; set; }
 
-        public Post? Post { get; set; }
+        public FileDTO? File { get; set; }
 
         public int TermId { get; set; }
 

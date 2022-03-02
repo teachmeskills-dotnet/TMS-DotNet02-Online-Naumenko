@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 
 namespace TMS_DotNet02_Online_Naumenko.Logic.Models
 {
-    public class Option
+    public class PostTerm
     {
         public int Id { get; set; }
 
-        public string? Name { get; set; }
+        public int PostId { get; set; }
 
-        public string? Value { get; set; }
+        public PostDTO? Post { get; set; }
+
+        public int TermId { get; set; }
+
+        public Term? Term { get; set; }
     }
 }

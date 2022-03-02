@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TMS_DotNet02_Online_Naumenko.Logic.Models
 {
-    public class File
+    public class FileDTO
     {
         public int Id { get; set; }
 
@@ -22,12 +22,12 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Models
 
         public int FileExtensionId { get; set; }
 
-        public FileExtension? FileExtension { get; set; }
+        public FileExtensionDTO? FileExtension { get; set; }
 
         public int UserId { get; set; }
 
-        public User? User { get; set; }
+        public UserDTO? User { get; set; }
 
-        public IEnumerable<FileTerm>? FileTerms { get; set; }
+        public IEnumerable<FileTermDTO>? FileTerms { get; set; }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TMS_DotNet02_Online_Naumenko.Logic.Models
 {
-    public class User
+    public class UserDTO
     {
         public int Id { get; set; }
 
@@ -22,14 +22,14 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Models
 
         public int RoleId { get; set; }
 
-        public IEnumerable<Post>? Posts { get; set; }
+        public IEnumerable<PostDTO>? Posts { get; set; }
 
-        public IEnumerable<Term>? Terms { get; set; }
+        public IEnumerable<TermDTO>? Terms { get; set; }
 
-        public IEnumerable<File>? Files { get; set; }
+        public IEnumerable<FileDTO>? Files { get; set; }
 
         public int UserRoleId { get; set; }
 
-        public UserRole? UserRole { get; set; }
+        public UserRoleDTO? UserRole { get; set; }
     }
 }
