@@ -12,6 +12,6 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Models
 
         public string? Name { get; set; }
 
-        public List<User> User { get; set; } = new();
+        public IEnumerable<User>? User { get; set; }
     }
 }

@@ -23,8 +23,8 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Models
 
         public TermType? TermTypeId { get; set; }
 
-        public List<PostTerm>? PostTerms { get; set; }
+        public IEnumerable<PostTerm>? PostTerms { get; set; }
 
-        public List<FileTerm>? FileTerms { get; set; }
+        public IEnumerable<FileTerm>? FileTerms { get; set; }
     }
 }

@@ -28,6 +28,6 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Models
 
         public User? User { get; set; }
 
-        public List<FileTerm>? FileTerms { get; set; }
+        public IEnumerable<FileTerm>? FileTerms { get; set; }
     }
 }

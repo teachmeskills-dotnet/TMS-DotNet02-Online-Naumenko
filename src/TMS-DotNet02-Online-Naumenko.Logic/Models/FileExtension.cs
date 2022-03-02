@@ -12,6 +12,6 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Models
 
         public string? Name { get; set; }
 
-        public List<File> File { get; set; } = new();
+        public IEnumerable<File>? File { get; set; }
     }
 }
