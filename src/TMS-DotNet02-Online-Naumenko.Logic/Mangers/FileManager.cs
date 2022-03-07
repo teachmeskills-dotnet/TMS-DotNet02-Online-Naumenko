@@ -22,6 +22,37 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Mangers
             _fileRepository = fileRepository ?? throw new ArgumentNullException(nameof(fileRepository));
         }
 
+        public async Task<int> AddFileAsync(FileDTO fileDto)
+        {
+            fileDto = fileDto ?? throw new ArgumentNullException(nameof(fileDto));
+
+            var file = new Data.Models.File
+            {
+                Name = fileDto.Name,
+                Slug = fileDto.Slug,
+                Date = DateTime.Now,
+                ModificationDate = DateTime.Now,
+                Link = fileDto.Link,
+                UserId = fileDto.UserId,
+                FileExtensionId = fileDto.FileExtensionId,
+            };
+
+            await _fileRepository.AddAsync(file);
+            await _fileRepository.SaveChangesAsync();
+
+            return file.Id;
+        }
+
+        public Task<FileDTO> UpdateFileAsync(int fileId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<FileDTO> DeleteFileAsync(int fileId)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<IEnumerable<FileDTO>> GetAllFilesAsync() => 
             GetFiles(await FileQuery.ToListAsync());
 
