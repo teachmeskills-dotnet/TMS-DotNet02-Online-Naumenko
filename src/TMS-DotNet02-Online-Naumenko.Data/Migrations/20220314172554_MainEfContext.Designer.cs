@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using TMS_DotNet02_Online_Naumenko.Data.Contexts;
+using TMS_DotNet02_Online_Naumenko.Data.Contexts.MainContext;
 
 #nullable disable
 
 namespace TMS_DotNet02_Online_Naumenko.Data.Migrations
 {
     [DbContext(typeof(MainContext))]
-    [Migration("20220227121826_MainDbContext")]
-    partial class MainDbContext
+    [Migration("20220314172554_MainEfContext")]
+    partial class MainEfContext
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

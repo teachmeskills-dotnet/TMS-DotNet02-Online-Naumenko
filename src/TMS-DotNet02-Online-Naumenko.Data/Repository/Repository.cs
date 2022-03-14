@@ -15,43 +15,31 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
             _dbSet = context.Set<T>();
         }
 
-        /// <inheritdoc/>
         public async Task AddAsync(T entity)
         {
             await _dbSet.AddAsync(entity);
         }
 
-        /// <inheritdoc/>
-        public async Task AddRangeAsync(IEnumerable<T> entities)
-        {
-            await _dbSet.AddRangeAsync(entities);
-        }
-
-        /// <inheritdoc/>
         public void Delete(T entity)
         {
             _dbSet.Remove(entity);
         }
 
-        /// <inheritdoc/>
         public void DeleteRange(IEnumerable<T> entity)
         {
             _dbSet.RemoveRange(entity);
         }
 
-        /// <inheritdoc/>
-        public IQueryable<T> GetAll()
+        public IEnumerable<T> GetAll()
         {
-            return _dbSet.AsNoTracking();
+            return _dbSet.AsEnumerable();
         }
 
-        /// <inheritdoc/>
         public Task SaveChangesAsync()
         {
             return _context.SaveChangesAsync();
         }
 
-        /// <inheritdoc/>
         public void Update(T entity)
         {
             _context.Entry(entity).State = EntityState.Modified;

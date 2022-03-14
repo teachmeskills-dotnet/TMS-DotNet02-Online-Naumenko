@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using TMS_DotNet02_Online_Naumenko.Data.Contexts;
+using TMS_DotNet02_Online_Naumenko.Data.Contexts.MainContext;
 
 var builder = WebApplication.CreateBuilder(args);
 

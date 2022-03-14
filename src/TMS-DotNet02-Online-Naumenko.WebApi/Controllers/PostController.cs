@@ -5,8 +5,8 @@ using TMS_DotNet02_Online_Naumenko.Logic.Models;
 
 namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
 {
-    [Route("[controller]")]
     [ApiController]
+    [Route(template:"[controller]")]
     public class PostController : ControllerBase
     {
         private readonly IPostService _postService;
@@ -16,7 +16,7 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
             _postService = postService ?? throw new ArgumentNullException(nameof(postService));
         }
 
-        [HttpGet]
+        [HttpGet( template: "GetPost", Name = "GetPost")]
         public IEnumerable<PostDTO> Get()
         {
             var result =  _postService.GetAllPosts();

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TMS_DotNet02_Online_Naumenko.Data.Migrations
 {
-    public partial class MainDbContext : Migration
+    public partial class MainEfContext : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

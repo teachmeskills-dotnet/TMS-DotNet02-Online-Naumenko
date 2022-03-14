@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using TMS_DotNet02_Online_Naumenko.Data.Contexts;
+using TMS_DotNet02_Online_Naumenko.Data.Contexts.MainContext;
 
 #nullable disable
 

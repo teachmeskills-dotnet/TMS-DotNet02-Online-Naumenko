@@ -3,7 +3,7 @@ using TMS_DotNet02_Online_Naumenko.Logic.Models;
 
 namespace TMS_DotNet02_Online_Naumenko.Logic.Mappers
 {
-    public static class PostServiceExtension
+    public static class PostExtension
     {
         public static IEnumerable<PostDTO> MapToDto(this IEnumerable<Post> posts)
         {
