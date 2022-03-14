@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TMS_DotNet02_Online_Naumenko.Data.Interfaces
+﻿namespace TMS_DotNet02_Online_Naumenko.Data.Repository
 {
     /// <summary>
     /// Generic repository provide all base needed methods (CRUD)

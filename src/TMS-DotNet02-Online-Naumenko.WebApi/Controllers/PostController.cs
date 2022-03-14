@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TMS_DotNet02_Online_Naumenko.Logic.Interfaces;
+using TMS_DotNet02_Online_Naumenko.Logic.Models;
 
 namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
 {
@@ -8,19 +9,19 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
     [ApiController]
     public class PostController : ControllerBase
     {
-        private readonly IPostManager _postManager;
+        private readonly IPostService _postService;
 
-        public PostController(IPostManager postManager)
+        public PostController(IPostService postService)
         {
-            _postManager = postManager ?? throw new ArgumentNullException(nameof(postManager));
+            _postService = postService ?? throw new ArgumentNullException(nameof(postService));
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public IEnumerable<PostDTO> Get()
         {
-            var result = await _postManager.GetAllPostsAsync();
+            var result =  _postService.GetAllPosts();
 
-            return (IActionResult)result;
+            return result;
         }
     }
 }

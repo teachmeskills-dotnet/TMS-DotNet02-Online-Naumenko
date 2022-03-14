@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TMS_DotNet02_Online_Naumenko.Logic.Models;
+﻿using TMS_DotNet02_Online_Naumenko.Logic.Models;
 
 namespace TMS_DotNet02_Online_Naumenko.Logic.Interfaces
 {
-    public interface IPostManager
+    public interface IPostService
     {
         Task<PostDTO> GetPostByIdAsync();
 
-        Task<IEnumerable<PostDTO>> GetAllPostsAsync();
+        IEnumerable<PostDTO> GetAllPosts();
 
         Task<IEnumerable<PostDTO>> GetAllPostsByUserIdAsync(int userId);
 

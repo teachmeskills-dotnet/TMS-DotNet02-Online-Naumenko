@@ -1,14 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TMS_DotNet02_Online_Naumenko.Data.Configurations;
+using TMS_DotNet02_Online_Naumenko.Data.Context.MainContext.Configurations;
 using TMS_DotNet02_Online_Naumenko.Data.Models;
 
-namespace TMS_DotNet02_Online_Naumenko.Data.Contexts
+namespace TMS_DotNet02_Online_Naumenko.Data.Contexts.MainContext
 {
     public class MainContext : DbContext
     {
