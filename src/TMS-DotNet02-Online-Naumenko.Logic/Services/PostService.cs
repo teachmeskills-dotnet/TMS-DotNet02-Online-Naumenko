@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TMS_DotNet02_Online_Naumenko.Data.Models;
 using TMS_DotNet02_Online_Naumenko.Data.Repository;
-using TMS_DotNet02_Online_Naumenko.Logic.Interfaces;
 using TMS_DotNet02_Online_Naumenko.Logic.Mappers;
 using TMS_DotNet02_Online_Naumenko.Logic.Models;
+using TMS_DotNet02_Online_Naumenko.Logic.Services.Interfaces;
 
 namespace TMS_DotNet02_Online_Naumenko.Logic.Services
 {
@@ -16,22 +16,22 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services
             _postRepository = postRepository ?? throw new ArgumentNullException(nameof(postRepository));
         }
 
-        public IEnumerable<PostDTO> GetAllPosts()
+        public IEnumerable<PostDto> GetAllPosts()
         {
             return _postRepository.GetAll().MapToDto();
         }            
 
-        public Task<IEnumerable<PostDTO>> GetAllPostsByTermIdsAsync(IEnumerable<int> termId)
+        public Task<IEnumerable<PostDto>> GetAllPostsByTermIdsAsync(IEnumerable<int> termId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<PostDTO>> GetAllPostsByUserIdAsync(int userId)
+        public Task<IEnumerable<PostDto>> GetAllPostsByUserIdAsync(int userId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<PostDTO> GetPostByIdAsync()
+        public Task<PostDto> GetPostByIdAsync()
         {
             throw new NotImplementedException();
         }

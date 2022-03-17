@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
 {
     [ApiController]
-    [Route(template:"[controller]")]
+    [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]

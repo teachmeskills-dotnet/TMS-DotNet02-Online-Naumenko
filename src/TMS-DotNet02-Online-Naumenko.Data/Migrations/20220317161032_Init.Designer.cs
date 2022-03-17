@@ -12,8 +12,8 @@ using TMS_DotNet02_Online_Naumenko.Data.Contexts.MainContext;
 namespace TMS_DotNet02_Online_Naumenko.Data.Migrations
 {
     [DbContext(typeof(MainContext))]
-    [Migration("20220314172554_MainEfContext")]
-    partial class MainEfContext
+    [Migration("20220317161032_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

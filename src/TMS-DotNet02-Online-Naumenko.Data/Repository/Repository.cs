@@ -32,7 +32,7 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
 
         public IEnumerable<T> GetAll()
         {
-            return _dbSet.AsEnumerable();
+            return _dbSet.ToList();
         }
 
         public Task SaveChangesAsync()

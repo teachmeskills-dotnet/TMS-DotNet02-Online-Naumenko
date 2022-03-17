@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using TMS_DotNet02_Online_Naumenko.Data.Contexts.MainContext;
+using TMS_DotNet02_Online_Naumenko.Data.Models;
+using TMS_DotNet02_Online_Naumenko.Data.Repository;
+using TMS_DotNet02_Online_Naumenko.Logic.Services;
+using TMS_DotNet02_Online_Naumenko.Logic.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +17,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddTransient<IPostService, PostService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -24,8 +31,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseRouting();
+
 app.UseAuthorization();
 
-app.MapControllers();
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller}/{action}/{id?}");
 
 app.Run();

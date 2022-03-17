@@ -2,7 +2,7 @@
 
 namespace TMS_DotNet02_Online_Naumenko.Logic.Models
 {
-    public class PostDTO
+    public class PostDto
     {
         public int Id { get; set; }
 

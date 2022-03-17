@@ -6,7 +6,7 @@
 
         public int PostId { get; set; }
 
-        public PostDTO? Post { get; set; }
+        public PostDto? Post { get; set; }
 
         public int TermId { get; set; }
 

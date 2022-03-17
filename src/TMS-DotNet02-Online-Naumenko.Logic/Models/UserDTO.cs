@@ -16,7 +16,7 @@
 
         public int RoleId { get; set; }
 
-        public IEnumerable<PostDTO>? Posts { get; set; }
+        public IEnumerable<PostDto>? Posts { get; set; }
 
         public IEnumerable<TermDTO>? Terms { get; set; }
 
