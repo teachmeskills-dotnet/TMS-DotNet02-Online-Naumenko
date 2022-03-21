@@ -10,37 +10,37 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services
 {
     public class FileService : IFileService
     {
-        public Task<int> AddFileAsync(FileDTO fileDto)
+        public Task<int> AddFileAsync(FileDto fileDto)
         {
             throw new NotImplementedException();
         }
 
-        public Task<FileDTO> DeleteFileAsync(int fileId)
+        public Task<FileDto> DeleteFileAsync(int fileId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<FileDTO>> GetAllFilesAsync()
+        public Task<IEnumerable<FileDto>> GetAllFilesAsync()
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<FileDTO>> GetAllFilesByFileExtensionIdAsync(int fileExtensionId)
+        public Task<IEnumerable<FileDto>> GetAllFilesByFileExtensionIdAsync(int fileExtensionId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<FileDTO>> GetAllFilesByUserIdAsync(int userId)
+        public Task<IEnumerable<FileDto>> GetAllFilesByUserIdAsync(int userId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<FileDTO> GetFileByIdAsync()
+        public Task<FileDto> GetFileByIdAsync()
         {
             throw new NotImplementedException();
         }
 
-        public Task<FileDTO> UpdateFileAsync(int fileId)
+        public Task<FileDto> UpdateFileAsync(int fileId)
         {
             throw new NotImplementedException();
         }

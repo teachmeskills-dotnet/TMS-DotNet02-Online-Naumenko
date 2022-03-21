@@ -1,6 +1,6 @@
 ﻿namespace TMS_DotNet02_Online_Naumenko.Logic.Models
 {
-    public class OptionDTO
+    public class OptionDto
     {
         public int Id { get; set; }
 

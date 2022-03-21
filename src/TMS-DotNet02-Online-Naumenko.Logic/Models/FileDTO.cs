@@ -1,6 +1,6 @@
 ﻿namespace TMS_DotNet02_Online_Naumenko.Logic.Models
 {
-    public class FileDTO
+    public class FileDto
     {
         public int Id { get; set; }
 
@@ -16,12 +16,12 @@
 
         public int FileExtensionId { get; set; }
 
-        public FileExtensionDTO? FileExtension { get; set; }
+        public FileExtensionDto? FileExtension { get; set; }
 
         public int UserId { get; set; }
 
         public UserDto? User { get; set; }
 
-        public IEnumerable<FileTermDTO>? FileTerms { get; set; }
+        public IEnumerable<FileTermDto>? FileTerms { get; set; }
     }
 }

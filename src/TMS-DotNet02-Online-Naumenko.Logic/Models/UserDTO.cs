@@ -20,10 +20,10 @@
 
         public IEnumerable<TermDto>? Terms { get; set; }
 
-        public IEnumerable<FileDTO>? Files { get; set; }
+        public IEnumerable<FileDto>? Files { get; set; }
 
         public int UserRoleId { get; set; }
 
-        public UserRoleDTO? UserRole { get; set; }
+        public UserRoleDto? UserRole { get; set; }
     }
 }

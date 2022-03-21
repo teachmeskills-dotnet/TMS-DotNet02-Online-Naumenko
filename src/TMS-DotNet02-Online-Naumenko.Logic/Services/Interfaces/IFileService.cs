@@ -4,18 +4,18 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services.Interfaces
 {
     public interface IFileService
     {
-        Task<int> AddFileAsync(FileDTO fileDto);
+        Task<int> AddFileAsync(FileDto fileDto);
 
-        Task<FileDTO> UpdateFileAsync(int fileId);
+        Task<FileDto> UpdateFileAsync(int fileId);
 
-        Task<FileDTO> DeleteFileAsync(int fileId);
+        Task<FileDto> DeleteFileAsync(int fileId);
 
-        Task<FileDTO> GetFileByIdAsync();
+        Task<FileDto> GetFileByIdAsync();
 
-        Task<IEnumerable<FileDTO>> GetAllFilesAsync();
+        Task<IEnumerable<FileDto>> GetAllFilesAsync();
 
-        Task<IEnumerable<FileDTO>> GetAllFilesByFileExtensionIdAsync(int fileExtensionId);
+        Task<IEnumerable<FileDto>> GetAllFilesByFileExtensionIdAsync(int fileExtensionId);
          
-        Task<IEnumerable<FileDTO>> GetAllFilesByUserIdAsync(int userId);
+        Task<IEnumerable<FileDto>> GetAllFilesByUserIdAsync(int userId);
     }
 }
