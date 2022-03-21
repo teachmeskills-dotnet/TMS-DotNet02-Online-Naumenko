@@ -21,6 +21,7 @@ builder.Services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddTransient<IPostService, PostService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<ITermService, TermService>();
+builder.Services.AddTransient<IFileService, FileService>();
 
 var app = builder.Build();
 
