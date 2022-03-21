@@ -4,8 +4,8 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services.Interfaces
 {
     public interface IUserService
     {
-        Task<UserDTO> GetUserByIdAsync();
+        Task<UserDto> GetUserByIdAsync(int userId);
 
-        Task<IEnumerable<UserDTO>> GetAllUsersAsync();
+        IEnumerable<UserDto> GetAllUsersAsync();
     }
 }

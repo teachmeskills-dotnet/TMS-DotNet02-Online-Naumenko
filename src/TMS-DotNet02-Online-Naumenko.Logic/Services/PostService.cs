@@ -19,7 +19,12 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services
         public IEnumerable<PostDto> GetAllPosts()
         {
             return _postRepository.GetAll().MapToDto();
-        }            
+        }
+
+        public Task<PostDto> GetPostByIdAsync(int postId)
+        {
+            throw new NotImplementedException();
+        }
 
         public Task<IEnumerable<PostDto>> GetAllPostsByTermIdsAsync(IEnumerable<int> termId)
         {
@@ -27,11 +32,6 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services
         }
 
         public Task<IEnumerable<PostDto>> GetAllPostsByUserIdAsync(int userId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<PostDto> GetPostByIdAsync()
         {
             throw new NotImplementedException();
         }

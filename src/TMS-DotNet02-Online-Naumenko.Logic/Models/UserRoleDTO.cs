@@ -6,6 +6,6 @@
 
         public string? Name { get; set; }
 
-        public IEnumerable<UserDTO>? User { get; set; }
+        public IEnumerable<UserDto>? User { get; set; }
     }
 }

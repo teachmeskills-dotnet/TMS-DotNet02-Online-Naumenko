@@ -24,7 +24,7 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Models
 
         public int UserId { get; set; }
 
-        public UserDTO? User { get; set; }
+        public UserDto? User { get; set; }
 
         public IEnumerable<PostTermDTO>? PostTerms { get; set; }
     }

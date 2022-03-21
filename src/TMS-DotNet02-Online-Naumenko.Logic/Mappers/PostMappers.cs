@@ -12,8 +12,15 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Mappers
                 yield return new PostDto
                 {
                     Id = post.Id,
+                    TypeId = post.TypeId,
                     Title = post.Title,
+                    Slug = post.Slug,
                     Content = post.Content,
+                    Excerpt = post.Excerpt,
+                    Date = post.Date,
+                    ModificationDate = post.ModificationDate,
+                    PostStatusId = post.PostStatusId,
+                    UserId = post.UserId,
                 };
             }
         }
