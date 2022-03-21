@@ -6,6 +6,6 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services.Interfaces
     {
         Task<UserDto> GetUserByIdAsync(int userId);
 
-        IEnumerable<UserDto> GetAllUsersAsync();
+        IEnumerable<UserDto> GetAllUsers();
     }
 }

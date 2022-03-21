@@ -7,19 +7,19 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class UsersController : ControllerBase
+    public class TermsController : ControllerBase
     {
-        private readonly IUserService _userService;
+        private readonly ITermService _termService;
 
-        public UsersController(IUserService userService)
+        public TermsController(ITermService termService)
         {
-            _userService = userService ?? throw new ArgumentNullException(nameof(userService));
+            _termService = termService ?? throw new ArgumentNullException(nameof(termService));
         }
 
         [HttpGet]
-        public IEnumerable<UserDto> GetAll()
+        public IEnumerable<TermDto> GetAll()
         {
-            var result = _userService.GetAllUsers();
+            var result = _termService.GetAllTerms();
 
             return result;
         }

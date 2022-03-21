@@ -10,6 +10,6 @@
 
         public int TermId { get; set; }
 
-        public TermDTO? Term { get; set; }
+        public TermDto? Term { get; set; }
     }
 }

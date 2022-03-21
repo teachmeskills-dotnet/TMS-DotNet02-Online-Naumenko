@@ -18,7 +18,7 @@
 
         public IEnumerable<PostDto>? Posts { get; set; }
 
-        public IEnumerable<TermDTO>? Terms { get; set; }
+        public IEnumerable<TermDto>? Terms { get; set; }
 
         public IEnumerable<FileDTO>? Files { get; set; }
 
