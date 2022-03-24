@@ -18,17 +18,9 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
         [HttpGet]
         public IEnumerable<PostDto> GetAll()
         {
-            var result =  _postService.GetAllPosts();
+            var result = _postService.GetAll();
 
             return result;
         }
-
-        /*[HttpPost]
-        public IEnumerable<PostDto> CreatePost(int id)
-        {
-            var result = _postService.AddAsync();
-
-            return result;
-        }*/
     }
 }

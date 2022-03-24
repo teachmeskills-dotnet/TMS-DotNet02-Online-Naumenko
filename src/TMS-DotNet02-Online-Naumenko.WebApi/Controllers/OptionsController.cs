@@ -7,19 +7,19 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class UsersController : ControllerBase
+    public class OptionsController : ControllerBase
     {
-        private readonly IUserService _userService;
+        private readonly IOptionService _optionService;
 
-        public UsersController(IUserService userService)
+        public OptionsController(IOptionService optionService)
         {
-            _userService = userService ?? throw new ArgumentNullException(nameof(userService));
+            _optionService = optionService ?? throw new ArgumentNullException(nameof(optionService));
         }
 
         [HttpGet]
-        public IEnumerable<UserDto> GetAll()
+        public IEnumerable<OptionDto> GetAll()
         {
-            var result = _userService.GetAll();
+            var result = _optionService.GetAll();
 
             return result;
         }

@@ -19,7 +19,7 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
         [HttpGet]
         public IEnumerable<TermDto> GetAll()
         {
-            var result = _termService.GetAllTerms();
+            var result = _termService.GetAll();
 
             return result;
         }

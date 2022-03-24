@@ -1,5 +1,4 @@
-﻿using System;
-using TMS_DotNet02_Online_Naumenko.Logic.Models;
+﻿using TMS_DotNet02_Online_Naumenko.Logic.Models;
 
 namespace TMS_DotNet02_Online_Naumenko.Logic.Mappers
 {

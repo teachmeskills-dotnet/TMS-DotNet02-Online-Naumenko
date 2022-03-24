@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using TMS_DotNet02_Online_Naumenko.Data.Models;
+﻿using TMS_DotNet02_Online_Naumenko.Data.Models;
 using TMS_DotNet02_Online_Naumenko.Data.Repository;
 using TMS_DotNet02_Online_Naumenko.Logic.Mappers;
 using TMS_DotNet02_Online_Naumenko.Logic.Models;

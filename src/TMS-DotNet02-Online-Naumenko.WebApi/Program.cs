@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using TMS_DotNet02_Online_Naumenko.Data.Contexts.MainContext;
-using TMS_DotNet02_Online_Naumenko.Data.Models;
 using TMS_DotNet02_Online_Naumenko.Data.Repository;
 using TMS_DotNet02_Online_Naumenko.Logic.Services;
 using TMS_DotNet02_Online_Naumenko.Logic.Services.Interfaces;

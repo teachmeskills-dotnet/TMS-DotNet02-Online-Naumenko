@@ -5,8 +5,8 @@ using TMS_DotNet02_Online_Naumenko.Logic.Services.Interfaces;
 
 namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("[controller]")]
     public class FilesController : ControllerBase
     {
         private readonly IFileService _fileService;
