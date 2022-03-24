@@ -15,14 +15,9 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services
             _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
         }
 
-        public IEnumerable<UserDto> GetAllUsers()
+        public IEnumerable<UserDto> GetAll()
         {
             return _userRepository.GetAll().MapToDto();
-        }
-
-        public Task<UserDto> GetUserByIdAsync(int userId)
-        {
-            throw new NotImplementedException();
         }
     }
 }

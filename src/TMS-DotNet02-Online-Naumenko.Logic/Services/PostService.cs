@@ -16,24 +16,9 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services
             _postRepository = postRepository ?? throw new ArgumentNullException(nameof(postRepository));
         }
 
-        public IEnumerable<PostDto> GetAllPosts()
+        public IEnumerable<PostDto> GetAll()
         {
             return _postRepository.GetAll().MapToDto();
-        }
-
-        public Task<PostDto> GetPostByIdAsync(int postId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<PostDto>> GetAllPostsByTermIdsAsync(IEnumerable<int> termId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<PostDto>> GetAllPostsByUserIdAsync(int userId)
-        {
-            throw new NotImplementedException();
         }
     }
 }

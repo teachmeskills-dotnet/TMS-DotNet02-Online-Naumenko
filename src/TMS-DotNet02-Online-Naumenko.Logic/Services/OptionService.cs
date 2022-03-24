@@ -10,7 +10,7 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services
 {
     public class OptionService : IOptionService
     {
-        public Task<IEnumerable<Option>> GetAllOptionAsync()
+        public IEnumerable<Option> GetAll()
         {
             throw new NotImplementedException();
         }

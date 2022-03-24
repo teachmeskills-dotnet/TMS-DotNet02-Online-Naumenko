@@ -3,7 +3,6 @@ using TMS_DotNet02_Online_Naumenko.Data.Contexts.MainContext;
 
 namespace TMS_DotNet02_Online_Naumenko.Data.Repository
 {
-    /// <inheritdoc cref="IRepository<T>"</>
     public class Repository<T> : IRepository<T> where T : class
     {
         private readonly DbSet<T> _dbSet;
@@ -30,7 +29,7 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
             _dbSet.RemoveRange(entity);
         }
 
-        public IEnumerable<T> GetAll()
+        public virtual IEnumerable<T> GetAll()
         {
             return _dbSet.ToList();
         }

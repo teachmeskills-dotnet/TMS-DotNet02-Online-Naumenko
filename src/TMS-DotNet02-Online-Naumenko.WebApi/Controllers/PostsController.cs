@@ -23,14 +23,6 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
             return result;
         }
 
-        [HttpGet("{id}")]
-        public IEnumerable<PostDto> GetById(int id)
-        {
-            var result = _postService.GetAllPosts();
-
-            return result;
-        }
-
         /*[HttpPost]
         public IEnumerable<PostDto> CreatePost(int id)
         {

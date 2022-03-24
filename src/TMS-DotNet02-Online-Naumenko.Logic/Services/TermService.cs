@@ -20,14 +20,9 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services
             _termRepository = termRepository ?? throw new ArgumentNullException(nameof(termRepository));
         }
 
-        public IEnumerable<TermDto> GetAllTerms()
+        public IEnumerable<TermDto> GetAll()
         {
             return _termRepository.GetAll().MapToDto();
-        }
-
-        public Task<TermDto> GetTermByIdAsync()
-        {
-            throw new NotImplementedException();
         }
     }
 }
