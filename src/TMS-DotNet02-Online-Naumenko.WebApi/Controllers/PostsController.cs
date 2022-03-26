@@ -15,6 +15,14 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
             _postService = postService ?? throw new ArgumentNullException(nameof(postService));
         }
 
+        [HttpPost]
+        public string CreatePost(PostDto post)
+        {
+            var id = _postService.CreatePost(post);
+
+            return $"Post added. Post id - {id}";
+        }
+
         [HttpGet]
         public IEnumerable<PostDto> GetAll()
         {

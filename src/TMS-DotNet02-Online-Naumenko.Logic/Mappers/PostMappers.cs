@@ -24,5 +24,22 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Mappers
                 };
             }
         }
+
+        public static Post MapDtoTo(this PostDto post)
+        {
+            return new Post
+            {
+                Id = post.Id,
+                TypeId = post.TypeId,
+                Title = post.Title,
+                Slug = post.Slug,
+                Content = post.Content,
+                Excerpt = post.Excerpt,
+                Date = post.Date,
+                ModificationDate = post.ModificationDate,
+                PostStatusId = post.PostStatusId,
+                UserId = post.UserId,
+            };
+        }
     }
 }
