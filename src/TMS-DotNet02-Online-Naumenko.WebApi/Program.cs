@@ -23,7 +23,7 @@ builder.Services.AddTransient<ITermService, TermService>();
 builder.Services.AddTransient<IFileService, FileService>();
 builder.Services.AddTransient<IOptionService, OptionService>();
 
-var app = builder.Build();
+ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

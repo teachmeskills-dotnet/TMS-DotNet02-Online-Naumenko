@@ -5,7 +5,7 @@ using TMS_DotNet02_Online_Naumenko.Logic.Services.Interfaces;
 namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[controller]/[action]")]
     public class PostsController : ControllerBase
     {
         private readonly IPostService _postService;
@@ -15,12 +15,24 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
             _postService = postService ?? throw new ArgumentNullException(nameof(postService));
         }
 
-        [HttpPost]
-        public string CreatePost(PostDto post)
+        public PostDto TestData()
         {
-            var id = _postService.CreatePost(post);
+            return new PostDto {
+                Id = 6,
+                /*Title = "test 1",
+                Slug = "test 1",
+                Content = "test 1",
+                UserId = 2,
+                TypeId = 1,
+                PostStatusId = (Data.Models.Enums.PostStatus)1,*/
+            };
+        }
 
-            return $"Post added. Post id - {id}";
+        // [HttpPost]
+        public async Task CreatePost(/*PostDto post*/)
+        {
+            Console.WriteLine("Suc");
+            await _postService.CreatePost(TestData());
         }
 
         [HttpGet]
@@ -29,6 +41,11 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
             var result = _postService.GetAll();
 
             return result;
+        }
+
+        public void DeletePost(/*PostDto post*/)
+        {
+            _postService.DeletePost(TestData());
         }
     }
 }

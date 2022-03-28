@@ -14,7 +14,7 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
             _dbSet = context.Set<T>();
         }
 
-        public virtual async Task AddAsync(T entity)
+        public async Task AddAsync(T entity)
         {
             await _dbSet.AddAsync(entity);
         }
@@ -29,7 +29,7 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
             _dbSet.RemoveRange(entity);
         }
 
-        public virtual IEnumerable<T> GetAll()
+        public IEnumerable<T> GetAll()
         {
             return _dbSet.ToList();
         }

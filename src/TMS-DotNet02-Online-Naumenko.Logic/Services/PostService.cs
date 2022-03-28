@@ -20,12 +20,16 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services
             return _postRepository.GetAll().MapToDto();
         }
 
-        public async Task<int> CreatePost(PostDto post)
+        public async Task CreatePost(PostDto post)
         {
             await _postRepository.AddAsync(post.MapDtoTo());
             await _postRepository.SaveChangesAsync();
+        }
 
-            return post.Id;
+        public void DeletePost(PostDto post)
+        {
+            _postRepository.Delete(post.MapDtoTo());
+            _postRepository.SaveChangesAsync();
         }
     }
 }
