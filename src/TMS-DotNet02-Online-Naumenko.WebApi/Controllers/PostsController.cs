@@ -45,7 +45,7 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
 
         public void DeletePost(/*PostDto post*/)
         {
-            _postService.DeletePost(TestData());
+            _postService.DeletePost(6);
         }
     }
 }

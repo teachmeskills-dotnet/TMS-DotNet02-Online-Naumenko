@@ -19,9 +19,12 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
             await _dbSet.AddAsync(entity);
         }
 
-        public void Delete(T entity)
+        public void Delete(int id)
         {
-            _dbSet.Remove(entity);
+            var isEmpty = _dbSet.Find(id);
+            
+            _dbSet.Remove(isEmpty);
+            _context.SaveChanges();
         }
 
         public void DeleteRange(IEnumerable<T> entity)
