@@ -4,7 +4,7 @@ import cl from './css/PostWithBackground.module.css';
 
 const PostWithBackgroud = (props) => {
     
-    const classes = [cl.post__cell];
+    const classes = [cl.post_cell];
 
     switch(props.height){
         case 'xl':
@@ -26,13 +26,13 @@ const PostWithBackgroud = (props) => {
 
     return (
         <div className={classes.join(' ')}>
-            <div className={cl.post__cell_background}>
+            <div className={cl.post_cell__background}>
                 <picture>
                     <img src={props.background} alt={props.title} />
                 </picture>
             </div>
-            <a className={cl.post__cell_link} href={props.link}>
-                <span className={cl.post__cell_title}>
+            <a className={cl.post_cell__link} href={props.link}>
+                <span className={cl.post_cell__title}>
                     {props.title}
                 </span>
             </a>

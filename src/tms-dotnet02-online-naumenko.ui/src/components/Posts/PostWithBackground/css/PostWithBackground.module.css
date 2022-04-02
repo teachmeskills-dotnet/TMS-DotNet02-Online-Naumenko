@@ -1,4 +1,4 @@
-.post__cell {
+.post_cell {
     display: flex;
     flex-wrap: wrap;
     position: relative;
@@ -6,10 +6,10 @@
     border-radius: .25rem;
     box-shadow: 0 0 5px rgb(0 0 0 / 15%);
 }
-.post__cell:hover .post__cell_link {
+.post_cell:hover .post_cell__link {
     background: rgba(0,0,0,0.4);
 }
-.post__cell_background {
+.post_cell__background {
     position: absolute;
     top: 0;
     left: 0;
@@ -17,7 +17,7 @@
     right: 0;
     border-radius: .25rem;
 }
-.post__cell_background img {
+.post_cell__background img {
     background-position: center center;
     object-fit: cover;
     border-radius: .25rem;
@@ -25,7 +25,7 @@
     width: 100%;
     z-index: 0;
 }
-.post__cell_link {
+.post_cell__link {
     position: absolute;
     display: block;
     left: 0;
@@ -37,11 +37,11 @@
     line-height: 22px;
     text-align: left;
 }
-.post__cell_link:hover {
+.post_cell__link:hover {
     background-color: rgba(0,0,0,0.4);
     border-radius: 0.25rem;
 }
-.post__cell_title {
+.post_cell__title {
     position: absolute;
     bottom: 0rem;
     padding: 3.5rem 1.5rem;

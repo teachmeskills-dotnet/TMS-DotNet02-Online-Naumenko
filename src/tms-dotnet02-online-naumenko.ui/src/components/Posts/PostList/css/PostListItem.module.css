@@ -1,0 +1,20 @@
+.post_list ul .post_list__item {
+    position: relative;
+    height: 120px;
+    border-bottom: 1px solid rgba(0,0,0, .15);
+}
+.post_list ul .post_list__item:last-child {
+    border-bottom: none;
+}
+.item__title {
+    font-size: 1rem;
+    font-weight: 400;
+    word-wrap: break-word;
+    word-break: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    line-height: 20px;
+    color:#333;
+}
