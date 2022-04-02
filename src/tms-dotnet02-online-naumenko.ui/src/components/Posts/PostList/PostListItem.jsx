@@ -4,11 +4,11 @@ import cl from './css/PostListItem.module.css';
 
 const PostListItem = (props) => {
     return (
-        <div className="list__item pt-3">
+        <div className={cl.post_list__item}>
             <a href={props.link}>
-                <div className="item__title">
+                <li className={cl.post_list__item_title}>
                     {props.title}
-                </div>
+                </li>
             </a>
             <PostInfo date={props.date} link={props.link} views={props.views} handleToggle={props.handleToggle}/>
         </div>

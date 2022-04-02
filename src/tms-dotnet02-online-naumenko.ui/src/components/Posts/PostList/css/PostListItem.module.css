@@ -1,12 +1,13 @@
-.post_list ul .post_list__item {
+.post_list__item {
     position: relative;
     height: 120px;
     border-bottom: 1px solid rgba(0,0,0, .15);
+    padding-top: 1rem;
 }
-.post_list ul .post_list__item:last-child {
+.post_list__item:last-child {
     border-bottom: none;
 }
-.item__title {
+.post_list__item_title {
     font-size: 1rem;
     font-weight: 400;
     word-wrap: break-word;
