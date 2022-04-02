@@ -98,67 +98,7 @@ main {
     bottom: 1rem;
 
 }
-.cell-info {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    height: -moz-fit-content;
-    height: fit-content;
-    width: 100%;
-    bottom: 1.5rem;
-}
-.cell-info ul {
-    position: relative;
-    display: flex;
-    align-items: center;
-    font-size: .7rem;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-.cell-info ul .nav-item {
-    fill: #fff;
-    color: #fff;
-    opacity: 0.5;
-}
-.post__list-shape .cell-info ul .nav-item {
-    fill: #666;
-    color: #666;
-    opacity: 0.5;
-}
-.cell-info .cell-info__share .nav-item:hover {
-    opacity: 1;
-}
-.cell-info ul .nav-item .nav-link {
-    width: 1.5rem;
-    height: 1.5rem;
-    padding: 0;
-    margin: 0;
-}
-.cell-info .cell-info__date .nav-item:nth-child(2) .nav-link {
-    display: flex;
-    width: 1.05rem;
-    height: 1.05rem;
-    align-items: center;
-    justify-content: center;
-}
-.cell-info ul .nav-item .nav-link .svg-icon {
-    width: 100%;
-    height: 100%;
-}
-.cell-info .cell-info__date {
-    justify-content: start;
-}
-.cell-info .cell-info__share {
-    justify-content: end;
-}
-.cell-info__share .nav-item:last-child .nav-link {
-    margin-right: -5px;
-}
-.cell-info__share .share-more .share-more__desktop,
-.cell-info__share .share-more .share-more__mobile {
-    height: 100%;
-}
+
 /* Share-full */
 .share-full {
     position: absolute;

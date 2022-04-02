@@ -19,3 +19,8 @@
     line-height: 20px;
     color:#333;
 }
+.post_list .post_info ul .nav-item {
+    fill: #666;
+    color: #666;
+    opacity: 0.5;
+}
