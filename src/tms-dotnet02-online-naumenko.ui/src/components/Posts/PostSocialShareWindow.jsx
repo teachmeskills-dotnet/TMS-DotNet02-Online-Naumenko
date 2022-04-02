@@ -1,8 +1,8 @@
 import React from 'react';
 
-const SocialShareWindow = (props) => {
+const PostSocialShareWindow = (props) => {
     return (
-        <div className='share-full'>
+        <div className={`share-full ${props.visible ? 'active' : ''}`}>
             <ul>
                 <li>
                     <a data-name='facebook'>
@@ -79,4 +79,4 @@ const SocialShareWindow = (props) => {
     );
 };
 
-export default SocialShareWindow;
+export default PostSocialShareWindow;

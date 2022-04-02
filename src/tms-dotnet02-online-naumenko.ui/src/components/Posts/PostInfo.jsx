@@ -1,8 +1,8 @@
 import React from 'react';
 
-const NewsCellInfo = (props) => {
+const PostInfo = (props) => {
     return (
-        <div className='cell-info'>
+        <div className='cell-info px-4'>
             <ul className='col-8 cell-info__date'>
 				<li className='nav-item'>
                     {props.date}
@@ -46,7 +46,7 @@ const NewsCellInfo = (props) => {
 				</li>
                 <li className='nav-item'>
 					<div className='nav-link'>
-                        <a className='share-more'>
+                        <a className='share-more' onClick={() => props.handleToggle()}>
                             <span className='share-more__desktop d-none d-lg-block'>
                                 <svg className='svg-icon'>
                                     <use href='#icon-more'></use>
@@ -65,4 +65,4 @@ const NewsCellInfo = (props) => {
     );
 };
 
-export default NewsCellInfo;
+export default PostInfo;

@@ -1,0 +1,17 @@
+.post__list {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    background: transparent;
+    border-radius: .25rem;
+    box-shadow: 0 0 5px rgb(0 0 0 / 15%);
+}
+.post__list_title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #666;
+    opacity: 0.5;
+}
+.post__list_title:hover{
+    opacity: 1;
+}
