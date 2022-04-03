@@ -6,7 +6,7 @@ const PostList = (props) => {
         <div className='post-list px-4 pt-3'>
             <a href=''>
                 <div className='post-list__title'>
-                    Главное
+                    {props.sectionName}
                 </div>
             </a>
             <ul>

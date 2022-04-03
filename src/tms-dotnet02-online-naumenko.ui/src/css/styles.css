@@ -14,7 +14,11 @@ a {
     text-decoration: none !important;
 }
 header {
-
+    position: sticky;
+    box-shadow: rgb(0 0 0 / 20%) 0px 0.1rem 1rem;
+    width: 100%;
+    height: 60px;
+    z-index: 10;
 }
 main {
     width: 100%;
@@ -201,7 +205,6 @@ main {
 }
 .post-list__item .post-info {
     padding: 0 !important;
-    bottom: 1rem;
 }
 .post-list__item .post-info ul .nav-item {
     fill: #222;
@@ -219,7 +222,7 @@ main {
     align-items: center;
     width: 100%;
     padding: 0rem 1.5rem;
-    bottom: 1.5rem;
+    bottom: 1rem;
 }
 .post-info ul {
     position: relative;
