@@ -3,16 +3,16 @@ import PostListItem from './PostListItem';
 
 const PostList = (props) => {
 
-    const classes = ['post-list__title pt-3']
+    const listTitle = ['post-list__title pt-3'];
 
     if(props.sectionName === '' || props.sectionName === undefined){
-        classes.push('d-none');
+        listTitle.push('d-none');
     }
-
+    
     return (
         <div className='post-list px-4'>
             <a href=''>
-                <div className={classes.join(' ')}>
+                <div className={listTitle.join(' ')}>
                     {props.sectionName}
                 </div>
             </a>
