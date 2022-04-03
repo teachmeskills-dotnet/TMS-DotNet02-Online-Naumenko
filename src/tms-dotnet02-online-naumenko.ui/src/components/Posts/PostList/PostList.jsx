@@ -2,10 +2,17 @@ import React from 'react';
 import PostListItem from './PostListItem';
 
 const PostList = (props) => {
+
+    const classes = ['post-list__title pt-3']
+
+    if(props.sectionName === '' || props.sectionName === undefined){
+        classes.push('d-none');
+    }
+
     return (
-        <div className='post-list px-4 pt-3'>
+        <div className='post-list px-4'>
             <a href=''>
-                <div className='post-list__title'>
+                <div className={classes.join(' ')}>
                     {props.sectionName}
                 </div>
             </a>
