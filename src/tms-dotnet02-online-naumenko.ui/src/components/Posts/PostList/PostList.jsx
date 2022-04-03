@@ -1,16 +1,11 @@
 import React from 'react';
 import PostListItem from './PostListItem';
-import cl from './css/PostList.module.css';
 
 const PostList = (props) => {
-
-    const classes = [cl.post_list];
-    classes.push('px-4 pt-3');
-
     return (
-        <div className={classes.join(' ')}>
+        <div className='post-list px-4 pt-3'>
             <a href=''>
-                <div className={cl.post_list__title}>
+                <div className='post-list__title'>
                     Главное
                 </div>
             </a>

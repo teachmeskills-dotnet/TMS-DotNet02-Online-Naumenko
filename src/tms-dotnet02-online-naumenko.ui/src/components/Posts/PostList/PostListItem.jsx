@@ -1,14 +1,13 @@
 import React from 'react';
-import PostInfo from '../PostInfo';
-import cl from './css/PostListItem.module.css';
+import PostInfo from '../PostInfo/PostInfo';
 
 const PostListItem = (props) => {
     return (
-        <div className={cl.post_list__item}>
+        <div className='post-list__item'>
             <a href={props.link}>
-                <li className={cl.post_list__item_title}>
+                <div className='post-list__item-title'>
                     {props.title}
-                </li>
+                </div>
             </a>
             <PostInfo date={props.date} link={props.link} views={props.views} handleToggle={props.handleToggle}/>
         </div>

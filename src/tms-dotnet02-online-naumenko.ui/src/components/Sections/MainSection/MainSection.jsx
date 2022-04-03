@@ -7,7 +7,7 @@ const MainSection = (props) => {
     return (
         <section className="section-main pt__3">
             <div className="row g__3">
-                <div className="col-md-5">
+                <div className="col-md-6 col-lg-5 col-xl-5">
                     <PostWithBackgroud 
                     handleToggle={props.handleToggle} 
                     link={'https://test.test'} 
@@ -17,14 +17,14 @@ const MainSection = (props) => {
                     background={bgimage}
                     height='lg'/>
                 </div>
-                <div className="col-md-3">
+                <div className="col-md-6 col-lg-4 col-xl-3">
                     <PostList 
                     handleToggle={props.handleToggle} 
                     posts={props.posts}/>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-12 col-lg-3 col-xl-4">
                     <div className="row g__3">
-                        <div className="col-md-12">
+                        <div className="col-md-6 col-lg-12">
                             <PostWithBackgroud 
                             handleToggle={props.handleToggle} 
                             link={'https://test.test'} 
@@ -34,7 +34,7 @@ const MainSection = (props) => {
                             background={bgimage}
                             height='sm'/>
                         </div>
-                        <div className="col-md-12">
+                        <div className="col-md-6 col-lg-12">
                             <PostWithBackgroud 
                             handleToggle={props.handleToggle} 
                             link={'https://test.test'} 
