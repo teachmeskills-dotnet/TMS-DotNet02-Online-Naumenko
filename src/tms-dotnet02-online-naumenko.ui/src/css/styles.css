@@ -232,6 +232,7 @@ main {
     position: absolute;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     width: 100%;
     padding: 0rem 1.5rem;
     bottom: 1rem;
@@ -260,9 +261,6 @@ main {
     width: 100%;
     height: 100%;
 }
-.post-info__date {
-    justify-content: start;
-}
 .post-info__date .nav-item:nth-child(2) {
     display: flex;
     padding-left: 0.5rem;
@@ -273,9 +271,6 @@ main {
     height: 1.05rem;
     align-items: center;
     justify-content: center;
-}
-.post-info__share {
-    justify-content: end;
 }
 .post-info__share .nav-item:hover {
     opacity: 1;

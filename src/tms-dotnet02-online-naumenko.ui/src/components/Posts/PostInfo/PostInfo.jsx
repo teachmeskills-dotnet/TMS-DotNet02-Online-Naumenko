@@ -3,7 +3,7 @@ import React from 'react';
 const PostInfo = (props) => {
     return (
         <div className='post-info'>
-            <ul className='post-info__date col-8'>
+            <ul className='post-info__date'>
 				<li className='nav-item'>
                     {props.date}
                 </li>
@@ -16,7 +16,7 @@ const PostInfo = (props) => {
                     <span>{props.views}</span>
                 </li>
 			</ul>
-			<ul className='post-info__share col-4'>
+			<ul className='post-info__share'>
                 <li className='nav-item d-none d-lg-block'>
 					<div className='nav-link'>
 						<a href={'http://www.facebook.com/sharer.php?u=' + props.link} title='facebook'>

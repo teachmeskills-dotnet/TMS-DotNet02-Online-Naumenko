@@ -22,6 +22,7 @@ builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<ITermService, TermService>();
 builder.Services.AddTransient<IFileService, FileService>();
 builder.Services.AddTransient<IOptionService, OptionService>();
+builder.Services.AddCors();
 
  var app = builder.Build();
 
@@ -41,5 +42,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller}/{action}/{id?}");
+
+app.UseCors(builder => builder.AllowAnyOrigin());
 
 app.Run();

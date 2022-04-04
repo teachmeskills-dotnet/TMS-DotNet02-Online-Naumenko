@@ -1,9 +1,32 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PostList from '../../Posts/PostList/PostList';
 import PostWithBackgroud from '../../Posts/PostWithBackground/PostWithBackground';
 import bgimage from '../../Posts/avatar.jpeg';
 
 const MainSection = (props) => {
+    const [test, setTest] = useState('');
+    
+    const url = 'https://localhost:5001/posts/getall';
+
+    const fetchData = async () => {
+        try {
+          const response = await fetch(url);
+          const json = await response.json();
+          setTest(json[0]);
+        } catch (error) {
+          console.log("error", error);
+        }
+      };
+      fetchData();
+    // let post = fetch('https://localhost:5001/posts/getall')
+    // .then((response) => {
+    //   return response.json();
+    // }).then((data) => {
+    //     test = data[0];
+    // });
+    
+    console.log(test);
+
     return (
         <section className="section-main pt__3">
             <div className="row g__3">
@@ -11,8 +34,8 @@ const MainSection = (props) => {
                     <PostWithBackgroud 
                     handleToggle={props.handleToggle} 
                     link={'https://test.test'} 
-                    title={'В МВД рассказали о сроках и плюсах добровольной сдачи нелегального арсенала'} 
-                    date={'Вчера, 21:34'} 
+                    title={test.title} 
+                    date={test.date} 
                     views={10} 
                     background={bgimage}
                     height='lg'/>
