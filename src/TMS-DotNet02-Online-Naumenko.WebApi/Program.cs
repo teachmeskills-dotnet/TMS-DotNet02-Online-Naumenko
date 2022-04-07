@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using TMS_DotNet02_Online_Naumenko.Data.Contexts.MainContext;
+using TMS_DotNet02_Online_Naumenko.Data.Models;
 using TMS_DotNet02_Online_Naumenko.Data.Repository;
+using TMS_DotNet02_Online_Naumenko.Data.Repository.Interfaces;
 using TMS_DotNet02_Online_Naumenko.Logic.Services;
 using TMS_DotNet02_Online_Naumenko.Logic.Services.Interfaces;
 
@@ -17,6 +19,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+/*builder.Services.AddTransient<IPostRepository, PostRepository>();*/
+builder.Services.AddTransient<Repository<Post>, PostRepository>();
 builder.Services.AddTransient<IPostService, PostService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<ITermService, TermService>();

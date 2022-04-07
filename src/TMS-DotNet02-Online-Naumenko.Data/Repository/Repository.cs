@@ -24,7 +24,6 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
             var isEmpty = _dbSet.Find(id);
             
             _dbSet.Remove(isEmpty);
-            _context.SaveChanges();
         }
 
         public void DeleteRange(IEnumerable<T> entity)
@@ -32,7 +31,7 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
             _dbSet.RemoveRange(entity);
         }
 
-        public IEnumerable<T> GetAll()
+        public virtual IEnumerable<T> GetAll()
         {
             return _dbSet.ToList();
         }
