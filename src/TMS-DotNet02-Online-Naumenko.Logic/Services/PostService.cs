@@ -26,6 +26,11 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services
             return _postRepository.GetAll(userId).MapToDto();
         }
 
+        public IEnumerable<PostDto> GetAll(int userId, int typeId)
+        {
+            return _postRepository.GetAll(userId, typeId).MapToDto();
+        }
+
         public async Task CreatePost(PostDto post)
         {
             await _postRepository.AddAsync(post.MapDtoTo());

@@ -9,9 +9,11 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository.Interfaces
 {
     public interface IPostRepository
     {
+        IEnumerable<Post> GetAll();
+
         IEnumerable<Post> GetAll(int userId);
 
-        IEnumerable<Post> GetAll();
+        IEnumerable<Post> GetAll(int userId, int typeId);
 
         Task AddAsync(Post entity);
 
