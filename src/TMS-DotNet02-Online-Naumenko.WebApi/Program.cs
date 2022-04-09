@@ -18,9 +18,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
-/*builder.Services.AddTransient<IPostRepository, PostRepository>();*/
-builder.Services.AddTransient<Repository<Post>, PostRepository>();
+builder.Services.AddTransient<IPostRepository, PostRepository>();
+builder.Services.AddTransient<IFileRepository, FileRepository>();
+builder.Services.AddTransient<IOptionRepository, OptionRepository>();
+builder.Services.AddTransient<ITermRepository, TermRepository>();
+builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IPostService, PostService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<ITermService, TermService>();

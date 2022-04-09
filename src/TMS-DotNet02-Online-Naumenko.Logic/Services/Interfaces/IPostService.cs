@@ -7,6 +7,8 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services.Interfaces
     {
         IEnumerable<PostDto> GetAll();
 
+        IEnumerable<PostDto> GetAll(int userId);
+
         Task CreatePost(PostDto post);
 
         void DeletePost(int id);

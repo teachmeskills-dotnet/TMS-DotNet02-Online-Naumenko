@@ -43,6 +43,13 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
             return result;
         }
 
+        public IEnumerable<PostDto> GetAll(int userId)
+        {
+            var result = _postService.GetAll().Where(post => post.UserId == userId);
+
+            return result;
+        }
+
         public void DeletePost(/*PostDto post*/)
         {
             _postService.DeletePost(6);

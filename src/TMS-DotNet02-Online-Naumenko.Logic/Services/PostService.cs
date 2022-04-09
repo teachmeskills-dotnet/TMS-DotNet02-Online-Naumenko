@@ -1,5 +1,6 @@
 ﻿using TMS_DotNet02_Online_Naumenko.Data.Models;
 using TMS_DotNet02_Online_Naumenko.Data.Repository;
+using TMS_DotNet02_Online_Naumenko.Data.Repository.Interfaces;
 using TMS_DotNet02_Online_Naumenko.Logic.Mappers;
 using TMS_DotNet02_Online_Naumenko.Logic.Models;
 using TMS_DotNet02_Online_Naumenko.Logic.Services.Interfaces;
@@ -8,9 +9,9 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services
 {
     public class PostService : IPostService
     {
-        private readonly Repository<Post> _postRepository;
-        
-        public PostService(Repository<Post> postRepository)
+        private readonly IPostRepository _postRepository;
+
+        public PostService(IPostRepository postRepository)
         {
             _postRepository = postRepository ?? throw new ArgumentNullException(nameof(postRepository));
         }
@@ -18,6 +19,11 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services
         public IEnumerable<PostDto> GetAll()
         {
             return _postRepository.GetAll().MapToDto();
+        }
+
+        public IEnumerable<PostDto> GetAll(int userId)
+        {
+            return _postRepository.GetAll(userId).MapToDto();
         }
 
         public async Task CreatePost(PostDto post)
