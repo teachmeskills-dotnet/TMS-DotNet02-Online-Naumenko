@@ -21,16 +21,6 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
             _dbSet = context.Set<Post>();
         }
 
-        public IEnumerable<Post> GetAll(int userId)
-        {
-            return _dbSet.Where(post => post.UserId == userId);
-        }
-
-        public IEnumerable<Post> GetAll(int userId, int typeId)
-        {
-            return _dbSet.Where(post => post.UserId == userId && post.TypeId == typeId);
-        }
-
         public async Task AddAsync(Post entity)
         {
             await _dbSet.AddAsync(entity);

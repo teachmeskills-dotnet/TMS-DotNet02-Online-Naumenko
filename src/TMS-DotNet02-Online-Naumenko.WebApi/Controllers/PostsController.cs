@@ -38,21 +38,7 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
         [HttpGet]
         public IEnumerable<PostDto> GetAll()
         {
-            var result = _postService.GetAll(3);
-
-            return result;
-        }
-
-        public IEnumerable<PostDto> GetAll(int userId)
-        {
-            var result = _postService.GetAll(userId);
-
-            return result;
-        }
-
-        public IEnumerable<PostDto> GetAll(int userId, int typeId)
-        {
-            var result = _postService.GetAll(userId, typeId);
+            var result = _postService.GetAll();
 
             return result;
         }
