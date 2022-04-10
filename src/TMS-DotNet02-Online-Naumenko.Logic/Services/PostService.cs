@@ -18,7 +18,7 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services
 
         public IEnumerable<PostDto> GetAll(FilterDto filter)
         {
-            return _postRepository.GetAll(filter).MapToDto();
+            return _postRepository.GetAll(filter.MapDtoTo()).MapToDto();
         }
 
         public async Task CreatePost(PostDto post)

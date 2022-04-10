@@ -18,47 +18,47 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Contexts.MainContext
         /// <summary>
         /// DbSet for Users.
         /// </summary>
-        public DbSet<User>? Users { get; set; }
+        public DbSet<User> Users { get; set; }
 
         /// <summary>
         /// DbSet for User Roles.
         /// </summary>
-        public DbSet<UserRole>? UserRoles { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
 
         /// <summary>
         /// DbSet for Terms.
         /// </summary>
-        public DbSet<Term>? Terms { get; set; }
+        public DbSet<Term> Terms { get; set; }
 
         /// <summary>
         /// DbSet for Terms.
         /// </summary>
-        public DbSet<PostTerm>? PostTerms { get; set; }
+        public DbSet<PostTerm> PostTerms { get; set; }
 
         /// <summary>
         /// DbSet for Posts.
         /// </summary>
-        public DbSet<Post>? Posts { get; set; }
+        public DbSet<Post> Posts { get; set; }
 
         /// <summary>
         /// DbSet for Options.
         /// </summary>
-        public DbSet<Option>? Options { get; set; }
+        public DbSet<Option> Options { get; set; }
 
         /// <summary>
         /// DbSet for File Extensions.
         /// </summary>
-        public DbSet<FileExtension>? FileExtensions { get; set; }
+        public DbSet<FileExtension> FileExtensions { get; set; }
 
         /// <summary>
         /// DbSet for Files.
         /// </summary>
-        public DbSet<Models.File>? Files { get; set; }
+        public DbSet<Models.File> Files { get; set; }
 
         /// <summary>
         /// DbSet for Files.
         /// </summary>
-        public DbSet<FileTerm>? FileTerms { get; set; }
+        public DbSet<FileTerm> FileTerms { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

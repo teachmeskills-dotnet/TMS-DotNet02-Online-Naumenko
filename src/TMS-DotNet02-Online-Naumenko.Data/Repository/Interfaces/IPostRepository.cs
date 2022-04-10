@@ -22,6 +22,6 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository.Interfaces
 
         Task SaveChangesAsync();
 
-        public IQueryable<Post> UseFilter(DbSet<Post> posts, Filter filter);
+        public IQueryable<Post> UseFilter(IQueryable<Post> postIQuer, Filter filter);
     }
 }

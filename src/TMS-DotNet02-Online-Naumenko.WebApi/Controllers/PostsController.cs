@@ -36,9 +36,14 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<PostDto> GetAll()
+        public IEnumerable<PostDto> GetAll(/*FilterDto filter*/)
         {
-            var result = _postService.GetAll();
+            FilterDto filter = new FilterDto
+            {
+                Title = "My wife",
+                UserId = 2,
+            };
+            var result = _postService.GetAll(filter);
 
             return result;
         }
