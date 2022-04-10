@@ -10,8 +10,8 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Models
     {
         public string Title { get; set; }
 
-        public List<int> UserId { get; set; }
+        public int UserId { get; set; }
 
-        public List<int> TermId { get; set; }
+        public List<int> TermsId { get; set; }
     }
 }

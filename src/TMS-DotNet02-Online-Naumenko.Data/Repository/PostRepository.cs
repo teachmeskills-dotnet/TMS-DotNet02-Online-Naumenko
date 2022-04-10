@@ -38,9 +38,9 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
             _dbSet.RemoveRange(entity);
         }
 
-        public IEnumerable<Post> GetAll()
+        public IEnumerable<Post> GetAll(Filter filter)
         {
-            return _dbSet.ToList();
+            return UseFilter(_dbSet, filter);
         }
 
         public Task SaveChangesAsync()
@@ -51,6 +51,26 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
         public void Update(Post entity)
         {
             _context.Entry(entity).State = EntityState.Modified;
+        }
+
+        public IQueryable<Post> UseFilter(DbSet<Post> _dbSet, Filter filter)
+        {
+            if(filter.Title != null)
+            {
+                _dbSet.Where(post => post.Title.Contains(filter.Title));
+            }
+
+            if(filter.UserId != null)
+            {
+                _dbSet.Where(post => post.UserId == filter.UserId);
+            }
+
+            if(filter.TermsId != null)
+            {
+               // _dbSet.Where();
+            }
+
+            return _dbSet.AsNoTracking();
         }
     }
 }

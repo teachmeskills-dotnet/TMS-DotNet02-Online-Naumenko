@@ -16,9 +16,9 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services
             _postRepository = postRepository ?? throw new ArgumentNullException(nameof(postRepository));
         }
 
-        public IEnumerable<PostDto> GetAll()
+        public IEnumerable<PostDto> GetAll(FilterDto filter)
         {
-            return _postRepository.GetAll().MapToDto();
+            return _postRepository.GetAll(filter).MapToDto();
         }
 
         public async Task CreatePost(PostDto post)
