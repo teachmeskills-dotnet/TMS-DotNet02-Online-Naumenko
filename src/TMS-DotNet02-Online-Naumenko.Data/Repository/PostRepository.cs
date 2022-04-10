@@ -40,9 +40,8 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
 
         public IEnumerable<Post> GetAll(Filter filter)
         {
-            //IQueryable<Post> postIQuer = new MainContext().Posts;
-
-            return UseFilter(_dbSet, filter);
+            //return _dbSet.Where(post => post.UserId == filter.UserId);
+            return UseFilter(filter);
         }
 
         public Task SaveChangesAsync()
@@ -55,26 +54,26 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
             _context.Entry(entity).State = EntityState.Modified;
         }
 
-        public IQueryable<Post> UseFilter(IQueryable<Post> postIQuer, Filter filter)
+        public IQueryable<Post> UseFilter(Filter filter)
         {
-           // IQueryable<Post> result;
+            IQueryable<Post> filterPosts = _dbSet;
 
-            if(filter.Title != null)
+            if (filter.Title != null)
             {
-                postIQuer.Where(post => post.Title.Contains(filter.Title));
+                filterPosts = filterPosts.Where(post => post.Title.Contains(filter.Title));
             }
 
-            if(filter.UserId != null)
+            if (filter.UserId != 0 && filter.UserId != null)
             {
-                postIQuer.Where(post => post.UserId == filter.UserId);
+                filterPosts = filterPosts.Where(post => post.UserId == filter.UserId);
             }
 
             if(filter.TermsId != null)
             {
-                // postIQuer.Where();
+                // filterPosts = filterPosts.Where();
             }
 
-            return postIQuer.AsNoTracking();
+            return filterPosts.AsNoTracking();
         }
     }
 }
