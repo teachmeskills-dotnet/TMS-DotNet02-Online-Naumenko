@@ -12,6 +12,6 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Models
 
         public int UserId { get; set; }
 
-        public List<int> TermsId { get; set; }
+        public List<int> TermIds { get; set; }
     }
 }

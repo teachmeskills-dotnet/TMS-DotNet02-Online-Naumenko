@@ -8,13 +8,13 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Models
 
         public int TypeId { get; set; }
         
-        public string? Title { get; set; }
+        public string Title { get; set; }
 
-        public string? Slug { get; set; }
+        public string Slug { get; set; }
 
-        public string? Content { get; set; }
+        public string Content { get; set; }
 
-        public string? Excerpt { get; set; }
+        public string Excerpt { get; set; }
 
         public DateTime Date { get; set; }
 
@@ -24,8 +24,8 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Models
 
         public int UserId { get; set; }
 
-        public UserDto? User { get; set; }
+        public UserDto User { get; set; }
 
-        public IEnumerable<PostTermDto>? PostTerms { get; set; }
+        public IEnumerable<PostTermDto> PostTerms { get; set; }
     }
 }

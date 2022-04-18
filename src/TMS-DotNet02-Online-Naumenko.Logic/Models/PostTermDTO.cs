@@ -6,10 +6,10 @@
 
         public int PostId { get; set; }
 
-        public PostDto? Post { get; set; }
+        public PostDto Post { get; set; }
 
         public int TermId { get; set; }
 
-        public TermDto? Term { get; set; }
+        public TermDto Term { get; set; }
     }
 }

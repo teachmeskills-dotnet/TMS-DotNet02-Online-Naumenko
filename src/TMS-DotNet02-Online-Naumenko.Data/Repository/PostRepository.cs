@@ -30,7 +30,9 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
         {
             var isEmpty = _dbSet.Find(id);
 
-            _dbSet.Remove(isEmpty);
+            if (isEmpty != null) {
+                _dbSet.Remove(isEmpty);
+            }
         }
 
         public void DeleteRange(IEnumerable<Post> entity)
@@ -53,24 +55,34 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
             _context.Entry(entity).State = EntityState.Modified;
         }
 
-        public IQueryable<Post> UseFilter(IQueryable<Post> filterPosts, Filter filter)
+        public IQueryable<Post> UseFilter(IQueryable<Post> filteredPosts, Filter filter)
         {
             if (filter.Title != null)
             {
-                filterPosts = filterPosts.Where(post => post.Title.Contains(filter.Title));
+                filteredPosts = filteredPosts.Where(post => post.Title.Contains(filter.Title));
             }
 
-            if (filter.UserId != 0 && filter.UserId != null)
+            if (filter.UserId != 0)
             {
-                filterPosts = filterPosts.Where(post => post.UserId == filter.UserId);
+                filteredPosts = filteredPosts.Where(post => post.UserId == filter.UserId);
             }
 
-            if(filter.TermsId != null)
+            if(filter.TermIds != null)
             {
-                filterPosts = filterPosts.Where(post => post.PostTerms.All(term => filter.TermsId.Contains(term.TermId)));
-            }
+                /*filteredPosts = filteredPosts
+                    .Where(post => filter.TermIds
+                    .All(term => post.PostTerms
+                    .Select(postTerm => postTerm.TermId)
+                    .Contains(term)));*/
+                filteredPosts = filteredPosts
+                    .Include(post => post.PostTerms)
+                    .Where(post => filter.TermIds
+                    .All(postTerm => post.PostTerms
+                    .Select(term => term.TermId)
+                    .Contains(postTerm)));
+            } 
 
-            return filterPosts.AsNoTracking();
+            return filteredPosts.AsNoTracking();
         }
     }
 }

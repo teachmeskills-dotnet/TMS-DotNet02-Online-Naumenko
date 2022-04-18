@@ -16,7 +16,7 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Mappers
             {
                 Title = filter.Title,
                 UserId = filter.UserId,
-                TermsId = filter.TermsId,
+                TermsId = filter.TermIds,
             };
         }
 
@@ -26,7 +26,7 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Mappers
             {
                 Title = filter.Title,
                 UserId = filter.UserId,
-                TermsId = filter.TermsId,
+                TermIds = filter.TermsId,
             };
         }
     }
