@@ -19,9 +19,11 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
         [HttpGet]
         public IEnumerable<OptionDto> GetAll()
         {
-            var result = _optionService.GetAll();
-
-            return result;
+            FilterDto filter = new FilterDto
+            {
+            };
+            
+            return _optionService.GetAll(filter);
         }
     }
 }

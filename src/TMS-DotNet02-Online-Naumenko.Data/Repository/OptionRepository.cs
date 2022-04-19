@@ -1,9 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq.Expressions;
 using TMS_DotNet02_Online_Naumenko.Data.Contexts.MainContext;
 using TMS_DotNet02_Online_Naumenko.Data.Models;
 using TMS_DotNet02_Online_Naumenko.Data.Repository.Interfaces;
@@ -21,9 +17,14 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
             _dbSet = context.Set<Option>();
         }
 
-        public IEnumerable<Option> GetAll()
+        public IEnumerable<Option> GetAll(Filter filter)
         {
-            return _dbSet.AsNoTracking();
+            return ApplyFilter(_dbSet, filter);
+        }
+
+        public async Task<Option> GetEntityAsync(Expression<Func<Option, bool>> predicate)
+        {
+            return await _dbSet.FirstOrDefaultAsync(predicate);
         }
 
         public Task SaveChangesAsync()
@@ -34,6 +35,16 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
         public void Update(Option entity)
         {
             _context.Entry(entity).State = EntityState.Modified;
+        }
+
+        public IQueryable<Option> ApplyFilter(IQueryable<Option> filteredOptions, Filter filter)
+        {
+            if (filter.Title != null)
+            {
+                filteredOptions = filteredOptions.Where(option => option.Name.Contains(filter.Title));
+            }
+
+            return filteredOptions.AsNoTracking();
         }
     }
 }

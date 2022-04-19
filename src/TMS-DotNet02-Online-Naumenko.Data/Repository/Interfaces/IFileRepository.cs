@@ -1,4 +1,5 @@
-﻿using TMS_DotNet02_Online_Naumenko.Data.Models;
+﻿using System.Linq.Expressions;
+using TMS_DotNet02_Online_Naumenko.Data.Models;
 
 namespace TMS_DotNet02_Online_Naumenko.Data.Repository.Interfaces
 {
@@ -11,6 +12,8 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository.Interfaces
         void DeleteRange(IEnumerable<Models.File> entity);
 
         IEnumerable<Models.File> GetAll(Filter filter);
+
+        public Task<Models.File> GetEntityAsync(Expression<Func<Models.File, bool>> predicate);
 
         Task SaveChangesAsync();
 

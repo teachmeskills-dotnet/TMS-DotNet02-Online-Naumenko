@@ -19,9 +19,12 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
         [HttpGet]
         public IEnumerable<TermDto> GetAll()
         {
-            var result = _termService.GetAll();
+            FilterDto filter = new FilterDto
+            {
+                UserId = 2,
+            };
 
-            return result;
+            return _termService.GetAll(filter);
         }
     }
 }

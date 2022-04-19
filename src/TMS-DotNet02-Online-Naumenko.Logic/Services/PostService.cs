@@ -1,6 +1,4 @@
-﻿using TMS_DotNet02_Online_Naumenko.Data.Models;
-using TMS_DotNet02_Online_Naumenko.Data.Repository;
-using TMS_DotNet02_Online_Naumenko.Data.Repository.Interfaces;
+﻿using TMS_DotNet02_Online_Naumenko.Data.Repository.Interfaces;
 using TMS_DotNet02_Online_Naumenko.Logic.Mappers;
 using TMS_DotNet02_Online_Naumenko.Logic.Models;
 using TMS_DotNet02_Online_Naumenko.Logic.Services.Interfaces;
@@ -31,6 +29,24 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services
         {
             _postRepository.Delete(id);
             _postRepository.SaveChangesAsync();
+        }
+
+        public async Task UpdatePost(PostDto postDto)
+        {
+            postDto = postDto ?? throw new ArgumentNullException(nameof(postDto));
+
+            var post = await _postRepository.GetEntityAsync(post => post.Id == postDto.Id);
+
+            post.Title = postDto.Title;
+            post.Slug = postDto.Slug;
+            post.Content = postDto.Content;
+            post.Excerpt = postDto.Excerpt;
+            post.ReadingTime = postDto.ReadingTime;
+            post.Date = postDto.Date;
+            post.ModificationDate = postDto.ModificationDate;
+            post.PostStatusId = postDto.PostStatusId;
+
+            await _postRepository.SaveChangesAsync();
         }
     }
 }

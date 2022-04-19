@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq.Expressions;
 using TMS_DotNet02_Online_Naumenko.Data.Models;
 
 namespace TMS_DotNet02_Online_Naumenko.Data.Repository.Interfaces
@@ -16,6 +12,8 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository.Interfaces
         void DeleteRange(IEnumerable<Term> entity);
 
         IEnumerable<Term> GetAll(Filter filter);
+
+        public Task<Term> GetEntityAsync(Expression<Func<Term, bool>> predicate);
 
         Task SaveChangesAsync();
 

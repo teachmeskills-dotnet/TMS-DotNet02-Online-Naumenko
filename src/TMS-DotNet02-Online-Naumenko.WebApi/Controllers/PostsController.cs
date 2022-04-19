@@ -45,9 +45,8 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
                 UserId = 2,
                 TermsId = list,
             };
-            var result = _postService.GetAll(filter);
 
-            return result;
+            return _postService.GetAll(filter);
         }
 
         public void DeletePost(/*PostDto post*/)

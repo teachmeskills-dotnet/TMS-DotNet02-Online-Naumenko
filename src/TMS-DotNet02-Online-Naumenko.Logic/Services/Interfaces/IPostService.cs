@@ -1,5 +1,4 @@
-﻿using TMS_DotNet02_Online_Naumenko.Data.Models;
-using TMS_DotNet02_Online_Naumenko.Logic.Models;
+﻿using TMS_DotNet02_Online_Naumenko.Logic.Models;
 
 namespace TMS_DotNet02_Online_Naumenko.Logic.Services.Interfaces
 {
@@ -10,5 +9,7 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services.Interfaces
         Task CreatePost(PostDto post);
 
         void DeletePost(int id);
+
+        Task UpdatePost(PostDto postDto);
     }
 }

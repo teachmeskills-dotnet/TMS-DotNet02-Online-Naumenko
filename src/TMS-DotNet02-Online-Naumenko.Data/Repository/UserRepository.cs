@@ -1,9 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq.Expressions;
 using TMS_DotNet02_Online_Naumenko.Data.Contexts.MainContext;
 using TMS_DotNet02_Online_Naumenko.Data.Models;
 using TMS_DotNet02_Online_Naumenko.Data.Repository.Interfaces;
@@ -44,6 +40,11 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
         public IEnumerable<User> GetAll(Filter filter)
         {
             return ApplyFilter(_dbSet, filter);
+        }
+
+        public async Task<User> GetEntityAsync(Expression<Func<User, bool>> predicate)
+        {
+            return await _dbSet.FirstOrDefaultAsync(predicate);
         }
 
         public Task SaveChangesAsync()
