@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TMS_DotNet02_Online_Naumenko.Data.Models;
+﻿using TMS_DotNet02_Online_Naumenko.Data.Models;
 
 namespace TMS_DotNet02_Online_Naumenko.Data.Repository.Interfaces
 {
@@ -11,14 +6,8 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository.Interfaces
     {
         IEnumerable<Option> GetAll();
 
-        Task AddAsync(Option entity);
+        Task SaveChangesAsync();
 
         void Update(Option entity);
-
-        void Delete(int id);
-
-        void DeleteRange(IEnumerable<Option> entity);
-
-        Task SaveChangesAsync();
     }
 }

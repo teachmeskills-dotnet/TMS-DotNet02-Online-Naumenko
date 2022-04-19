@@ -16,6 +16,8 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Models
 
         public string Excerpt { get; set; }
 
+        public string ReadingTime { get; set; }
+
         public DateTime Date { get; set; }
 
         public DateTime ModificationDate { get; set; }

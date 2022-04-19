@@ -20,5 +20,18 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Mappers
                 };
             }
         }
+
+        public static Term MapDtoTo(this TermDto term)
+        {
+            return new Term
+            {
+                Id = term.Id,
+                Name = term.Name,
+                Slug = term.Slug,
+                Parent = term.Parent,
+                UserId = term.UserId,
+                TermTypeId = term.TermTypeId
+            };
+        }
     }
 }

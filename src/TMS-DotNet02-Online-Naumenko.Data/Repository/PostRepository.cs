@@ -1,9 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TMS_DotNet02_Online_Naumenko.Data.Contexts.MainContext;
 using TMS_DotNet02_Online_Naumenko.Data.Models;
 using TMS_DotNet02_Online_Naumenko.Data.Repository.Interfaces;
@@ -42,7 +37,7 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
 
         public IEnumerable<Post> GetAll(Filter filter)
         {
-            return UseFilter(_dbSet, filter);
+            return ApplyFilter(_dbSet, filter);
         }
 
         public Task SaveChangesAsync()
@@ -55,7 +50,7 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
             _context.Entry(entity).State = EntityState.Modified;
         }
 
-        public IQueryable<Post> UseFilter(IQueryable<Post> filteredPosts, Filter filter)
+        public IQueryable<Post> ApplyFilter(IQueryable<Post> filteredPosts, Filter filter)
         {
             if (filter.Title != null)
             {

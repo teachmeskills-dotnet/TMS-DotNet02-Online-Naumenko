@@ -6,10 +6,10 @@
 
         public int FileId { get; set; }
 
-        public FileDto? File { get; set; }
+        public FileDto File { get; set; }
 
         public int TermId { get; set; }
 
-        public TermDto? Term { get; set; }
+        public TermDto Term { get; set; }
     }
 }

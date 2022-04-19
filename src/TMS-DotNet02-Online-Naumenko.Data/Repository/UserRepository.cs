@@ -21,39 +21,49 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
             _dbSet = context.Set<User>();
         }
 
-        public Task AddAsync(User entity)
+        public async Task AddAsync(User entity)
         {
-            throw new NotImplementedException();
+            await _dbSet.AddAsync(entity);
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var isEmpty = _dbSet.Find(id);
+
+            if (isEmpty != null)
+            {
+                _dbSet.Remove(isEmpty);
+            }
         }
 
         public void DeleteRange(IEnumerable<User> entity)
         {
-            throw new NotImplementedException();
+            _dbSet.RemoveRange(entity);
         }
 
-        public IEnumerable<User> GetAll(int userRoleId)
+        public IEnumerable<User> GetAll(Filter filter)
         {
-            return _dbSet.Where(user => user.RoleId == userRoleId);
-        }
-
-        public IEnumerable<User> GetAll()
-        {
-            throw new NotImplementedException();
+            return ApplyFilter(_dbSet, filter);
         }
 
         public Task SaveChangesAsync()
         {
-            throw new NotImplementedException();
+            return _context.SaveChangesAsync();
         }
 
         public void Update(User entity)
         {
-            throw new NotImplementedException();
+            _context.Entry(entity).State = EntityState.Modified;
+        }
+
+        public IQueryable<User> ApplyFilter(IQueryable<User> filteredUsers, Filter filter)
+        {
+            if (filter.Title != null)
+            {
+                filteredUsers = filteredUsers.Where(user => user.Name.Contains(filter.Title));
+            }
+
+            return filteredUsers.AsNoTracking();
         }
     }
 }

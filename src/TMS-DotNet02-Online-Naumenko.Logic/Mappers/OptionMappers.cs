@@ -17,5 +17,18 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Mappers
                 };
             }
         }
+
+        public static IEnumerable<Option> MapDtoTo(this IEnumerable<OptionDto> options)
+        {
+            foreach (var option in options)
+            {
+                yield return new Option
+                {
+                    Id = option.Id,
+                    Name = option.Name,
+                    Value = option.Value
+                };
+            }
+        }
     }
 }

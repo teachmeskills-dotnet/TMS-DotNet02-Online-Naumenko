@@ -9,16 +9,18 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository.Interfaces
 {
     public interface IUserRepository
     {
-        IEnumerable<User> GetAll();
-
         Task AddAsync(User entity);
-
-        void Update(User entity);
 
         void Delete(int id);
 
         void DeleteRange(IEnumerable<User> entity);
 
+        IEnumerable<User> GetAll(Filter filter);
+
         Task SaveChangesAsync();
+
+        void Update(User entity);
+
+        public IQueryable<User> ApplyFilter(IQueryable<User> filteredUsers, Filter filter);
     }
 }

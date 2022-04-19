@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TMS_DotNet02_Online_Naumenko.Data.Models.Enums;
+﻿using TMS_DotNet02_Online_Naumenko.Data.Models.Enums;
 
 namespace TMS_DotNet02_Online_Naumenko.Data.Models
 {
@@ -20,6 +15,8 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Models
         public string Content { get; set; }
 
         public string Excerpt { get; set; }
+
+        public string ReadingTime { get; set; }
 
         public DateTime Date { get; set; }
 

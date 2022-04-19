@@ -1,10 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TMS_DotNet02_Online_Naumenko.Data.Contexts.MainContext;
+using TMS_DotNet02_Online_Naumenko.Data.Models;
 using TMS_DotNet02_Online_Naumenko.Data.Repository.Interfaces;
 
 namespace TMS_DotNet02_Online_Naumenko.Data.Repository
@@ -20,39 +16,54 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
             _dbSet = context.Set<Models.File>();
         }
 
-        public Task AddAsync(Models.File entity)
+        public async Task AddAsync(Models.File entity)
         {
-            throw new NotImplementedException();
+            await _dbSet.AddAsync(entity);
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var isEmpty = _dbSet.Find(id);
+
+            if (isEmpty != null)
+            {
+                _dbSet.Remove(isEmpty);
+            }
         }
 
         public void DeleteRange(IEnumerable<Models.File> entity)
         {
-            throw new NotImplementedException();
+            _dbSet.RemoveRange(entity);
         }
 
-        public IEnumerable<Models.File> GetAll(int userId)
+        public IEnumerable<Models.File> GetAll(Filter filter)
         {
-            return _dbSet.Where(post => post.UserId == userId);
-        }
-
-        public IEnumerable<Models.File> GetAll()
-        {
-            throw new NotImplementedException();
+            return ApplyFilter(_dbSet, filter);
         }
 
         public Task SaveChangesAsync()
         {
-            throw new NotImplementedException();
+            return _context.SaveChangesAsync();
         }
 
         public void Update(Models.File entity)
         {
-            throw new NotImplementedException();
+            _context.Entry(entity).State = EntityState.Modified;
+        }
+
+        public IQueryable<Models.File> ApplyFilter(IQueryable<Models.File> filteredFiles, Filter filter)
+        {
+            if (filter.Title != null)
+            {
+                filteredFiles = filteredFiles.Where(file => file.Name.Contains(filter.Title));
+            }
+
+            if (filter.UserId != 0)
+            {
+                filteredFiles = filteredFiles.Where(file => file.UserId == filter.UserId);
+            }
+
+            return filteredFiles.AsNoTracking();
         }
     }
 }

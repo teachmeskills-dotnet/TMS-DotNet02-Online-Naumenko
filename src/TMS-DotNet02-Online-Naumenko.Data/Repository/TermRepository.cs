@@ -21,39 +21,54 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
             _dbSet = context.Set<Term>();
         }
 
-        public Task AddAsync(Term entity)
+        public async Task AddAsync(Term entity)
         {
-            throw new NotImplementedException();
+            await _dbSet.AddAsync(entity);
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var isEmpty = _dbSet.Find(id);
+
+            if (isEmpty != null)
+            {
+                _dbSet.Remove(isEmpty);
+            }
         }
 
         public void DeleteRange(IEnumerable<Term> entity)
         {
-            throw new NotImplementedException();
+            _dbSet.RemoveRange(entity);
         }
 
-        public IEnumerable<Term> GetAll(int userId)
+        public IEnumerable<Term> GetAll(Filter filter)
         {
-            return _dbSet.Where(term => term.UserId == userId);
-        }
-
-        public IEnumerable<Term> GetAll()
-        {
-            throw new NotImplementedException();
+            return ApplyFilter(_dbSet, filter);
         }
 
         public Task SaveChangesAsync()
         {
-            throw new NotImplementedException();
+            return _context.SaveChangesAsync();
         }
 
         public void Update(Term entity)
         {
-            throw new NotImplementedException();
+            _context.Entry(entity).State = EntityState.Modified;
+        }
+
+        public IQueryable<Term> ApplyFilter(IQueryable<Term> filteredTerms, Filter filter)
+        {
+            if (filter.Title != null)
+            {
+                filteredTerms = filteredTerms.Where(term => term.Name.Contains(filter.Title));
+            }
+
+            if (filter.UserId != 0)
+            {
+                filteredTerms = filteredTerms.Where(term => term.UserId == filter.UserId);
+            }
+
+            return filteredTerms.AsNoTracking();
         }
     }
 }
