@@ -59,7 +59,7 @@ return (
         <div className="container">
             <MainSection sectionName={'Главное'} handleToggle={handleToggle} posts={news}/>
             <PopularSection sectionName={'Популярное'} handleToggle={handleToggle} posts={news}/>
-            {/* <RecommendedSection sectionName={'Популярное'} handleToggle={handleToggle} posts={news}/> */}
+            <RecommendedSection handleToggle={handleToggle} posts={news}/>
         </div>
           {/* <SocialShareWindow visible={SocialShareWindowIsVisible}/> */}
     </main>

@@ -75,12 +75,12 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
                     .All(term => post.PostTerms
                     .Select(postTerm => postTerm.TermId)
                     .Contains(term)));*/
-                filteredPosts = filteredPosts
+                /*filteredPosts = filteredPosts
                     .Include(post => post.PostTerms)
                     .Where(post => filter.TermIds
                     .All(postTerm => post.PostTerms
                     .Select(term => term.TermId)
-                    .Contains(postTerm)));
+                    .Contains(postTerm)));*/
             } 
 
             return filteredPosts.AsNoTracking();
