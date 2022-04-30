@@ -26,5 +26,16 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
 
             return _userService.GetAll(filter);
         }
+
+        [HttpPost]
+        public IEnumerable<UserDto> Auth()
+        {
+            FilterDto filter = new FilterDto
+            {
+                UserId = 2,
+            };
+
+            return _userService.GetAll(filter);
+        }
     }
 }

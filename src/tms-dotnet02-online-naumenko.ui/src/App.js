@@ -2,6 +2,7 @@ import * as React from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import Contacts from "./pages/Contacts";
 import Home from "./pages/Home";
+import Auth from "./pages/Auth";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/contacts" element={<Contacts />} />
+        <Route path="/auth" element={<Auth />} />
       </Routes>
       <div className="svg-sprite">
           <svg>
