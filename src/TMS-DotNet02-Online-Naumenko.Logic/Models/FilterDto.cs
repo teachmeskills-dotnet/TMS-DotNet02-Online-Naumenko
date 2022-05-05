@@ -4,8 +4,8 @@
     {
         public string Title { get; set; }
 
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
 
-        public List<int> TermsId { get; set; }
+        public List<int>? TermsId { get; set; }
     }
 }
