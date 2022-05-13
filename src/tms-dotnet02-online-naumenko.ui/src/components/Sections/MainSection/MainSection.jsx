@@ -2,9 +2,13 @@ import React, {useState} from 'react';
 import PostList from '../../Posts/PostList/PostList';
 import PostWithBackgroud from '../../Posts/PostWithBackground/PostWithBackground';
 import bgimage from '../../Posts/avatar.jpeg';
+import { useNavigate } from "react-router-dom";
 
 const MainSection = (props) => {
+
     const [test, setTest] = useState('');
+
+    const router = useNavigate();
     
     const url = 'https://localhost:5001/posts/getall';
 
@@ -18,22 +22,18 @@ const MainSection = (props) => {
         }
       };
       fetchData();
-    // let post = fetch('https://localhost:5001/posts/getall')
-    // .then((response) => {
-    //   return response.json();
-    // }).then((data) => {
-    //     test = data[0];
-    // });
     
     console.log(test);
-
+    const handleTogglePost = () => {
+        router(`/posts/${test.title}`)
+      };
     return (
         <section className="section-main pt__3">
             <div className="row g__3">
                 <div className="col-md-6 col-lg-5 col-xl-5">
                     <PostWithBackgroud 
                     handleToggle={props.handleToggle} 
-                    link={'https://test.test'} 
+                    link={() => router(`/${test.date}/${test.slug}`)} 
                     title={test.title} 
                     date={test.date} 
                     views={10} 

@@ -25,6 +25,12 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services
             await _postRepository.SaveChangesAsync();
         }
 
+        public PostDto GetById(int id)
+        {
+            // _postRepository.Delete(id);
+            return _postRepository.GetById(id).MapToDto();
+        }
+
         public void DeletePost(int id)
         {
             _postRepository.Delete(id);

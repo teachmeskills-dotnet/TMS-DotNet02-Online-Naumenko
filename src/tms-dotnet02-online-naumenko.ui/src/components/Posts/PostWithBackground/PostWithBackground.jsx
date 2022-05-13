@@ -30,7 +30,7 @@ const PostWithBackgroud = (props) => {
                     <img src={props.background} alt={props.title} />
                 </picture>
             </div>
-            <a className='post-cell__link' href={props.link}>
+            <a className='post-cell__link' onClick={props.link} href={props.link}>
                 <div className='post-cell__title'>
                     <span>
                         {props.title}

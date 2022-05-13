@@ -44,6 +44,24 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
             return ApplyFilter(_dbSet, filter);
         }
 
+        public Post GetById(int id)
+        {
+            var isEmpty = _dbSet.Find(id);
+
+            IQueryable<Post> post;
+
+            if(isEmpty != null)
+            {
+                post = _dbSet.Where(post => post.Id == id);
+            }
+            else
+            {
+                post = null;
+            }
+
+            return post.FirstOrDefault();
+        }
+
         public async Task<Post> GetEntityAsync(Expression<Func<Post, bool>> predicate)
         {
             return await _dbSet.FirstOrDefaultAsync(predicate);
@@ -81,9 +99,17 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
 
                 foreach (var termId in filter.TermIds)
                 {
-                    filteredPosts = filteredPosts.Include(x => x.PostTerms).Where(post => post.PostTerms.Select(postTerm => postTerm.TermId).Contains(termId));
+                    filteredPosts = filteredPosts
+                        .Include(x => x.PostTerms)
+                        .Where(post => post.PostTerms
+                        .Select(postTerm => postTerm.TermId)
+                        .Contains(termId));
                 }
 
+                /* filteredPosts = filteredPosts
+                         .Include(x => x.PostTerms)
+                         .Where(post => post.PostTerms.Where(postTerm => querySet.Contains(postTerm.TermId))).Select(x=>x.Post).Distinct();
+ */
                 //filteredPosts = filteredPosts.Where(post => post.PostTerms.All(term => filter.TermIds.Contains(term.TermId)));
 
                 /*filteredPosts = filteredPosts

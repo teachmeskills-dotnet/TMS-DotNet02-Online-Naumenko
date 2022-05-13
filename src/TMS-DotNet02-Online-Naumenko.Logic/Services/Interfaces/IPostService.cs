@@ -8,6 +8,8 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services.Interfaces
 
         Task CreatePost(PostDto post);
 
+        PostDto GetById(int id);
+
         void DeletePost(int id);
 
         Task UpdatePost(PostDto postDto);

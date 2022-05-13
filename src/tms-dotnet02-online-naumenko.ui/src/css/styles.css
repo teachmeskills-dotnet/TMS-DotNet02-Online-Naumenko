@@ -139,6 +139,7 @@ main {
     font-size: 1.2rem;
     line-height: 22px;
     text-align: left;
+    cursor: pointer;
 }
 .post-cell__link:hover {
     background-color: rgba(0,0,0,0.4);
