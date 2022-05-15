@@ -5,7 +5,7 @@ using TMS_DotNet02_Online_Naumenko.Logic.Services.Interfaces;
 namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]/[action]")]
+    [Route("[controller]")]
     public class PostsController : ControllerBase
     {
         private readonly IPostService _postService;
@@ -15,49 +15,39 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
             _postService = postService ?? throw new ArgumentNullException(nameof(postService));
         }
 
-        public PostDto TestData()
-        {
-            return new PostDto {
-                Id = 6,
-                /*Title = "test 1",
-                Slug = "test 1",
-                Content = "test 1",
-                UserId = 2,
-                TypeId = 1,
-                PostStatusId = (Data.Models.Enums.PostStatus)1,*/
-            };
-        }
-
-        // [HttpPost]
-        public async Task CreatePost(/*PostDto post*/)
+        [HttpPost]
+        public async Task CreatePost(PostDto post)
         {
             Console.WriteLine("Suc");
-            await _postService.CreatePost(TestData());
+            await _postService.CreatePost(post);
         }
 
         [HttpGet]
-        public IEnumerable<PostDto> GetAll(/*FilterDto filter*/)
+        public IEnumerable<PostDto> GetAll(string? title = null, int? userId = null, [FromQuery]int[]? termIds = null)
         {
-            List<int> list = new List<int> { 2, 3 };
-
+            if (termIds != null)
+            {
+                throw new ArgumentNullException(nameof(title));
+            }
             FilterDto filter = new FilterDto
             {
-                UserId = 1,
-                TermsId = list
+                Title = title,
+                UserId = userId,
+                TermsId = termIds.ToList(),
             };
 
             return _postService.GetAll(filter);
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public PostDto GetById(int id)
         {
             return _postService.GetById(id);
         }
 
-        public void DeletePost(/*PostDto post*/)
+        public void DeletePost(int id)
         {
-            _postService.DeletePost(6);
+            _postService.DeletePost(id);
         }
     }
 }

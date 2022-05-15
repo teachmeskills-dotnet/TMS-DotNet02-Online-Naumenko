@@ -10,11 +10,12 @@ const MainSection = (props) => {
 
     const router = useNavigate();
     
-    const url = 'https://localhost:5001/posts/getall';
+    const url = 'https://localhost:5001/posts/';
 
     const fetchData = async () => {
         try {
-          const response = await fetch(url);
+          const response = await fetch(url, {
+            method: 'GET'});
           const json = await response.json();
           setTest(json[0]);
         } catch (error) {
