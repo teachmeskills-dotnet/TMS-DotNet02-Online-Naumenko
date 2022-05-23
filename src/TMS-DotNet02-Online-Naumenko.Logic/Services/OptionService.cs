@@ -14,12 +14,12 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services
             _optionRepository = optionRepository ?? throw new ArgumentNullException(nameof(optionRepository));
         }
 
-        public IEnumerable<OptionDto> GetAll(FilterDto filter)
+        public IEnumerable<OptionDto> Get(FilterDto filterDto)
         {
-            return _optionRepository.GetAll(filter.MapDtoTo()).MapToDto();
+            return _optionRepository.Get(filterDto.MapToDomain()).MapToDto();
         }
 
-        public async Task UpdateOption(OptionDto optionDto)
+        public async Task Update(OptionDto optionDto)
         {
             optionDto = optionDto ?? throw new ArgumentNullException(nameof(optionDto));
 

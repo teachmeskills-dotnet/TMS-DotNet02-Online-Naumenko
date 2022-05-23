@@ -14,30 +14,23 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services
             _postRepository = postRepository ?? throw new ArgumentNullException(nameof(postRepository));
         }
 
-        public IEnumerable<PostDto> GetAll(FilterDto filter)
+        public async Task Add(PostDto postDto)
         {
-            return _postRepository.GetAll(filter.MapDtoTo()).MapToDto();
+            await _postRepository.AddAsync(postDto.MapToDomain());
+            await _postRepository.SaveChangesAsync();
         }
 
-        public async Task CreatePost(PostDto post)
+        public IEnumerable<PostDto> Get(FilterDto filterDto)
         {
-            await _postRepository.AddAsync(post.MapDtoTo());
-            await _postRepository.SaveChangesAsync();
+            return _postRepository.Get(filterDto.MapToDomain()).MapToDto();
         }
 
         public PostDto GetById(int id)
         {
-            // _postRepository.Delete(id);
             return _postRepository.GetById(id).MapToDto();
         }
 
-        public void DeletePost(int id)
-        {
-            _postRepository.Delete(id);
-            _postRepository.SaveChangesAsync();
-        }
-
-        public async Task UpdatePost(PostDto postDto)
+        public async Task Update(PostDto postDto)
         {
             postDto = postDto ?? throw new ArgumentNullException(nameof(postDto));
 
@@ -53,6 +46,12 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services
             post.PostStatusId = postDto.PostStatusId;
 
             await _postRepository.SaveChangesAsync();
+        }
+
+        public void Delete(int id)
+        {
+            _postRepository.Delete(id);
+            _postRepository.SaveChangesAsync();
         }
     }
 }

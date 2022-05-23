@@ -10,7 +10,7 @@ const MainSection = (props) => {
 
     const router = useNavigate();
     
-    const url = 'https://localhost:5001/posts/';
+    const url = 'https://localhost:5001/posts?title=My&termIds=1';
 
     const fetchData = async () => {
         try {

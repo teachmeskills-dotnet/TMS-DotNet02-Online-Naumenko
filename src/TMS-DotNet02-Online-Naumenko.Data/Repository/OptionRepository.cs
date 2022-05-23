@@ -17,7 +17,7 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
             _dbSet = context.Set<Option>();
         }
 
-        public IEnumerable<Option> GetAll(Filter filter)
+        public IEnumerable<Option> Get(Filter filter)
         {
             return ApplyFilter(_dbSet, filter);
         }
@@ -27,17 +27,17 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
             return await _dbSet.FirstOrDefaultAsync(predicate);
         }
 
-        public Task SaveChangesAsync()
-        {
-            return _context.SaveChangesAsync();
-        }
-
         public void Update(Option entity)
         {
             _context.Entry(entity).State = EntityState.Modified;
         }
 
-        public IQueryable<Option> ApplyFilter(IQueryable<Option> filteredOptions, Filter filter)
+        public Task SaveChangesAsync()
+        {
+            return _context.SaveChangesAsync();
+        }
+
+        private IQueryable<Option> ApplyFilter(IQueryable<Option> filteredOptions, Filter filter)
         {
             if (filter.Title != null)
             {

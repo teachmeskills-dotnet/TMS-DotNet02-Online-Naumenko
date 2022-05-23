@@ -14,24 +14,23 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services
             _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
         }
 
-        public IEnumerable<UserDto> GetAll(FilterDto filter)
+        public async Task Add(UserDto userDto)
         {
-            return _userRepository.GetAll(filter.MapDtoTo()).MapToDto();
-        }
-
-        public async Task CreateUser(UserDto user)
-        {
-            await _userRepository.AddAsync(user.MapDtoTo());
+            await _userRepository.AddAsync(userDto.MapToDomain());
             await _userRepository.SaveChangesAsync();
         }
 
-        public void DeleteUser(int id)
+        public IEnumerable<UserDto> Get(FilterDto filterDto)
         {
-            _userRepository.Delete(id);
-            _userRepository.SaveChangesAsync();
+            return _userRepository.Get(filterDto.MapToDomain()).MapToDto();
         }
 
-        public async Task UpdateUser(UserDto userDto)
+        public UserDto GetById(int id)
+        {
+            return _userRepository.GetById(id).MapToDto();
+        }
+
+        public async Task Update(UserDto userDto)
         {
             userDto = userDto ?? throw new ArgumentNullException(nameof(userDto));
 
@@ -43,6 +42,12 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services
             user.UserRoleId = userDto.UserRoleId;
 
             await _userRepository.SaveChangesAsync();
+        }
+
+        public void Delete(int id)
+        {
+            _userRepository.Delete(id);
+            _userRepository.SaveChangesAsync();
         }
     }
 }

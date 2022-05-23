@@ -1,11 +1,11 @@
-﻿using TMS_DotNet02_Online_Naumenko.Data.Models;
-using TMS_DotNet02_Online_Naumenko.Logic.Models;
+﻿using TMS_DotNet02_Online_Naumenko.Logic.Models;
+using TMS_DotNet02_Online_Naumenko.WebApi.ViewModels;
 
-namespace TMS_DotNet02_Online_Naumenko.Logic.Mappers
+namespace TMS_DotNet02_Online_Naumenko.WebApi.Mappers
 {
     public static class FilterMappers
     {
-        public static FilterDto MapToDto(this Filter filter)
+        public static FilterDto MapToDto(this FilterViewModel filter)
         {
             return new FilterDto
             {
@@ -15,9 +15,9 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Mappers
             };
         }
 
-        public static Filter MapToDomain(this FilterDto filter)
+        public static FilterViewModel MapToView(this FilterDto filter)
         {
-            return new Filter
+            return new FilterViewModel
             {
                 Title = filter.Title,
                 UserId = filter.UserId,

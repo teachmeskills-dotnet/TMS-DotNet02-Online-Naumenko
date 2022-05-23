@@ -1,14 +1,30 @@
 ﻿using TMS_DotNet02_Online_Naumenko.Logic.Models;
+using TMS_DotNet02_Online_Naumenko.WebApi.ViewModels;
 
-namespace TMS_DotNet02_Online_Naumenko.Logic.Mappers
+namespace TMS_DotNet02_Online_Naumenko.WebApi.Mappers
 {
     public static class FileMappers
     {
-        public static IEnumerable<FileDto> MapToDto(this IEnumerable<Data.Models.File> files)
+        public static FileDto MapToDto(this FileViewModel file)
+        {
+            return new FileDto
+            {
+                Id = file.Id,
+                Date = file.Date,
+                ModificationDate = file.ModificationDate,
+                Name = file.Name,
+                Slug = file.Slug,
+                Link = file.Link,
+                FileExtensionId = file.FileExtensionId,
+                UserId = file.UserId
+            };
+        }
+
+        public static IEnumerable<FileViewModel> MapToView(this IEnumerable<FileDto> files)
         {
             foreach (var file in files)
             {
-                yield return new FileDto
+                yield return new FileViewModel
                 {
                     Id = file.Id,
                     Date = file.Date,
@@ -22,25 +38,9 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Mappers
             }
         }
 
-        public static FileDto MapToDto(this Data.Models.File file)
+        public static FileViewModel MapToView(this FileDto file)
         {
-            return new FileDto
-            {
-                Id = file.Id,
-                Date = file.Date,
-                ModificationDate = file.ModificationDate,
-                Name = file.Name,
-                Slug = file.Slug,
-                Link = file.Link,
-                FileExtensionId = file.FileExtensionId,
-                UserId = file.UserId
-            };
-
-        }
-
-        public static Data.Models.File MapToDomain(this FileDto file)
-        {
-            return new Data.Models.File
+            return new FileViewModel
             {
                 Id = file.Id,
                 Date = file.Date,

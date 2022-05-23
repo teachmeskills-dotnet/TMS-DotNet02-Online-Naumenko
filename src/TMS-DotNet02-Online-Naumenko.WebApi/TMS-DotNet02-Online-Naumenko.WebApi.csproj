@@ -20,8 +20,4 @@
     <ProjectReference Include="..\TMS-DotNet02-Online-Naumenko.Logic\TMS-DotNet02-Online-Naumenko.Logic.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
-
 </Project>

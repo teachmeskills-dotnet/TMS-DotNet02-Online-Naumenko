@@ -4,8 +4,8 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services.Interfaces
 {
     public interface IOptionService
     {
-        IEnumerable<OptionDto> GetAll(FilterDto filter);
+        IEnumerable<OptionDto> Get(FilterDto filterDto);
 
-        Task UpdateOption(OptionDto optionDto);
+        Task Update(OptionDto optionDto);
     }
 }

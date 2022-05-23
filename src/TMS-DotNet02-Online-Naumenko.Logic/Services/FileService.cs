@@ -14,24 +14,23 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services
             _fileRepository = fileRepository ?? throw new ArgumentNullException(nameof(fileRepository));
         }
 
-        public IEnumerable<FileDto> GetAll(FilterDto filter)
+        public async Task Add(FileDto fileDto)
         {
-            return _fileRepository.GetAll(filter.MapDtoTo()).MapToDto();
-        }
-
-        public async Task AddFile(FileDto file)
-        {
-            await _fileRepository.AddAsync(file.MapDtoTo());
+            await _fileRepository.AddAsync(fileDto.MapToDomain());
             await _fileRepository.SaveChangesAsync();
         }
 
-        public void DeleteFile(int id)
+        public IEnumerable<FileDto> Get(FilterDto filterDto)
         {
-            _fileRepository.Delete(id);
-            _fileRepository.SaveChangesAsync();
+            return _fileRepository.Get(filterDto.MapToDomain()).MapToDto();
         }
 
-        public async Task UpdateFile(FileDto fileDto)
+        public FileDto GetById(int id)
+        {
+            return _fileRepository.GetById(id).MapToDto();
+        }
+
+        public async Task Update(FileDto fileDto)
         {
             fileDto = fileDto ?? throw new ArgumentNullException(nameof(fileDto));
 
@@ -43,6 +42,12 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services
             file.Slug = fileDto.Slug;
 
             await _fileRepository.SaveChangesAsync();
+        }
+
+        public void Delete(int id)
+        {
+            _fileRepository.Delete(id);
+            _fileRepository.SaveChangesAsync();
         }
     } 
 }

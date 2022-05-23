@@ -14,24 +14,23 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services
             _termRepository = termRepository ?? throw new ArgumentNullException(nameof(termRepository));
         }
 
-        public IEnumerable<TermDto> GetAll(FilterDto filter)
+        public async Task Add(TermDto termDto)
         {
-            return _termRepository.GetAll(filter.MapDtoTo()).MapToDto();
-        }
-
-        public async Task CreateTerm(TermDto term)
-        {
-            await _termRepository.AddAsync(term.MapDtoTo());
+            await _termRepository.AddAsync(termDto.MapToDomain());
             await _termRepository.SaveChangesAsync();
         }
 
-        public void DeleteTerm(int id)
+        public IEnumerable<TermDto> Get(FilterDto filterDto)
         {
-            _termRepository.Delete(id);
-            _termRepository.SaveChangesAsync();
+            return _termRepository.Get(filterDto.MapToDomain()).MapToDto();
         }
 
-        public async Task UpdateTerm(TermDto termDto)
+        public TermDto GetById(int id)
+        {
+            return _termRepository.GetById(id).MapToDto();
+        }
+
+        public async Task Update(TermDto termDto)
         {
             termDto = termDto ?? throw new ArgumentNullException(nameof(termDto));
 
@@ -42,6 +41,12 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services
             term.Parent = termDto.Parent;
 
             await _termRepository.SaveChangesAsync();
+        }
+
+        public void Delete(int id)
+        {
+            _termRepository.Delete(id);
+            _termRepository.SaveChangesAsync();
         }
     }
 }

@@ -4,12 +4,14 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services.Interfaces
 {
     public interface ITermService
     {
-        IEnumerable<TermDto> GetAll(FilterDto filter);
+        Task Add(TermDto termDto);
 
-        Task CreateTerm(TermDto term);
+        IEnumerable<TermDto> Get(FilterDto filterDto);
 
-        void DeleteTerm(int id);
+        TermDto GetById(int id);
 
-        Task UpdateTerm(TermDto termDto);
+        Task Update(TermDto termDto);
+
+        void Delete(int id);
     }
 }

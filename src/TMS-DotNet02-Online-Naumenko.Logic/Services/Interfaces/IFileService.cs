@@ -4,12 +4,14 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services.Interfaces
 {
     public interface IFileService
     {
-        IEnumerable<FileDto> GetAll(FilterDto filter);
+        Task Add(FileDto fileDto);
 
-        Task AddFile(FileDto file);
+        IEnumerable<FileDto> Get(FilterDto filterDto);
 
-        void DeleteFile(int id);
+        FileDto GetById(int id);
 
-        Task UpdateFile(FileDto fileDto);
+        Task Update(FileDto fileDto);
+
+        void Delete(int id);
     }
 }

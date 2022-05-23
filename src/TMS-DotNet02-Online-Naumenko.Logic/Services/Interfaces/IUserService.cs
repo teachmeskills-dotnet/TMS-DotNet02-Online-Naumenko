@@ -4,12 +4,14 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services.Interfaces
 {
     public interface IUserService
     {
-        IEnumerable<UserDto> GetAll(FilterDto filter);
+        Task Add(UserDto userDto);
 
-        Task CreateUser(UserDto user);
+        IEnumerable<UserDto> Get(FilterDto filterDto);
 
-        void DeleteUser(int id);
+        UserDto GetById(int id);
 
-        Task UpdateUser(UserDto userDto);
+        Task Update(UserDto userDto);
+
+        void Delete(int id);
     }
 }

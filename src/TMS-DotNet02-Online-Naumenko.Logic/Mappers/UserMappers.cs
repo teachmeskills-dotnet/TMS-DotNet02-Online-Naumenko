@@ -21,7 +21,20 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Mappers
             }
         }
 
-        public static User MapDtoTo(this UserDto user)
+        public static UserDto MapToDto(this User user)
+        {
+            return new UserDto
+            {
+                Id = user.Id,
+                Login = user.Login,
+                PasswordHash = user.PasswordHash,
+                Email = user.Email,
+                Name = user.Name,
+                RegisteredAt = user.RegisteredAt,
+            };
+        }
+
+        public static User MapToDomain(this UserDto user)
         {
             return new User
             {

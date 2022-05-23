@@ -1,6 +1,6 @@
-﻿namespace TMS_DotNet02_Online_Naumenko.Logic.Models
+﻿namespace TMS_DotNet02_Online_Naumenko.WebApi.ViewModels
 {
-    public class FilterDto
+    public class FilterViewModel
     {
         public string Title { get; set; }
 

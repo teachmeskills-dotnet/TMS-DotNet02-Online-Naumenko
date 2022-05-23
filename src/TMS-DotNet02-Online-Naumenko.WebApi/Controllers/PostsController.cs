@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TMS_DotNet02_Online_Naumenko.Logic.Mappers;
 using TMS_DotNet02_Online_Naumenko.Logic.Models;
 using TMS_DotNet02_Online_Naumenko.Logic.Services.Interfaces;
+using TMS_DotNet02_Online_Naumenko.WebApi.ViewModels;
+using TMS_DotNet02_Online_Naumenko.WebApi.Mappers;
 
 namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
 {
@@ -16,38 +19,66 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task CreatePost(PostDto post)
+        public IActionResult Create(PostViewModel post)
         {
-            Console.WriteLine("Suc");
-            await _postService.CreatePost(post);
+            if (post == null || post.Id <= 0)
+            {
+                return BadRequest();
+            }
+
+            _postService.Add(post.MapToDto());
+
+            return Created("~posts", post);
         }
 
         [HttpGet]
-        public IEnumerable<PostDto> GetAll(string? title = null, int? userId = null, [FromQuery]int[]? termIds = null)
+        public IActionResult Get(string? title = null, int? userId = null, [FromQuery]int[]? termIds = null)
         {
-            if (termIds != null)
-            {
-                throw new ArgumentNullException(nameof(title));
-            }
-            FilterDto filter = new FilterDto
+            FilterViewModel filter = new FilterViewModel
             {
                 Title = title,
                 UserId = userId,
-                TermsId = termIds.ToList(),
+                TermIds = termIds.ToList(),
             };
 
-            return _postService.GetAll(filter);
+            return Ok(_postService.Get(filter.MapToDto()).MapToView());
         }
 
         [HttpGet("{id}")]
-        public PostDto GetById(int id)
+        public IActionResult GetById(int id)
         {
-            return _postService.GetById(id);
+            if (id <= 0)
+            {
+                return BadRequest();
+            }
+
+            return Ok(_postService.GetById(id).MapToView());
         }
 
-        public void DeletePost(int id)
+        [HttpPut]
+        public IActionResult Udpate(PostViewModel post)
         {
-            _postService.DeletePost(id);
+            if (post == null || post.Id <= 0)
+            {
+                return BadRequest();
+            }
+
+            _postService.Update(post.MapToDto());
+
+            return Ok();
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            if (id <= 0)
+            {
+                return BadRequest();
+            }
+
+            _postService.Delete(id);
+
+            return NoContent();
         }
     }
 }

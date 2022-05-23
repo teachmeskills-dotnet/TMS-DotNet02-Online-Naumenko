@@ -7,18 +7,18 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository.Interfaces
     {
         Task AddAsync(Models.File entity);
 
+        IEnumerable<Models.File> Get(Filter filter);
+
+        Models.File GetById(int id);
+
+        public Task<Models.File> GetEntityAsync(Expression<Func<Models.File, bool>> predicate);
+
+        void Update(Models.File entity);
+
         void Delete(int id);
 
         void DeleteRange(IEnumerable<Models.File> entity);
 
-        IEnumerable<Models.File> GetAll(Filter filter);
-
-        public Task<Models.File> GetEntityAsync(Expression<Func<Models.File, bool>> predicate);
-
         Task SaveChangesAsync();
-
-        void Update(Models.File entity);
-
-        public IQueryable<Models.File> ApplyFilter(IQueryable<Models.File> filteredFiles, Filter filter);
     }
 }

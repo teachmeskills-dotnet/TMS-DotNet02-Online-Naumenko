@@ -4,14 +4,14 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services.Interfaces
 {
     public interface IPostService
     {
-        IEnumerable<PostDto> GetAll(FilterDto filterDto);
+        Task Add(PostDto postDto);
 
-        Task CreatePost(PostDto post);
+        IEnumerable<PostDto> Get(FilterDto filterDto);
 
         PostDto GetById(int id);
 
-        void DeletePost(int id);
+        Task Update(PostDto postDto);
 
-        Task UpdatePost(PostDto postDto);
+        void Delete(int id);
     }
 }
