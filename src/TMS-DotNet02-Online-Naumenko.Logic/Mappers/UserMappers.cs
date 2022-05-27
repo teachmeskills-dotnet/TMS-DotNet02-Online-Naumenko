@@ -18,6 +18,7 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Mappers
                     Name = user.Name,
                     RegisteredAt = user.RegisteredAt,
                     UserRoleId = user.UserRoleId,
+                    UserRole = user.UserRole.MapToDto()
                 };
             }
         }
@@ -33,6 +34,7 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Mappers
                 Name = user.Name,
                 RegisteredAt = user.RegisteredAt,
                 UserRoleId = user.UserRoleId,
+                UserRole = user.UserRole.MapToDto()
             };
         }
 

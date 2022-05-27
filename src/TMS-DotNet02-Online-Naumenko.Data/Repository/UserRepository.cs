@@ -29,7 +29,7 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
 
         public async Task<User> GetByIdAsync(Expression<Func<User, bool>> predicate)
         {
-            return await _dbSet.FirstOrDefaultAsync(predicate);
+            return await _dbSet.Include(table => table.UserRole).FirstOrDefaultAsync(predicate);
         }
 
         public void Delete(int id)
@@ -59,9 +59,9 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
                 filteredUsers = filteredUsers.Where(user => user.Name.Contains(filter.Title));
             }
 
-            IEnumerable<User> users = filteredUsers.Include(table => table.Posts).Include(table => table.Files).Include(table => table.Terms).ToList();
+            IEnumerable<User> users = filteredUsers.Include(table => table.Posts).Include(table => table.Files).Include(table => table.Terms).Include(table => table.UserRole).ToList();
 
-            return filteredUsers.AsNoTracking();
+            return users;
         }
     }
 }

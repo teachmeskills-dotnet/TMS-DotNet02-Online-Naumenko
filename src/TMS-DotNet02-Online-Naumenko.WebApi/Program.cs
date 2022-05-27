@@ -10,8 +10,6 @@ using TMS_DotNet02_Online_Naumenko.Data.Repository.Interfaces;
 using TMS_DotNet02_Online_Naumenko.Logic.Models;
 using TMS_DotNet02_Online_Naumenko.Logic.Services;
 using TMS_DotNet02_Online_Naumenko.Logic.Services.Interfaces;
-using TMS_DotNet02_Online_Naumenko.WebApi.Services;
-using TMS_DotNet02_Online_Naumenko.WebApi.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,8 +29,8 @@ builder.Services.AddAuthentication(opt => {
     {
         options.TokenValidationParameters = new TokenValidationParameters
         {
-            ValidateIssuer = true,
-            ValidateAudience = true,
+            ValidateIssuer = false,
+            ValidateAudience = false,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
             ValidIssuer = builder.Configuration["JWT:Issuer"],

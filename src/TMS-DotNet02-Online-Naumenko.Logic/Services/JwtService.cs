@@ -2,10 +2,11 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using TMS_DotNet02_Online_Naumenko.WebApi.Services.Interfaces;
-using TMS_DotNet02_Online_Naumenko.WebApi.ViewModels;
+using TMS_DotNet02_Online_Naumenko.Logic.Services.Interfaces;
+using TMS_DotNet02_Online_Naumenko.Logic.Models;
+using Microsoft.Extensions.Configuration;
 
-namespace TMS_DotNet02_Online_Naumenko.WebApi.Services
+namespace TMS_DotNet02_Online_Naumenko.Logic.Services
 {
     public class JwtService : IJwtService
     {
@@ -16,7 +17,7 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Services
             _iconfiguration = iconfiguration;
         }
 
-        public Tokens Generate(LoginViewModel login)
+        public TokensDto Generate(UserDto user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var tokenKey = Encoding.UTF8.GetBytes(_iconfiguration["JWT:Key"]);
@@ -24,7 +25,8 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Services
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, login.Login)
+                    new Claim(ClaimTypes.Name, user.Login),
+                    new Claim(ClaimTypes.Role, user.UserRole.Name)
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(10),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature)
@@ -32,7 +34,7 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Services
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            return new Tokens { Token = tokenHandler.WriteToken(token) };
+            return new TokensDto { Token = tokenHandler.WriteToken(token) };
         }
     }
 }

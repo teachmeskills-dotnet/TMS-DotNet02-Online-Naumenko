@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TMS_DotNet02_Online_Naumenko.Logic.Services.Interfaces;
-using TMS_DotNet02_Online_Naumenko.WebApi.Services.Interfaces;
 using TMS_DotNet02_Online_Naumenko.WebApi.Mappers;
 using TMS_DotNet02_Online_Naumenko.WebApi.ViewModels;
 
 namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
 {
     [ApiController]
+    [Authorize(Roles = "admin")]
     [Route("[controller]")]
     public class UsersController : ControllerBase
     {
@@ -20,7 +20,7 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
             _jwtService = jwtService ?? throw new ArgumentNullException(nameof(jwtService));
         }
 
-        [HttpPost, Authorize]
+        [HttpPost]
         public async Task<IActionResult> Add(UserViewModel user)
         {
             if (user == null)
@@ -33,7 +33,7 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
             return Created("~users", user);
         }
 
-        [HttpGet, Authorize]
+        [HttpGet]
         public IActionResult Get(string? title = null, int? userId = null, [FromQuery] int[]? termIds = null)
         {
             FilterViewModel filter = new FilterViewModel
@@ -57,7 +57,8 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
             return Ok((await _userService.GetById(id)).MapToView());
         }
 
-        [HttpPut]
+        [HttpPut] 
+        [Authorize]
         public async Task<IActionResult> Udpate(UserViewModel user)
         {
             if (user == null || user.Id <= 0)
@@ -86,9 +87,10 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
         }
 
         [HttpPost(template: "login")]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(LoginViewModel login)
         {
-            var user = (await _userService.GetByLogin(login.Login)).MapToView();
+            UserViewModel user = (await _userService.GetByLogin(login.Login)).MapToView();
 
             if (user == null)
             {
@@ -100,7 +102,7 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
             }
             else
             {
-                var token = _jwtService.Generate(login);
+                TokensViewModel token = _jwtService.Generate(user.MapToDto()).MapToView();
                 
                 if (token == null)
                 {
