@@ -1,4 +1,5 @@
-﻿using TMS_DotNet02_Online_Naumenko.Data.Repository.Interfaces;
+﻿using System.Linq.Expressions;
+using TMS_DotNet02_Online_Naumenko.Data.Repository.Interfaces;
 using TMS_DotNet02_Online_Naumenko.Logic.Mappers;
 using TMS_DotNet02_Online_Naumenko.Logic.Models;
 using TMS_DotNet02_Online_Naumenko.Logic.Services.Interfaces;
@@ -25,16 +26,21 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services
             return _userRepository.Get(filterDto.MapToDomain()).MapToDto();
         }
 
-        public UserDto GetById(int id)
+        public async Task<UserDto> GetById(int id)
         {
-            return _userRepository.GetById(id).MapToDto();
+            return (await _userRepository.GetByIdAsync(user => user.Id == id)).MapToDto();
+        }
+
+        public async Task<UserDto> GetByLogin(string login)
+        {
+            return (await _userRepository.GetByIdAsync(user => user.Login == login)).MapToDto();
         }
 
         public async Task Update(UserDto userDto)
         {
             userDto = userDto ?? throw new ArgumentNullException(nameof(userDto));
 
-            var user = await _userRepository.GetEntityAsync(user => user.Id == userDto.Id);
+            var user = await _userRepository.GetByIdAsync(user => user.Id == userDto.Id);
 
             user.PasswordHash = userDto.PasswordHash;
             user.Email = userDto.Email;

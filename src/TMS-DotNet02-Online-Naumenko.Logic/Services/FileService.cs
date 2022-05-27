@@ -25,21 +25,24 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services
             return _fileRepository.Get(filterDto.MapToDomain()).MapToDto();
         }
 
-        public FileDto GetById(int id)
+        public async Task<FileDto> GetById(int id)
         {
-            return _fileRepository.GetById(id).MapToDto();
+            return (await _fileRepository.GetByIdAsync(file => file.Id == id)).MapToDto();
         }
 
         public async Task Update(FileDto fileDto)
         {
             fileDto = fileDto ?? throw new ArgumentNullException(nameof(fileDto));
 
-            var file = await _fileRepository.GetEntityAsync(file => file.Id == fileDto.Id);
+            var file = await _fileRepository.GetByIdAsync(file => file.Id == fileDto.Id);
 
             file.Date = fileDto.Date;
             file.ModificationDate = fileDto.ModificationDate;
             file.Name = fileDto.Name;
             file.Slug = fileDto.Slug;
+            file.Path = fileDto.Path;
+            file.FileExtensionId = fileDto.FileExtensionId;
+            file.UserId = fileDto.UserId;
 
             await _fileRepository.SaveChangesAsync();
         }

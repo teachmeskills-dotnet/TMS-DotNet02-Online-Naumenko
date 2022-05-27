@@ -14,14 +14,14 @@
 
         public DateTime RegisteredAt { get; set; }
 
-        public IEnumerable<PostViewModel> Posts { get; set; }
+        public IEnumerable<PostViewModel>? Posts { get; set; }
 
-        public IEnumerable<TermViewModel> Terms { get; set; }
+        public IEnumerable<TermViewModel>? Terms { get; set; }
 
-        public IEnumerable<FileViewModel> Files { get; set; }
+        public IEnumerable<FileViewModel>? Files { get; set; }
 
         public int UserRoleId { get; set; }
 
-        public UserRoleViewModel UserRole { get; set; }
+        public UserRoleViewModel? UserRole { get; set; }
     }
 }

@@ -22,14 +22,9 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
             return ApplyFilter(_dbSet, filter);
         }
 
-        public async Task<Option> GetEntityAsync(Expression<Func<Option, bool>> predicate)
+        public async Task<Option> GetByIdAsync(Expression<Func<Option, bool>> predicate)
         {
             return await _dbSet.FirstOrDefaultAsync(predicate);
-        }
-
-        public void Update(Option entity)
-        {
-            _context.Entry(entity).State = EntityState.Modified;
         }
 
         public Task SaveChangesAsync()
@@ -37,14 +32,14 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
             return _context.SaveChangesAsync();
         }
 
-        private IQueryable<Option> ApplyFilter(IQueryable<Option> filteredOptions, Filter filter)
+        private IEnumerable<Option> ApplyFilter(IQueryable<Option> filteredOptions, Filter filter)
         {
             if (filter.Title != null)
             {
                 filteredOptions = filteredOptions.Where(option => option.Name.Contains(filter.Title));
             }
 
-            return filteredOptions.AsNoTracking();
+            return filteredOptions.AsNoTracking().ToList();
         }
     }
 }

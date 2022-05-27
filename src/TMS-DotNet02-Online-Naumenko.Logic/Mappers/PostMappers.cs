@@ -22,6 +22,9 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Mappers
                     ModificationDate = post.ModificationDate,
                     PostStatusId = post.PostStatusId,
                     UserId = post.UserId,
+                    FileId = post.FileId,
+                    //PostTerms = post.PostTerms,
+                    //User = post.User
                 };
             }
         }
@@ -41,6 +44,7 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Mappers
                 ModificationDate = post.ModificationDate,
                 PostStatusId = post.PostStatusId,
                 UserId = post.UserId,
+                FileId = post.FileId,
             };
         }
 
@@ -48,7 +52,7 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Mappers
         {
             return new Post
             {
-                Id = post.Id,
+                Id  = default,
                 TypeId = post.TypeId,
                 Title = post.Title,
                 Slug = post.Slug,
@@ -59,6 +63,7 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Mappers
                 ModificationDate = post.ModificationDate,
                 PostStatusId = post.PostStatusId,
                 UserId = post.UserId,
+                FileId = post.FileId,
             };
         }
     }

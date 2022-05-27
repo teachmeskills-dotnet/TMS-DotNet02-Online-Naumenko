@@ -27,32 +27,9 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
             return ApplyFilter(_dbSet, filter);
         }
 
-        public Models.File GetById(int id)
-        {
-            var isEmpty = _dbSet.Find(id);
-
-            IQueryable<Models.File> files;
-
-            if (isEmpty != null)
-            {
-                files = _dbSet.Where(file => file.Id == id);
-            }
-            else
-            {
-                files = null;
-            }
-
-            return files.FirstOrDefault();
-        }
-
-        public async Task<Models.File> GetEntityAsync(Expression<Func<Models.File, bool>> predicate)
+        public async Task<Models.File> GetByIdAsync(Expression<Func<Models.File, bool>> predicate)
         {
             return await _dbSet.FirstOrDefaultAsync(predicate);
-        }
-
-        public void Update(Models.File entity)
-        {
-            _context.Entry(entity).State = EntityState.Modified;
         }
 
         public void Delete(int id)
@@ -75,7 +52,7 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
             return _context.SaveChangesAsync();
         }
 
-        private IQueryable<Models.File> ApplyFilter(IQueryable<Models.File> filteredFiles, Filter filter)
+        private IEnumerable<Models.File> ApplyFilter(IQueryable<Models.File> filteredFiles, Filter filter)
         {
             if (filter.Title != null)
             {
@@ -87,7 +64,9 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
                 filteredFiles = filteredFiles.Where(file => file.UserId == filter.UserId);
             }
 
-            return filteredFiles.AsNoTracking();
+            IEnumerable<Models.File> files = filteredFiles.Include(table => table.FileTerms).Include(table => table.Posts).ToList();
+
+            return files;
         }
     }
 }

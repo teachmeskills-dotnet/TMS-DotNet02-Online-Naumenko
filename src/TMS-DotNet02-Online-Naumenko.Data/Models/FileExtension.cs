@@ -6,6 +6,6 @@
 
         public string Name { get; set; }
 
-        public IEnumerable<File> File { get; set; }
+        public IEnumerable<File> Files { get; set; }
     }
 }

@@ -5,10 +5,22 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TMS_DotNet02_Online_Naumenko.Data.Migrations
 {
-    public partial class First : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "file");
+
+            migrationBuilder.EnsureSchema(
+                name: "post");
+
+            migrationBuilder.EnsureSchema(
+                name: "term");
+
+            migrationBuilder.EnsureSchema(
+                name: "user");
+
             migrationBuilder.CreateTable(
                 name: "FileExtensions",
                 columns: table => new
@@ -51,6 +63,7 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Users",
+                schema: "user",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -70,11 +83,12 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Migrations
                         column: x => x.UserRoleId,
                         principalTable: "UserRoles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Files",
+                schema: "file",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -83,7 +97,7 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Migrations
                     ModificationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Slug = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Link = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Path = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FileExtensionId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -99,41 +113,15 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Migrations
                     table.ForeignKey(
                         name: "FK_Files_Users_UserId",
                         column: x => x.UserId,
+                        principalSchema: "user",
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Posts",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TypeId = table.Column<int>(type: "int", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Slug = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Excerpt = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ReadingTime = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModificationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PostStatusId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Posts", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Posts_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Terms",
+                schema: "term",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -150,9 +138,48 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Migrations
                     table.ForeignKey(
                         name: "FK_Terms_Users_UserId",
                         column: x => x.UserId,
+                        principalSchema: "user",
                         principalTable: "Users",
                         principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Posts",
+                schema: "post",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TypeId = table.Column<int>(type: "int", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Slug = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Excerpt = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ReadingTime = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModificationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PostStatusId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    FileId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Posts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Posts_Files_FileId",
+                        column: x => x.FileId,
+                        principalSchema: "file",
+                        principalTable: "Files",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Posts_Users_UserId",
+                        column: x => x.UserId,
+                        principalSchema: "user",
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -170,12 +197,14 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Migrations
                     table.ForeignKey(
                         name: "FK_FileTerms_Files_FileId",
                         column: x => x.FileId,
+                        principalSchema: "file",
                         principalTable: "Files",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_FileTerms_Terms_TermId",
                         column: x => x.TermId,
+                        principalSchema: "term",
                         principalTable: "Terms",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -196,12 +225,14 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Migrations
                     table.ForeignKey(
                         name: "FK_PostTerms_Posts_PostId",
                         column: x => x.PostId,
+                        principalSchema: "post",
                         principalTable: "Posts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PostTerms_Terms_TermId",
                         column: x => x.TermId,
+                        principalSchema: "term",
                         principalTable: "Terms",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -209,11 +240,13 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Files_FileExtensionId",
+                schema: "file",
                 table: "Files",
                 column: "FileExtensionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Files_UserId",
+                schema: "file",
                 table: "Files",
                 column: "UserId");
 
@@ -228,7 +261,14 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Migrations
                 column: "TermId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Posts_FileId",
+                schema: "post",
+                table: "Posts",
+                column: "FileId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Posts_UserId",
+                schema: "post",
                 table: "Posts",
                 column: "UserId");
 
@@ -244,11 +284,13 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Terms_UserId",
+                schema: "term",
                 table: "Terms",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_UserRoleId",
+                schema: "user",
                 table: "Users",
                 column: "UserRoleId");
         }
@@ -265,19 +307,23 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Migrations
                 name: "PostTerms");
 
             migrationBuilder.DropTable(
-                name: "Files");
+                name: "Posts",
+                schema: "post");
 
             migrationBuilder.DropTable(
-                name: "Posts");
+                name: "Terms",
+                schema: "term");
 
             migrationBuilder.DropTable(
-                name: "Terms");
+                name: "Files",
+                schema: "file");
 
             migrationBuilder.DropTable(
                 name: "FileExtensions");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Users",
+                schema: "user");
 
             migrationBuilder.DropTable(
                 name: "UserRoles");

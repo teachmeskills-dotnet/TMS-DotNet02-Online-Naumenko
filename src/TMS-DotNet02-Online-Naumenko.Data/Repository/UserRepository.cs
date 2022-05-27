@@ -27,32 +27,9 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
             return ApplyFilter(_dbSet, filter);
         }
 
-        public User GetById(int id)
-        {
-            var isEmpty = _dbSet.Find(id);
-
-            IQueryable<User> users;
-
-            if (isEmpty != null)
-            {
-                users = _dbSet.Where(user => user.Id == id);
-            }
-            else
-            {
-                users = null;
-            }
-
-            return users.FirstOrDefault();
-        }
-
-        public async Task<User> GetEntityAsync(Expression<Func<User, bool>> predicate)
+        public async Task<User> GetByIdAsync(Expression<Func<User, bool>> predicate)
         {
             return await _dbSet.FirstOrDefaultAsync(predicate);
-        }
-
-        public void Update(User entity)
-        {
-            _context.Entry(entity).State = EntityState.Modified;
         }
 
         public void Delete(int id)
@@ -75,12 +52,14 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
             return _context.SaveChangesAsync();
         }
 
-        private IQueryable<User> ApplyFilter(IQueryable<User> filteredUsers, Filter filter)
+        private IEnumerable<User> ApplyFilter(IQueryable<User> filteredUsers, Filter filter)
         {
             if (filter.Title != null)
             {
                 filteredUsers = filteredUsers.Where(user => user.Name.Contains(filter.Title));
             }
+
+            IEnumerable<User> users = filteredUsers.Include(table => table.Posts).Include(table => table.Files).Include(table => table.Terms).ToList();
 
             return filteredUsers.AsNoTracking();
         }

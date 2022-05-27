@@ -29,5 +29,9 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Models
         public User User { get; set; }
 
         public IEnumerable<PostTerm> PostTerms { get; set; }
+
+        public int FileId { get; set; }
+
+        public File File { get; set; }
     }
 }

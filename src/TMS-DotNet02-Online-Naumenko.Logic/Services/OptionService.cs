@@ -23,7 +23,7 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services
         {
             optionDto = optionDto ?? throw new ArgumentNullException(nameof(optionDto));
 
-            var option = await _optionRepository.GetEntityAsync(option => option.Id == optionDto.Id);
+            var option = await _optionRepository.GetByIdAsync(option => option.Id == optionDto.Id);
 
             option.Value = optionDto.Value;
 

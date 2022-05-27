@@ -7,9 +7,7 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository.Interfaces
     {
         IEnumerable<Option> Get(Filter filter);
 
-        public Task<Option> GetEntityAsync(Expression<Func<Option, bool>> predicate);
-
-        void Update(Option entity);
+        public Task<Option> GetByIdAsync(Expression<Func<Option, bool>> predicate);
 
         Task SaveChangesAsync();
     }

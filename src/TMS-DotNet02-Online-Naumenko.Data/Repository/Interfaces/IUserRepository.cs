@@ -9,11 +9,7 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository.Interfaces
 
         IEnumerable<User> Get(Filter filter);
 
-        User GetById(int id);
-
-        public Task<User> GetEntityAsync(Expression<Func<User, bool>> predicate);
-
-        void Update(User entity);
+        public Task<User> GetByIdAsync(Expression<Func<User, bool>> predicate);
 
         void Delete(int id);
 

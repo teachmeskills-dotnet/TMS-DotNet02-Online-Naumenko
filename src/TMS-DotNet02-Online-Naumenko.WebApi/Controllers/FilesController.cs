@@ -19,16 +19,16 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(FileViewModel post)
+        public async Task<IActionResult> Add(FileViewModel file)
         {
-            if (post == null || post.Id <= 0)
+            if (file == null)
             {
                 return BadRequest();
             }
 
-            _fileService.Add(post.MapToDto());
+            await _fileService.Add(file.MapToDto());
 
-            return Created("~posts", post);
+            return Created("~files", file);
         }
 
         [HttpGet]
@@ -45,25 +45,25 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
             if (id <= 0)
             {
                 return BadRequest();
             }
 
-            return Ok(_fileService.GetById(id).MapToView());
+            return Ok((await _fileService.GetById(id)).MapToView());
         }
 
         [HttpPut]
-        public IActionResult Udpate(FileViewModel post)
+        public async Task<IActionResult> Udpate(FileViewModel file)
         {
-            if (post == null || post.Id <= 0)
+            if (file == null || file.Id <= 0)
             {
                 return BadRequest();
             }
 
-            _fileService.Update(post.MapToDto());
+            await _fileService.Update(file.MapToDto());
 
             return Ok();
         }

@@ -26,8 +26,12 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.ViewModels
 
         public int UserId { get; set; }
 
-        public UserViewModel User { get; set; }
+        // public UserViewModel User { get; set; }
 
-        public IEnumerable<PostTermViewModel> PostTerms { get; set; }
+        // public IEnumerable<PostTermViewModel> PostTerms { get; set; }
+
+        public int FileId { get; set; }
+
+        // public FileViewModel File { get; set; }
     }
 }

@@ -27,32 +27,9 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
             return ApplyFilter(_dbSet, filter);
         }
 
-        public Term GetById(int id)
-        {
-            var isEmpty = _dbSet.Find(id);
-
-            IQueryable<Term> terms;
-
-            if (isEmpty != null)
-            {
-                terms = _dbSet.Where(term => term.Id == id);
-            }
-            else
-            {
-                terms = null;
-            }
-
-            return terms.FirstOrDefault();
-        }
-
-        public async Task<Term> GetEntityAsync(Expression<Func<Term, bool>> predicate)
+        public async Task<Term> GetByIdAsync(Expression<Func<Term, bool>> predicate)
         {
             return await _dbSet.FirstOrDefaultAsync(predicate);
-        }
-
-        public void Update(Term entity)
-        {
-            _context.Entry(entity).State = EntityState.Modified;
         }
 
         public void Delete(int id)
@@ -75,7 +52,7 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
             return _context.SaveChangesAsync();
         }
 
-        private IQueryable<Term> ApplyFilter(IQueryable<Term> filteredTerms, Filter filter)
+        private IEnumerable<Term> ApplyFilter(IQueryable<Term> filteredTerms, Filter filter)
         {
             if (filter.Title != null)
             {
@@ -87,7 +64,9 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
                 filteredTerms = filteredTerms.Where(term => term.UserId == filter.UserId);
             }
 
-            return filteredTerms.AsNoTracking();
+            IEnumerable<Term> terms = filteredTerms.Include(table => table.PostTerms).Include(table => table.FileTerms).ToList();
+
+            return terms;
         }
     }
 }

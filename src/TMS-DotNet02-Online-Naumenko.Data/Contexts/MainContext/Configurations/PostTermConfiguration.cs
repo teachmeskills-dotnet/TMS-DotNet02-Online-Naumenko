@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TMS_DotNet02_Online_Naumenko.Data.Models;
 
-namespace TMS_DotNet02_Online_Naumenko.Data.Context.MainContext.Configurations
+namespace TMS_DotNet02_Online_Naumenko.Data.Contexts.MainContext.Configurations
 {
     public class PostTermConfiguration : IEntityTypeConfiguration<PostTerm>
     {
@@ -15,9 +15,9 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Context.MainContext.Configurations
                 .HasForeignKey(postTerm => postTerm.PostId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasOne(fileTerm => fileTerm.Term)
+            builder.HasOne(postTerm => postTerm.Term)
                 .WithMany(term => term.PostTerms)
-                .HasForeignKey(fileTerm => fileTerm.TermId)
+                .HasForeignKey(postTerm => postTerm.TermId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

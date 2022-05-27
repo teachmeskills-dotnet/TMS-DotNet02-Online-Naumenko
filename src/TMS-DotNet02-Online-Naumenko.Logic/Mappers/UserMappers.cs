@@ -17,6 +17,7 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Mappers
                     Email = user.Email,
                     Name = user.Name,
                     RegisteredAt = user.RegisteredAt,
+                    UserRoleId = user.UserRoleId,
                 };
             }
         }
@@ -31,6 +32,7 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Mappers
                 Email = user.Email,
                 Name = user.Name,
                 RegisteredAt = user.RegisteredAt,
+                UserRoleId = user.UserRoleId,
             };
         }
 
@@ -44,6 +46,7 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Mappers
                 Email = user.Email,
                 Name = user.Name,
                 RegisteredAt = user.RegisteredAt,
+                UserRoleId = user.UserRoleId,
             };
         }
     }

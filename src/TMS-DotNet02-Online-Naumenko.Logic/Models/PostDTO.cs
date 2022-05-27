@@ -1,4 +1,9 @@
-﻿using TMS_DotNet02_Online_Naumenko.Data.Models.Enums;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TMS_DotNet02_Online_Naumenko.Data.Models.Enums;
 
 namespace TMS_DotNet02_Online_Naumenko.Logic.Models
 {
@@ -7,7 +12,7 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Models
         public int Id { get; set; }
 
         public int TypeId { get; set; }
-        
+
         public string Title { get; set; }
 
         public string Slug { get; set; }
@@ -29,5 +34,9 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Models
         public UserDto User { get; set; }
 
         public IEnumerable<PostTermDto> PostTerms { get; set; }
+
+        public int FileId { get; set; }
+
+        public FileDto File { get; set; }
     }
 }

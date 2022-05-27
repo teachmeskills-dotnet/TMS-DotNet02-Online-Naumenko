@@ -8,7 +8,7 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services.Interfaces
 
         IEnumerable<PostDto> Get(FilterDto filterDto);
 
-        PostDto GetById(int id);
+        Task<PostDto> GetById(int id);
 
         Task Update(PostDto postDto);
 

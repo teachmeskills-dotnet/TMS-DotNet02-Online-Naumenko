@@ -20,6 +20,7 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Mappers
                 ModificationDate = post.ModificationDate,
                 PostStatusId = post.PostStatusId,
                 UserId = post.UserId,
+                FileId = post.FileId,
             };
         }
 
@@ -40,6 +41,8 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Mappers
                     ModificationDate = post.ModificationDate,
                     PostStatusId = post.PostStatusId,
                     UserId = post.UserId,
+                    FileId=post.FileId,
+                    //PostTerms = (IEnumerable<PostTermViewModel>)post.PostTerms,
                 };
             }
         }
@@ -59,6 +62,7 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Mappers
                 ModificationDate = post.ModificationDate,
                 PostStatusId = post.PostStatusId,
                 UserId = post.UserId,
+                FileId = post.FileId,
             };
         }
     }

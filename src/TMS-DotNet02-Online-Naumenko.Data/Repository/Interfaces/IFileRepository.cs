@@ -9,11 +9,7 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository.Interfaces
 
         IEnumerable<Models.File> Get(Filter filter);
 
-        Models.File GetById(int id);
-
-        public Task<Models.File> GetEntityAsync(Expression<Func<Models.File, bool>> predicate);
-
-        void Update(Models.File entity);
+        public Task<Models.File> GetByIdAsync(Expression<Func<Models.File, bool>> predicate);
 
         void Delete(int id);
 

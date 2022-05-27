@@ -12,8 +12,8 @@ using TMS_DotNet02_Online_Naumenko.Data.Contexts.MainContext;
 namespace TMS_DotNet02_Online_Naumenko.Data.Migrations
 {
     [DbContext(typeof(MainContext))]
-    [Migration("20220419184543_First")]
-    partial class First
+    [Migration("20220526140226_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,14 +38,14 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Migrations
                     b.Property<int>("FileExtensionId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Link")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("ModificationDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Path")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -62,7 +62,7 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Files");
+                    b.ToTable("Files", "file");
                 });
 
             modelBuilder.Entity("TMS_DotNet02_Online_Naumenko.Data.Models.FileExtension", b =>
@@ -145,6 +145,9 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("FileId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("ModificationDate")
                         .HasColumnType("datetime2");
 
@@ -171,9 +174,11 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("FileId");
+
                     b.HasIndex("UserId");
 
-                    b.ToTable("Posts");
+                    b.ToTable("Posts", "post");
                 });
 
             modelBuilder.Entity("TMS_DotNet02_Online_Naumenko.Data.Models.PostTerm", b =>
@@ -228,7 +233,7 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Terms");
+                    b.ToTable("Terms", "term");
                 });
 
             modelBuilder.Entity("TMS_DotNet02_Online_Naumenko.Data.Models.User", b =>
@@ -265,7 +270,7 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Migrations
 
                     b.HasIndex("UserRoleId");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", "user");
                 });
 
             modelBuilder.Entity("TMS_DotNet02_Online_Naumenko.Data.Models.UserRole", b =>
@@ -288,7 +293,7 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Migrations
             modelBuilder.Entity("TMS_DotNet02_Online_Naumenko.Data.Models.File", b =>
                 {
                     b.HasOne("TMS_DotNet02_Online_Naumenko.Data.Models.FileExtension", "FileExtension")
-                        .WithMany("File")
+                        .WithMany("Files")
                         .HasForeignKey("FileExtensionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -296,7 +301,7 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Migrations
                     b.HasOne("TMS_DotNet02_Online_Naumenko.Data.Models.User", "User")
                         .WithMany("Files")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("FileExtension");
@@ -325,11 +330,19 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Migrations
 
             modelBuilder.Entity("TMS_DotNet02_Online_Naumenko.Data.Models.Post", b =>
                 {
+                    b.HasOne("TMS_DotNet02_Online_Naumenko.Data.Models.File", "File")
+                        .WithMany("Posts")
+                        .HasForeignKey("FileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("TMS_DotNet02_Online_Naumenko.Data.Models.User", "User")
                         .WithMany("Posts")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("File");
 
                     b.Navigation("User");
                 });
@@ -358,7 +371,7 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Migrations
                     b.HasOne("TMS_DotNet02_Online_Naumenko.Data.Models.User", "User")
                         .WithMany("Terms")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -367,9 +380,9 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Migrations
             modelBuilder.Entity("TMS_DotNet02_Online_Naumenko.Data.Models.User", b =>
                 {
                     b.HasOne("TMS_DotNet02_Online_Naumenko.Data.Models.UserRole", "UserRole")
-                        .WithMany("User")
+                        .WithMany("Users")
                         .HasForeignKey("UserRoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("UserRole");
@@ -378,11 +391,13 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Migrations
             modelBuilder.Entity("TMS_DotNet02_Online_Naumenko.Data.Models.File", b =>
                 {
                     b.Navigation("FileTerms");
+
+                    b.Navigation("Posts");
                 });
 
             modelBuilder.Entity("TMS_DotNet02_Online_Naumenko.Data.Models.FileExtension", b =>
                 {
-                    b.Navigation("File");
+                    b.Navigation("Files");
                 });
 
             modelBuilder.Entity("TMS_DotNet02_Online_Naumenko.Data.Models.Post", b =>
@@ -408,7 +423,7 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Migrations
 
             modelBuilder.Entity("TMS_DotNet02_Online_Naumenko.Data.Models.UserRole", b =>
                 {
-                    b.Navigation("User");
+                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

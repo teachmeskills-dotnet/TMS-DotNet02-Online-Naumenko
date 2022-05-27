@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TMS_DotNet02_Online_Naumenko.Data.Models;
 
-namespace TMS_DotNet02_Online_Naumenko.Data.Context.MainContext.Configurations
+namespace TMS_DotNet02_Online_Naumenko.Data.Contexts.MainContext.Configurations
 {
     public class FileTermConfiguration : IEntityTypeConfiguration<FileTerm>
     {

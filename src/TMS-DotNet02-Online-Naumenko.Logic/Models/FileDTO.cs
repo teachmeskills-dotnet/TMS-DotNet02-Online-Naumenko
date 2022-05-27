@@ -12,7 +12,7 @@
 
         public string Slug { get; set; }
 
-        public string Link { get; set; }
+        public string Path { get; set; }
 
         public int FileExtensionId { get; set; }
 
@@ -23,5 +23,7 @@
         public UserDto User { get; set; }
 
         public IEnumerable<FileTermDto> FileTerms { get; set; }
+
+        public IEnumerable<PostDto> Posts { get; set; }
     }
 }

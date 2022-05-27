@@ -11,11 +11,13 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
     {
         private readonly DbSet<Post> _dbSet;
         private readonly DbContext _context;
-        
+        private MainContext _mainContext;
+
         public PostRepository(MainContext context)
         {
             _context = context;
             _dbSet = context.Set<Post>();
+            _mainContext = context;
         }
 
         public async Task AddAsync(Post entity)
@@ -28,32 +30,9 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
             return ApplyFilter(_dbSet, filter);
         }
 
-        public Post GetById(int id)
-        {
-            var isEmpty = _dbSet.Find(id);
-
-            IQueryable<Post> posts;
-
-            if(isEmpty != null)
-            {
-                posts = _dbSet.Where(post => post.Id == id);
-            }
-            else
-            {
-                posts = null;
-            }
-
-            return posts.FirstOrDefault();
-        }
-
-        public async Task<Post> GetEntityAsync(Expression<Func<Post, bool>> predicate)
+        public async Task<Post> GetByIdAsync(Expression<Func<Post, bool>> predicate)
         {
             return await _dbSet.FirstOrDefaultAsync(predicate);
-        }
-
-        public void Update(Post entity)
-        {
-            _context.Entry(entity).State = EntityState.Modified;
         }
 
         public void Delete(int id)
@@ -76,7 +55,7 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
             return _context.SaveChangesAsync();
         }
 
-        private IQueryable<Post> ApplyFilter(IQueryable<Post> filteredPosts, Filter filter)
+        private IEnumerable<Post> ApplyFilter(IQueryable<Post> filteredPosts, Filter filter)
         {
             if (filter.Title != null)
             {
@@ -100,7 +79,9 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
                 }
             }
 
-            return filteredPosts.AsNoTracking();
+            IEnumerable<Post> posts = filteredPosts.Include(table => table.User).Include(table => table.PostTerms).ToList();
+            
+            return posts;
         }
     }
 }

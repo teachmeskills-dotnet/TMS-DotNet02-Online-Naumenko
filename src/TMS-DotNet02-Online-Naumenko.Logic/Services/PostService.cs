@@ -25,16 +25,16 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services
             return _postRepository.Get(filterDto.MapToDomain()).MapToDto();
         }
 
-        public PostDto GetById(int id)
+        public async Task<PostDto> GetById(int id)
         {
-            return _postRepository.GetById(id).MapToDto();
+            return (await _postRepository.GetByIdAsync(post => post.Id == id)).MapToDto();
         }
 
         public async Task Update(PostDto postDto)
         {
             postDto = postDto ?? throw new ArgumentNullException(nameof(postDto));
 
-            var post = await _postRepository.GetEntityAsync(post => post.Id == postDto.Id);
+            var post = await _postRepository.GetByIdAsync(post => post.Id == postDto.Id);
 
             post.Title = postDto.Title;
             post.Slug = postDto.Slug;

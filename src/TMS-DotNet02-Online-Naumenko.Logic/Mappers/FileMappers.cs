@@ -15,7 +15,7 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Mappers
                     ModificationDate = file.ModificationDate,
                     Name = file.Name,
                     Slug = file.Slug,
-                    Link = file.Link,
+                    Path = file.Path,
                     FileExtensionId = file.FileExtensionId,
                     UserId = file.UserId
                 };
@@ -31,7 +31,7 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Mappers
                 ModificationDate = file.ModificationDate,
                 Name = file.Name,
                 Slug = file.Slug,
-                Link = file.Link,
+                Path = file.Path,
                 FileExtensionId = file.FileExtensionId,
                 UserId = file.UserId
             };
@@ -47,7 +47,7 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Mappers
                 ModificationDate = file.ModificationDate,
                 Name = file.Name,
                 Slug = file.Slug,
-                Link = file.Link,
+                Path = file.Path,
                 FileExtensionId = file.FileExtensionId,
                 UserId = file.UserId
             };

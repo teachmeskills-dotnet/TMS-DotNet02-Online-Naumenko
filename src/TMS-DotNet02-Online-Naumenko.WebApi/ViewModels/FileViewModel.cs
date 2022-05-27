@@ -23,5 +23,7 @@
         public UserViewModel User { get; set; }
 
         public IEnumerable<FileTermViewModel> FileTerms { get; set; }
+
+        public IEnumerable<PostViewModel> Posts { get; set; }
     }
 }

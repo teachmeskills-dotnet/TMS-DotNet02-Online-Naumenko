@@ -19,14 +19,14 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(TermViewModel term)
+        public async Task<IActionResult> Add(TermViewModel term)
         {
-            if (term == null || term.Id <= 0)
+            if (term == null)
             {
                 return BadRequest();
             }
 
-            _termService.Add(term.MapToDto());
+            await _termService.Add(term.MapToDto());
 
             return Created("~terms", term);
         }
@@ -45,25 +45,25 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
             if (id <= 0)
             {
                 return BadRequest();
             }
 
-            return Ok(_termService.GetById(id).MapToView());
+            return Ok((await _termService.GetById(id)).MapToView());
         }
 
         [HttpPut]
-        public IActionResult Udpate(TermViewModel term)
+        public async Task<IActionResult> Udpate(TermViewModel term)
         {
             if (term == null || term.Id <= 0)
             {
                 return BadRequest();
             }
 
-            _termService.Update(term.MapToDto());
+            await _termService.Update(term.MapToDto());
 
             return Ok();
         }

@@ -8,7 +8,9 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services.Interfaces
 
         IEnumerable<UserDto> Get(FilterDto filterDto);
 
-        UserDto GetById(int id);
+        Task<UserDto> GetById(int id);
+
+        Task<UserDto> GetByLogin(string login);
 
         Task Update(UserDto userDto);
 

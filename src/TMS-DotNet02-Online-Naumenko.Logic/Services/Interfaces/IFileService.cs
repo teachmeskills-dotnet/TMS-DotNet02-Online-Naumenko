@@ -8,7 +8,7 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services.Interfaces
 
         IEnumerable<FileDto> Get(FilterDto filterDto);
 
-        FileDto GetById(int id);
+        Task<FileDto> GetById(int id);
 
         Task Update(FileDto fileDto);
 

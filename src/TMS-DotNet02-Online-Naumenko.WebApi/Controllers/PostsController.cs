@@ -19,14 +19,14 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(PostViewModel post)
+        public async Task<IActionResult> Add(PostViewModel post)
         {
-            if (post == null || post.Id <= 0)
+            if (post == null)
             {
                 return BadRequest();
             }
 
-            _postService.Add(post.MapToDto());
+            await _postService.Add(post.MapToDto());
 
             return Created("~posts", post);
         }
@@ -45,25 +45,25 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
             if (id <= 0)
             {
                 return BadRequest();
             }
-
-            return Ok(_postService.GetById(id).MapToView());
+            
+            return Ok((await _postService.GetById(id)).MapToView());
         }
 
         [HttpPut]
-        public IActionResult Udpate(PostViewModel post)
+        public async Task<IActionResult> Udpate(PostViewModel post)
         {
             if (post == null || post.Id <= 0)
             {
                 return BadRequest();
             }
 
-            _postService.Update(post.MapToDto());
+            await _postService.Update(post.MapToDto());
 
             return Ok();
         }
