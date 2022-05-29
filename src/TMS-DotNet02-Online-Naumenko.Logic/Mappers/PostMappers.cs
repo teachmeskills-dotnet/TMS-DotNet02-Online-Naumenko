@@ -23,6 +23,7 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Mappers
                     PostStatusId = post.PostStatusId,
                     UserId = post.UserId,
                     FileId = post.FileId,
+                    File = post.File.MapToDto(),
                     //PostTerms = post.PostTerms,
                     //User = post.User
                 };
@@ -45,6 +46,7 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Mappers
                 PostStatusId = post.PostStatusId,
                 UserId = post.UserId,
                 FileId = post.FileId,
+                File = post.File.MapToDto()
             };
         }
 

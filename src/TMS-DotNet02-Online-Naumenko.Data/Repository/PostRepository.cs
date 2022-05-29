@@ -67,7 +67,7 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
                 filteredPosts = filteredPosts.Where(post => post.UserId == filter.UserId);
             }
 
-            if(filter.TermIds != null)
+            if(filter.TermIds != null && filter.TermIds.Count > 0)
             {
                 foreach (var termId in filter.TermIds)
                 {
@@ -79,7 +79,7 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
                 }
             }
 
-            IEnumerable<Post> posts = filteredPosts.Include(table => table.User).Include(table => table.PostTerms).ToList();
+            IEnumerable<Post> posts = filteredPosts.Include(table => table.User).Include(table => table.PostTerms).Include(table => table.File).ToList();
             
             return posts;
         }

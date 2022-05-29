@@ -11,15 +11,41 @@ export default function PostsData(props) {
       })
   }
 
-  if(props.removePost !== null || props.removePost !== 0 || props.removePost !== undefined){
+  if(props.removePost != '' || props.removePos != null){
     DeletePost(props.removePost);
+  }
+  if(props.addPost != null && props.addPost.postTitle != null && props.addPost.postSlug != null && props.addPost.postExcerpt != null && props.addPost.postContent != null && props.addPost.postType != null && props.addPost.postReadingTime != null && props.addPost.postFileId != null){
+    console.log(props.addPost);
+    AddPost(props.addPost);
   }
 
   async function DeletePost(id){
     await fetch('https://localhost:5001/posts?id=' + id,{
-      method: 'DELETE',
+        method: 'DELETE',
+        headers: {'Content-type': 'application/json'},
+        credentials: 'include',
+    });
+    props.refreshPage();
+  }
+
+  async function AddPost(post){
+    await fetch('https://localhost:5001/posts',{
+      method: 'Post',
       headers: {'Content-type': 'application/json'},
       credentials: 'include',
+      body: JSON.stringify({
+        "typeId": 1,
+        "title": post.postTitle,
+        "slug": post.postSlug,
+        "content": post.postContent,
+        "excerpt": post.postExcerpt,
+        "readingTime": post.postReadingTime,
+        // "date": "2022-04-19T00:00:00",
+        // "modificationDate": "2022-04-19T00:00:00",
+        "postStatusId": parseInt(post.postType),
+        "userId": 1,
+        "fileId": parseInt(post.postFileId)
+      })
     });
     props.refreshPage();
   }

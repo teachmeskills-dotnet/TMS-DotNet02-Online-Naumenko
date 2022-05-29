@@ -42,6 +42,7 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Mappers
                     PostStatusId = post.PostStatusId,
                     UserId = post.UserId,
                     FileId=post.FileId,
+                    File = post.File.MapToView()
                     //PostTerms = (IEnumerable<PostTermViewModel>)post.PostTerms,
                 };
             }
@@ -63,6 +64,7 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Mappers
                 PostStatusId = post.PostStatusId,
                 UserId = post.UserId,
                 FileId = post.FileId,
+                File = post.File.MapToView()
             };
         }
     }

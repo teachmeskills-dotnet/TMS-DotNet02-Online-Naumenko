@@ -21,6 +21,8 @@ import ListItems  from '../ListItems/ListItems';
 import ListPosts from './ListPosts/ListPosts';
 import PostsData from '../../Sections/MainSection/PostsData';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import Modal from '../Modal/Modal';
+import { Button, FormControl, InputLabel, NativeSelect, TextareaAutosize, TextField } from '@mui/material';
 
 function Copyright(props) {
   return (
@@ -86,15 +88,14 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const Posts = () => {
 
   const [redirect, setRedirect] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
   const [id, setId] = useState('');
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
   };
-
   const [posts, setPosts] = useState([]);
-
-
+  const [post, setPost] = useState({});
   const handleLogout = async (event) => {
     event.preventDefault();
 
@@ -116,15 +117,125 @@ const Posts = () => {
   }
   const removePost = (id) => {
     setId(id);
-    setPosts(posts.filter(p => p.id !== id))
     refreshPage();
   }
+  const [postTitle, setPostTitle] = useState('');
+  const [postType, setPostType] = useState('');
+  const [postExcerpt, setPostExcerpt] = useState('');
+  const [postContent, setPostContent] = useState('');
+  const [postReadingTime, setPostReadingTime] = useState('');
+  const [postFileId, setPostFileId] = useState('');
+  const [postSlug, setPostSlug] = useState('');
+
+  const addPost = () => {
+    const test = {
+      postTitle,
+      postSlug,
+      postType,
+      postExcerpt,
+      postContent,
+      postReadingTime,
+      postFileId
+    };
+    setPost(test);
+    refreshPage();
+  }
+  
   function refreshPage() {
     window.location.reload(false);
   }
     return (
       <ThemeProvider theme={mdTheme}>
-        <PostsData posts={getPosts} removePost={id}/>
+        <Modal visible={modalVisible} setVisible={setModalVisible}>
+          <Typography
+                component="h1"
+                variant="h6"
+                color="inherit"
+                noWrap
+                sx={{ flexGrow: 1 }}
+              >
+              Add Post
+          </Typography>
+          <TextField
+            required
+            id="title"
+            name="title"
+            label="Title"
+            fullWidth
+            autoComplete="family-name"
+            variant="standard"
+            onChange={e => setPostTitle(e.target.value)}
+            value={postTitle}
+          />
+          <TextField className='mt-3'
+            required
+            id="slug"
+            name="slug"
+            label="Slug"
+            fullWidth
+            autoComplete="family-name"
+            variant="standard"
+            onChange={ e => setPostSlug(postTitle.replace(/ /g, '-').toLowerCase())}
+            value={postSlug}
+          />
+          <FormControl fullWidth sx={{
+                  marginTop: '10px'
+                }}>
+            <InputLabel variant="standard" htmlFor="uncontrolled-native">
+              Type
+            </InputLabel>
+            <NativeSelect
+              defaultValue={1}
+              inputProps={{
+                name: 'age',
+                id: 'uncontrolled-native',
+              }}
+              onChange={e => setPostType(e.target.value)}
+              value={postType}
+            >
+              <option value={2}>NotPublished</option>
+              <option value={1}>Published</option>
+              <option value={3}>Draft</option>
+              <option value={3}>PendingApproval</option>
+            </NativeSelect>
+          </FormControl>
+          <TextareaAutosize className='w-100 mt-2'
+            minRows={3}
+            placeholder="Excerpt"
+            onChange={e => setPostExcerpt(e.target.value)}
+            value={postExcerpt}
+          />
+          <TextareaAutosize className='w-100 mt-2'
+            minRows={6}
+            placeholder="Content"
+            onChange={e => setPostContent(e.target.value)}
+            value={postContent}
+          />
+          <TextField
+            required
+            id="readingTime"
+            name="readingTime"
+            label="Reading time"
+            fullWidth
+            autoComplete="family-name"
+            variant="standard"
+            onChange={e => setPostReadingTime(e.target.value)}
+            value={postReadingTime}
+          />
+          <TextField
+            required
+            id="fileId"
+            name="fileId"
+            label="File id"
+            fullWidth
+            autoComplete="family-name"
+            variant="standard"
+            onChange={e => setPostFileId(e.target.value)}
+            value={postFileId}
+          />
+          <Button onClick={addPost} className='mt-5 w-100' variant="contained">Add post</Button>
+        </Modal>
+        <PostsData posts={getPosts} removePost={id} addPost={post}/>
         <Box sx={{ display: 'flex' }}>
           <CssBaseline />
           <AppBar position="absolute" open={open}>
@@ -201,7 +312,7 @@ const Posts = () => {
                   marginLeft: '15px'
                 }}>
               <ListItem>
-                <IconButton edge="end" aria-label="add">
+                <IconButton onClick={() => setModalVisible(true)} edge="end" aria-label="add">
                   <AddCircleOutlineIcon />
                 </IconButton>
                 &nbsp;&nbsp;Add post
