@@ -10,17 +10,17 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services
 {
     public class JwtService : IJwtService
     {
-        private readonly IConfiguration _iconfiguration;
+        private readonly string _securetyKey;
 
         public JwtService(IConfiguration iconfiguration)
         {
-            _iconfiguration = iconfiguration;
+            _securetyKey = iconfiguration["JWT:Key"];
         }
 
         public TokensDto Generate(UserDto user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var tokenKey = Encoding.UTF8.GetBytes(_iconfiguration["JWT:Key"]);
+            var tokenKey = Encoding.UTF8.GetBytes(_securetyKey);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]
@@ -35,6 +35,21 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
             return new TokensDto { Token = tokenHandler.WriteToken(token) };
+        }
+
+        public JwtSecurityToken Verify(string jwt)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_securetyKey);
+            tokenHandler.ValidateToken(jwt, new TokenValidationParameters
+            {
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+                ValidateIssuerSigningKey = true,
+                ValidateIssuer = false,
+                ValidateAudience = false,
+            }, out SecurityToken validatedToken);
+
+            return (JwtSecurityToken)validatedToken;
         }
     }
 }

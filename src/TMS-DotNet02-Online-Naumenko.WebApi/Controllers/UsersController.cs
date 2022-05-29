@@ -7,7 +7,6 @@ using TMS_DotNet02_Online_Naumenko.WebApi.ViewModels;
 namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
 {
     [ApiController]
-    [Authorize(Roles = "admin")]
     [Route("[controller]")]
     public class UsersController : ControllerBase
     {
@@ -21,6 +20,7 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Add(UserViewModel user)
         {
             if (user == null)
@@ -28,12 +28,15 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
                 return BadRequest();
             }
 
+            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash);
+
             await _userService.Add(user.MapToDto());
 
             return Created("~users", user);
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult Get(string? title = null, int? userId = null, [FromQuery] int[]? termIds = null)
         {
             FilterViewModel filter = new FilterViewModel
@@ -47,6 +50,7 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<IActionResult> GetById(int id)
         {
             if (id <= 0)
@@ -74,6 +78,7 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "admin")]
         public IActionResult Delete(int id)
         {
             if (id <= 0)
@@ -109,10 +114,51 @@ namespace TMS_DotNet02_Online_Naumenko.WebApi.Controllers
                     return Unauthorized();
                 }
 
-                return Ok(token);
+                AuthenticationViewModel authentication = new (){
+                    Id = user.Id,
+                    Login = user.Login,
+                    Role = user.UserRole.Name,
+                    Name = user.Name,
+                    Token = token.Token
+                };
+
+                Response.Cookies.Append(key: "token", value: authentication.Token, new CookieOptions
+                {
+                    HttpOnly = true
+                });
+
+                return Ok(authentication);
             }
 
             return Unauthorized();
+        }
+
+        [HttpGet(template: "verify")]
+        public IActionResult Verify()
+        {
+            try
+            {
+                var jwt = Request.Cookies["token"];
+                var token = _jwtService.Verify(jwt);
+                List<object> logins = token.Payload.Values.ToList();
+                //var userId = token.Issuer;
+                var user = _userService.GetByLogin(logins[0].ToString());
+
+                return Ok(user);
+            }   
+            catch (Exception )
+            {
+                return Unauthorized();
+            }
+        }
+
+        [HttpPost(template: "logout")]
+        [Authorize]
+        public IActionResult Logout()
+        {
+            Response.Cookies.Delete(key: "token");
+
+            return Ok();
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace TMS_DotNet02_Online_Naumenko.WebApi.ViewModels
+﻿using System.Text.Json.Serialization;
+
+namespace TMS_DotNet02_Online_Naumenko.WebApi.ViewModels
 {
     public class UserViewModel
     {
@@ -6,7 +8,7 @@
 
         public string Login { get; set; }
 
-        public string PasswordHash { get; set; }
+        [JsonIgnore] public string PasswordHash { get; set; }
 
         public string Email { get; set; }
 

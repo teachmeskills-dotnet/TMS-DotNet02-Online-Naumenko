@@ -16,14 +16,14 @@
 
         public int FileExtensionId { get; set; }
 
-        public FileExtensionViewModel FileExtension { get; set; }
+        public FileExtensionViewModel? FileExtension { get; set; }
 
         public int UserId { get; set; }
 
-        public UserViewModel User { get; set; }
+        public UserViewModel? User { get; set; }
 
-        public IEnumerable<FileTermViewModel> FileTerms { get; set; }
+        public IEnumerable<FileTermViewModel>? FileTerms { get; set; }
 
-        public IEnumerable<PostViewModel> Posts { get; set; }
+        public IEnumerable<PostViewModel>? Posts { get; set; }
     }
 }

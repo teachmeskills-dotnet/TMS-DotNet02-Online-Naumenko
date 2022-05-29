@@ -1,11 +1,22 @@
 import * as React from "react";
 import { Routes, Route, Link } from "react-router-dom";
+import Administration from "./pages/Administration";
 import Contacts from "./pages/Contacts";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import SinglePostPage from "./pages/SinglePostPage";
 
 function App() {
+
+    function checkLogin() {
+        const login = window.localStorage.getItem('token');
+        console.log(login);
+
+        if (login === 'admin') {
+
+        }
+    }
+
   return (
     <div className="app">
       <header>
@@ -16,6 +27,7 @@ function App() {
         <Route path="/contacts" element={<Contacts />} />
         <Route exact path="/:date/:title" element={<SinglePostPage />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/administration" element={<Administration />} onEnter={checkLogin}/>
       </Routes>
       <div className="svg-sprite">
           <svg>

@@ -6,6 +6,6 @@
 
         public string Name { get; set; }
 
-        public IEnumerable<UserViewModel> User { get; set; }
+        public IEnumerable<UserViewModel>? User { get; set; }
     }
 }

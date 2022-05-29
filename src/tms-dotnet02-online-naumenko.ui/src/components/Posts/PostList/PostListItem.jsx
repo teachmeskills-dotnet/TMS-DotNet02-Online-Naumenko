@@ -4,7 +4,7 @@ import PostInfo from '../PostInfo/PostInfo';
 const PostListItem = (props) => {
     return (
         <div className='post-list__item'>
-            <a href={props.link}>
+            <a href={props.link} onClick={props.link}>
                 <div className='post-list__item-title'>
                     {props.title}
                 </div>

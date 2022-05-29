@@ -1,8 +1,9 @@
 import React from 'react';
 import PostListItem from './PostListItem';
+import { useNavigate } from "react-router-dom";
 
 const PostList = (props) => {
-
+    const router = useNavigate();
     const listTitle = ['post-list__title pt-3'];
 
     if(props.sectionName === '' || props.sectionName === undefined){
@@ -17,8 +18,8 @@ const PostList = (props) => {
                 </div>
             </a>
             <ul>
-                {props.posts.map( post => 
-                    <PostListItem key={post.id} title={post.title} link={post.link} date={post.date} views={post.views} handleToggle={props.handleToggle}/>
+                {props.posts.slice(0, 4).map( post => 
+                    <PostListItem key={post.id} title={post.title} link={() => router(`/${post.date}/${post.slug}`)} date={post.date} views={10} handleToggle={props.handleToggle}/>
                 )}
            </ul>
         </div>

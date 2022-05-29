@@ -27,7 +27,7 @@ namespace TMS_DotNet02_Online_Naumenko.Data.Repository
             return ApplyFilter(_dbSet, filter);
         }
 
-        public async Task<User> GetByIdAsync(Expression<Func<User, bool>> predicate)
+        public async Task<User> GetByAsync(Expression<Func<User, bool>> predicate)
         {
             return await _dbSet.Include(table => table.UserRole).FirstOrDefaultAsync(predicate);
         }

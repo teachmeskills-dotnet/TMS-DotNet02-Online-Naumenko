@@ -28,19 +28,19 @@ namespace TMS_DotNet02_Online_Naumenko.Logic.Services
 
         public async Task<UserDto> GetById(int id)
         {
-            return (await _userRepository.GetByIdAsync(user => user.Id == id)).MapToDto();
+            return (await _userRepository.GetByAsync(user => user.Id == id)).MapToDto();
         }
 
         public async Task<UserDto> GetByLogin(string login)
         {
-            return (await _userRepository.GetByIdAsync(user => user.Login == login)).MapToDto();
+            return (await _userRepository.GetByAsync(user => user.Login == login)).MapToDto();
         }
 
         public async Task Update(UserDto userDto)
         {
             userDto = userDto ?? throw new ArgumentNullException(nameof(userDto));
 
-            var user = await _userRepository.GetByIdAsync(user => user.Id == userDto.Id);
+            var user = await _userRepository.GetByAsync(user => user.Id == userDto.Id);
 
             user.PasswordHash = userDto.PasswordHash;
             user.Email = userDto.Email;
