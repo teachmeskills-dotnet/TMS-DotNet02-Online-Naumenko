@@ -8,11 +8,9 @@ import PostsData from './PostsData'
 const MainSection = (props) => {
     
     const [posts, setPosts] = useState([]);
-    const [mainPost, setMainPost] = useState(null);
 
     const getPosts = (posts) => {
         setPosts(posts);
-        setMainPost(posts.filter(p => p.id === 2)[0])
     }
 
     const router = useNavigate();
@@ -23,11 +21,11 @@ const MainSection = (props) => {
                     <div className="col-md-6 col-lg-5 col-xl-5">
                         <PostWithBackgroud 
                         handleToggle={props.handleToggle} 
-                        link={() => router(`/${mainPost.date}/${mainPost.slug}/${mainPost.id}`)} 
+                        link={() => router(`/2022-04-19T00:00:00/bitcoin-slips-back-below-30000-as-european-regulators-renew-crypto-warnings-after-terra-luna-crash/2`)} 
                         title={"Bitcoin slips back below $30,000 as European regulators renew crypto warnings after Terra Luna crash"} 
                         date={"2022-04-19T00:00:00"} 
                         views={10} 
-                        background={bgimage}
+                        background={'https://static.euronews.com/articles/stories/06/70/41/64/1100x619_cmsv2_5f541c98-76be-5006-884a-6aeb44d3ea5d-6704164.jpg'}
                         height='lg'/>
                     </div>
                     <div className="col-md-6 col-lg-4 col-xl-3">
@@ -41,21 +39,21 @@ const MainSection = (props) => {
                             <div className="col-md-6 col-lg-12">
                                 <PostWithBackgroud 
                                 handleToggle={props.handleToggle} 
-                                link={'https://items[0].items[0]'} 
-                                title={'В МВД рассказали о сроках и плюсах добровольной сдачи нелегального арсенала'} 
-                                date={'Вчера, 21:34'} 
+                                link={() => router(`/2022-04-19T00:00:00/russian-troops-storm-sievierodonetsk-as-donbas-suffers-heavy-bombardment%20/6`)} 
+                                title={'Russian troops storm Sievierodonetsk as Donbas suffers heavy bombardment'} 
+                                date={'2022-04-19T00:00:00'} 
                                 views={10} 
-                                background={bgimage}
+                                background={'https://static.euronews.com/articles/stories/06/73/98/06/773x435_cmsv2_3bca83fd-4dfd-55c1-abee-d0e4a5ce92ce-6739806.jpg'}
                                 height='sm'/>
                             </div>
                             <div className="col-md-6 col-lg-12">
                                 <PostWithBackgroud 
                                 handleToggle={props.handleToggle} 
-                                link={'https://items[0].items[0]'} 
-                                title={'В МВД рассказали о сроках и плюсах добровольной сдачи нелегального арсенала'} 
-                                date={'Вчера, 21:34'} 
+                                link={() => router(`/2022-04-19T00:00:00/liverpool-fans-pepper-sprayed-by-french-police-in-stadium-entry-chaos/10`)} 
+                                title={'Liverpool fans pepper-sprayed by French police in stadium entry chaosа'} 
+                                date={'2022-04-19T00:00:00'} 
                                 views={10} 
-                                background={bgimage}
+                                background={'https://static.euronews.com/articles/stories/06/73/99/06/773x435_cmsv2_28e39cf9-5c2e-5180-bc01-527de916c93c-6739906.jpg'}
                                 height='sm'/>
                             </div>
                         </div>

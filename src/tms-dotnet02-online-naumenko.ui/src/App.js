@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import * as React from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import Administration from "./pages/Administration";
@@ -28,8 +29,15 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/administration" element={<Administration />} onEnter={checkLogin}/>
       </Routes>
-      <footer className="mt-3">
-
+      <footer className="mt-3 d-flex align-items-center justify-content-center">
+        <Typography variant="body2" color="text.secondary" align="center">
+            {'Copyright © '}
+            <a color="inherit" href="/">
+                News Portal
+            </a>{' '}
+            {new Date().getFullYear()}
+            {'.'}
+          </Typography>
       </footer>
       <div className="d-none svg-sprite">
           <svg>

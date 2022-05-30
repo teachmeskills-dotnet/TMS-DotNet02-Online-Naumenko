@@ -25,19 +25,6 @@ import Modal from '../Modal/Modal';
 import { Button, FormControl, InputLabel, NativeSelect, TextareaAutosize, TextField } from '@mui/material';
 import { Navigate } from 'react-router-dom';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="/">
-        News Portal
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -365,7 +352,7 @@ const Posts = () => {
           />
           <Button onClick={SendPost} className='mt-5 w-100' variant="contained">Update post</Button>
         </Modal>
-        <PostsData posts={getPosts} removePost={id} addPost={post} updatePost={updatePost}/>
+        <PostsData posts={getPosts} getAll={true} removePost={id} addPost={post} updatePost={updatePost}/>
         <Box sx={{ display: 'flex' }}>
           <CssBaseline />
           <AppBar position="absolute" open={open}>
@@ -453,7 +440,6 @@ const Posts = () => {
                 {/* Posts */}
                 <ListPosts posts={posts} removePost={removePost} editPost={editPost}/>
               </Grid>
-              <Copyright sx={{ pt: 4 }} />
             </Container>
           </Box>
         </Box>
