@@ -30,14 +30,14 @@ const PostWithBackgroud = (props) => {
                     <img src={props.background} alt={props.title} />
                 </picture>
             </div>
-            <a className='post-cell__link' onClick={props.link} href={props.link}>
+            <a className='post-cell__link' onClick={props.link} href=''>
                 <div className='post-cell__title'>
                     <span>
                         {props.title}
                     </span>
                 </div>
             </a>
-            <PostInfo date={props.date} link={props.link} views={props.views} handleToggle={props.handleToggle}/>
+            <PostInfo date={props.date} link='' views={props.views} handleToggle={props.handleToggle}/>
         </div>
     );
 };

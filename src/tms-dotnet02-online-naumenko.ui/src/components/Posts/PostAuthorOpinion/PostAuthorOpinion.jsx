@@ -24,8 +24,8 @@ const PostAuthorOpinion = (props) => {
     }
 
     return (
-        <div className={classes.join(' ')}>
-            <a className='post-cell__link' href={props.link}>
+        <div className={classes.join(' ')} >
+            <a className='post-cell__link' onClick={props.link} href={props.link} >
                 <div className="row m-0 p-0">
                     <div className="col-6 p-0">
                         <div className="post-cell__author">

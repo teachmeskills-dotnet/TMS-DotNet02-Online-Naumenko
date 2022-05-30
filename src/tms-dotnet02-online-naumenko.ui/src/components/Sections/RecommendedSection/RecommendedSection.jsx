@@ -1,59 +1,35 @@
-import React from 'react';
+import React, {useState} from 'react';
 import bgimage from '../../Posts/avatar.jpeg';
 import PostAuthorOpinion from '../../Posts/PostAuthorOpinion/PostAuthorOpinion';
+import PostsData from '../MainSection/PostsData';
+import { useNavigate } from 'react-router-dom';
 
 const RecommendedSection = (props) => {
+    const [posts, setPosts] = useState([]);
+
+    const getPosts = (posts) => {
+        setPosts(posts);
+    }
+    const router = useNavigate();
+    
     return (
         <section className="section-main pt__3">
+            <PostsData posts={getPosts} getAll={true}/>
             <div className="row g__3">
-                <div className="col-xl-6">
-                    <PostAuthorOpinion 
+                {posts.slice(2, 6).map(element => 
+                    <div className="col-xl-6">
+                        <PostAuthorOpinion 
                                 handleToggle={props.handleToggle} 
-                                link={'https://test.test'} 
-                                title={'В МВД рассказали о сроках и плюсах добровольной сдачи нелегального арсенала'} 
-                                date={'Вчера, 21:34'} 
-                                views={10} 
-                                background={bgimage}
+                                link={() => router(`/${element.date}/${element.slug}/${element.id}`)}
+                                title={element.title} 
+                                date={"2022-04-19T00:00:00"} 
+                                views={14} 
+                                background={element.file.path}
                                 height='sm'
                                 authorLink='https://author.ru'
                                 authorName='Дмитрий Науменко'/>
-                </div>
-                <div className="col-xl-6">
-                    <PostAuthorOpinion 
-                                handleToggle={props.handleToggle} 
-                                link={'https://test.test'} 
-                                title={'В МВД рассказали о сроках и плюсах добровольной сдачи нелегального арсенала'} 
-                                date={'Вчера, 21:34'} 
-                                views={10} 
-                                background={bgimage}
-                                height='sm'
-                                authorLink='https://author.ru'
-                                authorName='Дмитрий Науменко'/>
-                </div>
-                <div className="col-xl-6">
-                    <PostAuthorOpinion 
-                                handleToggle={props.handleToggle} 
-                                link={'https://test.test'} 
-                                title={'В МВД рассказали о сроках и плюсах добровольной сдачи нелегального арсенала'} 
-                                date={'Вчера, 21:34'} 
-                                views={10} 
-                                background={bgimage}
-                                height='sm'
-                                authorLink='https://author.ru'
-                                authorName='Дмитрий Науменко'/>
-                </div>
-                <div className="col-xl-6">
-                    <PostAuthorOpinion 
-                                handleToggle={props.handleToggle} 
-                                link={'https://test.test'} 
-                                title={'В МВД рассказали о сроках и плюсах добровольной сдачи нелегального арсенала'} 
-                                date={'Вчера, 21:34'} 
-                                views={10} 
-                                background={bgimage}
-                                height='sm'
-                                authorLink='https://author.ru'
-                                authorName='Дмитрий Науменко'/>
-                </div>
+                    </div>
+                )}
             </div>
         </section>
     );

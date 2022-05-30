@@ -8,21 +8,22 @@ import PostsData from './PostsData'
 const MainSection = (props) => {
     
     const [posts, setPosts] = useState([]);
+    const [mainPost, setMainPost] = useState(null);
 
     const getPosts = (posts) => {
         setPosts(posts);
+        setMainPost(posts.filter(p => p.id === 2)[0])
     }
 
-    let mainNews = posts[0];
     const router = useNavigate();
         return (
             <section className="section-main pt__3">
-                <PostsData posts={getPosts}/>
+                <PostsData posts={getPosts} getAll={true}/>
                 <div className="row g__3">
                     <div className="col-md-6 col-lg-5 col-xl-5">
                         <PostWithBackgroud 
                         handleToggle={props.handleToggle} 
-                        link={() => router(`/${mainNews.date}/${mainNews.slug}`)} 
+                        link={() => router(`/${mainPost.date}/${mainPost.slug}/${mainPost.id}`)} 
                         title={"Bitcoin slips back below $30,000 as European regulators renew crypto warnings after Terra Luna crash"} 
                         date={"2022-04-19T00:00:00"} 
                         views={10} 

@@ -19,7 +19,7 @@ const PostList = (props) => {
             </a>
             <ul>
                 {props.posts.slice(0, 4).map( post => 
-                    <PostListItem key={post.id} title={post.title} link={() => router(`/${post.date}/${post.slug}`)} date={post.date} views={10} handleToggle={props.handleToggle}/>
+                    <PostListItem key={post.id} title={post.title} link={() => router(`/${post.date}/${post.slug}/${post.id}`)} date={post.date} views={10} handleToggle={props.handleToggle}/>
                 )}
            </ul>
         </div>

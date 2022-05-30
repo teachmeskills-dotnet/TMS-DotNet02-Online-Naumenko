@@ -10,7 +10,6 @@ function App() {
 
     function checkLogin() {
         const login = window.localStorage.getItem('token');
-        console.log(login);
 
         if (login === 'admin') {
 
@@ -25,11 +24,14 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/contacts" element={<Contacts />} />
-        <Route exact path="/:date/:title" element={<SinglePostPage />} />
+        <Route exact path="/:date/:title/:id" element={<SinglePostPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/administration" element={<Administration />} onEnter={checkLogin}/>
       </Routes>
-      <div className="svg-sprite">
+      <footer className="mt-3">
+
+      </footer>
+      <div className="d-none svg-sprite">
           <svg>
           <symbol viewBox="0 0 40 40" id="icon-views_small" xmlns="http://www.w3.org/2000/svg">
               <path d="M20 29.844c-5.01 0-10.162-3.116-14.507-8.774a1.757 1.757 0 0 1 .001-2.141C9.838 13.272 14.99 10.156 20 10.156s10.162 3.116 14.507 8.774a1.757 1.757 0 0 1-.001 2.141C30.162 26.728 25.01 29.844 20 29.844zM7.83 20c2.348 2.938 6.769 7.344 12.17 7.344 5.402 0 9.823-4.407 12.17-7.344-2.348-2.938-6.769-7.344-12.17-7.344-5.402 0-9.823 4.406-12.17 7.344zm24.694.452l.001.002zm-25.05-.906l.002.002z"></path>

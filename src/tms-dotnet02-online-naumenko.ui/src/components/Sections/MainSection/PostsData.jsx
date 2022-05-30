@@ -4,6 +4,8 @@ export default function PostsData(props) {
   const [Posts, setPosts] = useState([]);
   const [getPost,setGetPost] = useState('');
   const [updatePost,setUpdatePost] = useState('');
+  const [post, setPost] = useState([]);
+  const [file, setFile] = useState([]);
 
   if(props.removePost != '' || props.removePos != null || props.removePos != undefined){
     DeletePost(props.removePost);
@@ -15,28 +17,29 @@ export default function PostsData(props) {
   if(props.updatePost != null && props.updatePost.postUpdateTitle != null && props.updatePost.postUpdateSlug != null && props.updatePost.postUpdateExcerpt != null && props.updatePost.postUpdateContent != null && props.updatePost.postUpdateType != null && props.updatePost.postUpdateReadingTime != null && props.updatePost.postUpdateFileId != null){
     UpdatePost(props.updatePost);
   }
-  // if(props.editPost != '' || props.editPost != null || props.editPost != undefined){
-  //   getById(props.editPost);
-  //   //console.log(updatePost);
-  // }
 
   const getData = () => {
     fetch('https://localhost:5001/posts/')
       .then((res) => res.json())
       .then((res) => {
         setPosts(res);
+        if(props.id != null){
+          res.map(post => {
+            if(post.id == props.id){
+              setPost(post); 
+              setFile(post.file);
+            }
+          })
+        }
       })
   }
 
-  async function getById(id) {
-    // console.log(id);
-    // await fetch('https://localhost:5001/posts/' + id)
-    //   .then((res) => res.json())
-    //   .then((res) => {
-    //     setUpdatePost(res);
-    //   })
-    //   console.log(updatePost);
-    const post = Posts.filter(p => p.id === id);
+  const getPostById = (id) => {
+    fetch('https://localhost:5001/posts/'+id)
+  .then((res) => res.json())
+  .then((res) => {
+    setPost(res);
+  })
   }
 
   async function DeletePost(id){
@@ -97,8 +100,15 @@ export default function PostsData(props) {
 
   }, [])
 
-  //props.getById(getPost);
-  props.posts(Posts);
+  if(props.getAll == true){
+    props.posts(Posts);
+  }
+
+  if(props.getOnePost == true){
+    props.getPost(post);
+    props.getFile(file);
+  }
+  
   return (
     <>
     </>
