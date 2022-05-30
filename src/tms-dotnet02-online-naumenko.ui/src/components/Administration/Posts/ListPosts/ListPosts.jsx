@@ -37,7 +37,7 @@ const ListPosts = (props) => {
                 <ListItem
                   secondaryAction={
                     <ListItem>
-                      <IconButton edge="end" aria-label="edit">
+                      <IconButton onClick={() => props.editPost(element.id)}edge="end" aria-label="edit">
                         <EditIcon />
                       </IconButton>
                       <IconButton onClick={() => props.removePost(element.id)} edge="end" aria-label="delete">

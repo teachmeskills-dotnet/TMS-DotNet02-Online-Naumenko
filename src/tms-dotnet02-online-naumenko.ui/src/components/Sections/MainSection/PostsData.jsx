@@ -1,7 +1,24 @@
 import React, { useState, useEffect } from 'react'
 
 export default function PostsData(props) {
-  const [Posts, setPosts] = useState([])
+  const [Posts, setPosts] = useState([]);
+  const [getPost,setGetPost] = useState('');
+  const [updatePost,setUpdatePost] = useState('');
+
+  if(props.removePost != '' || props.removePos != null || props.removePos != undefined){
+    DeletePost(props.removePost);
+  }
+  if(props.addPost != null && props.addPost.postTitle != null && props.addPost.postSlug != null && props.addPost.postExcerpt != null && props.addPost.postContent != null && props.addPost.postType != null && props.addPost.postReadingTime != null && props.addPost.postFileId != null){
+    console.log(props.addPost);
+    AddPost(props.addPost);
+  }
+  if(props.updatePost != null && props.updatePost.postUpdateTitle != null && props.updatePost.postUpdateSlug != null && props.updatePost.postUpdateExcerpt != null && props.updatePost.postUpdateContent != null && props.updatePost.postUpdateType != null && props.updatePost.postUpdateReadingTime != null && props.updatePost.postUpdateFileId != null){
+    UpdatePost(props.updatePost);
+  }
+  // if(props.editPost != '' || props.editPost != null || props.editPost != undefined){
+  //   getById(props.editPost);
+  //   //console.log(updatePost);
+  // }
 
   const getData = () => {
     fetch('https://localhost:5001/posts/')
@@ -11,21 +28,25 @@ export default function PostsData(props) {
       })
   }
 
-  if(props.removePost != '' || props.removePos != null){
-    DeletePost(props.removePost);
-  }
-  if(props.addPost != null && props.addPost.postTitle != null && props.addPost.postSlug != null && props.addPost.postExcerpt != null && props.addPost.postContent != null && props.addPost.postType != null && props.addPost.postReadingTime != null && props.addPost.postFileId != null){
-    console.log(props.addPost);
-    AddPost(props.addPost);
+  async function getById(id) {
+    // console.log(id);
+    // await fetch('https://localhost:5001/posts/' + id)
+    //   .then((res) => res.json())
+    //   .then((res) => {
+    //     setUpdatePost(res);
+    //   })
+    //   console.log(updatePost);
+    const post = Posts.filter(p => p.id === id);
   }
 
   async function DeletePost(id){
-    await fetch('https://localhost:5001/posts?id=' + id,{
+    if(id != undefined){
+      await fetch('https://localhost:5001/posts?id=' + id,{
         method: 'DELETE',
         headers: {'Content-type': 'application/json'},
         credentials: 'include',
     });
-    props.refreshPage();
+    }
   }
 
   async function AddPost(post){
@@ -47,35 +68,36 @@ export default function PostsData(props) {
         "fileId": parseInt(post.postFileId)
       })
     });
-    props.refreshPage();
   }
 
-  async function UpdatePost(id){
+  async function UpdatePost(post){
     await fetch('https://localhost:5001/posts',{
       method: 'PUT',
       headers: {'Content-type': 'application/json'},
       credentials: 'include',
       body: JSON.stringify({
-        "id": id,
+        "id": parseInt(post.postUpdateId),
         "typeId": 1,
-        "title": "Lithuanians organise donation drive to buy Bayraktar drone for Ukraine",
-        "slug": "lithuanians-organise-donation-drive-to-buy-bayraktar-drone-for-ukraine",
-        "content": "Hundreds of Lithuanians are chipping in together to buy an advanced military drone for Ukraine in its war against Russia in a show of solidarity with a fellow former Soviet Union country. Some €3 million have been raised in just three days — out of the €5m needed — largely in small amounts, according to Laisves TV, a Lithuanian internet broadcaster that launched the drive.Before this war started, none of us thought that we would be buying guns. But it's a normal thing now. Something must be done for the world to get better, said Agne Belickaite, 32, who sent €100 as soon as the fundraising launched on Wednesday. I've been donating to buy guns for Ukraine for a while now. And will do so until the victory, she told Reuters, adding she was motivated in part by fears Russia could attack Lithuania. The drone has proven effective in recent years against Russian forces and their allies in conflicts in Syria and Libya, and its purchase is being orchestrated by Lithuania's Ministry of Defence, which plans to sign a letter of intent to buy the craft from Turkey next week. Ukraine has bought more than 20 Bayraktar TB2 armed drones from Turkish company Baykar in recent years and ordered a further 16 on 27 January. That batch was delivered in early March. This is the first case in history when ordinary people raise money to buy something like a Bayraktar. It is unprecedented, it is unbelievable, Beshta Petro, Ukraine's ambassador to Lithuania, told Laisves TV. Most of the heavy weapons that NATO countries have sent to Ukraine so far are Soviet-built arms still in the inventories of eastern European NATO member states, but some have recently started to supply Western howitzers.",
-        "excerpt": "Hundreds of Lithuanians are chipping in together to buy an advanced military drone for Ukraine in its war against Russia in a show of solidarity with a fellow former Soviet Union country. Some €3 million have been raised in just three days — out of the €5m needed — largely in small amounts, according to Laisves TV, a Lithuanian internet broadcaster that launched the drive.Before this war started, none of us thought that we would be buying guns. But it's a normal thing now. Something must be done for the world to get better, said Agne Belickaite, 32, who sent €100 as soon as the fundraising launched on Wednesday. I've been donating to buy guns for Ukraine for a while now. And will do so until the victory, she told Reuters, adding she was motivated in part by fears Russia could attack Lithuania.",
-        "readingTime": "2 min",
-        "date": "2022-04-19T00:00:00",
-        "modificationDate": "2022-04-19T00:00:00",
-        "postStatusId": 1,
+        "title": post.postUpdateTitle,
+        "slug": post.postUpdateSlug,
+        "content": post.postUpdateContent,
+        "excerpt": post.postUpdateExcerpt,
+        "readingTime": post.postUpdateReadingTime,
+        // "date": "2022-04-19T00:00:00",
+        // "modificationDate": "2022-04-19T00:00:00",
+        "postStatusId": parseInt(post.postUpdateType),
         "userId": 1,
-        "fileId": 2
+        "fileId": parseInt(post.postUpdateFileId)
       })
-    })
+    });
   }
 
   useEffect(() => {
-    getData()
+    getData();
+
   }, [])
 
+  //props.getById(getPost);
   props.posts(Posts);
   return (
     <>

@@ -23,6 +23,7 @@ import PostsData from '../../Sections/MainSection/PostsData';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import Modal from '../Modal/Modal';
 import { Button, FormControl, InputLabel, NativeSelect, TextareaAutosize, TextField } from '@mui/material';
+import { Navigate } from 'react-router-dom';
 
 function Copyright(props) {
   return (
@@ -89,6 +90,7 @@ const Posts = () => {
 
   const [redirect, setRedirect] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+  const [modalUpdateVisible, setModalUpdateVisible] = useState(false);
   const [id, setId] = useState('');
   const [open, setOpen] = useState(true);
   const toggleDrawer = () => {
@@ -96,39 +98,63 @@ const Posts = () => {
   };
   const [posts, setPosts] = useState([]);
   const [post, setPost] = useState({});
-  const handleLogout = async (event) => {
-    event.preventDefault();
-
-    await fetch('https://localhost:5001/users/logout',{
-        method: 'POST',
-        headers: {'Content-type': 'application/json'},
-        credentials: 'include'
-    })
-
-    setRedirect(true);
-  };
-
-  if(redirect){
-    return <Navigate to="/login"/>;
-  }
+  const [updatePost, setUpdatePost] = useState({});
 
   const getPosts = (posts) => {
     setPosts(posts);
   }
+
   const removePost = (id) => {
     setId(id);
     refreshPage();
   }
+  const [postUpdateId, setPostUpdateId] = useState('');
+  const [postUpdateTitle, setPostUpdateTitle] = useState('');
+  const [postUpdateSlug, setPostUpdateSlug] = useState('');
+  const [postUpdateType, setPostUpdateType] = useState('');
+  const [postUpdateExcerpt, setPostUpdateExcerpt] = useState('');
+  const [postUpdateContent, setPostUpdateContent] = useState('');
+  const [postUpdateReadingTime, setPostUpdateReadingTime] = useState('');
+  const [postUpdateFileId, setPostUpdateFileId] = useState('');
+
+  const editPost = (id) => {
+    const updatePost = posts.filter(p => p.id === id)[0];
+    setModalUpdateVisible(true);
+    setPostUpdateId(id);
+    setPostUpdateTitle(updatePost.title);
+    setPostUpdateSlug(updatePost.tlug);
+    setPostUpdateType(updatePost.postStatusId);
+    setPostUpdateExcerpt(updatePost.excerpt);
+    setPostUpdateContent(updatePost.content);
+    setPostUpdateReadingTime(updatePost.readingTime);
+    setPostUpdateFileId(updatePost.fileId);
+  }
+
+  const SendPost = (id) => {
+    const post = {
+      postUpdateId,
+      postUpdateTitle,
+      postUpdateSlug,
+      postUpdateType,
+      postUpdateExcerpt,
+      postUpdateContent,
+      postUpdateReadingTime,
+      postUpdateFileId
+    };
+    setUpdatePost(post);
+    refreshPage();
+  }
+
   const [postTitle, setPostTitle] = useState('');
+  const [postSlug, setPostSlug] = useState('');
   const [postType, setPostType] = useState('');
   const [postExcerpt, setPostExcerpt] = useState('');
   const [postContent, setPostContent] = useState('');
   const [postReadingTime, setPostReadingTime] = useState('');
   const [postFileId, setPostFileId] = useState('');
-  const [postSlug, setPostSlug] = useState('');
 
   const addPost = () => {
-    const test = {
+    const post = {
       postTitle,
       postSlug,
       postType,
@@ -137,12 +163,27 @@ const Posts = () => {
       postReadingTime,
       postFileId
     };
-    setPost(test);
+    setPost(post);
     refreshPage();
   }
   
   function refreshPage() {
     window.location.reload(false);
+  }
+  const handleLogout = async (event) => {
+    event.preventDefault();
+
+    // await fetch('https://localhost:5001/users/logout',{
+    //     method: 'POST',
+    //     headers: {'Content-type': 'application/json'},
+    //     credentials: 'include'
+    // })
+
+    setRedirect(true);
+  };
+
+  if(redirect){
+    return <Navigate to="/"/>;
   }
     return (
       <ThemeProvider theme={mdTheme}>
@@ -235,7 +276,96 @@ const Posts = () => {
           />
           <Button onClick={addPost} className='mt-5 w-100' variant="contained">Add post</Button>
         </Modal>
-        <PostsData posts={getPosts} removePost={id} addPost={post}/>
+        <Modal visible={modalUpdateVisible} setVisible={setModalUpdateVisible}>
+          <Typography
+                component="h1"
+                variant="h6"
+                color="inherit"
+                noWrap
+                sx={{ flexGrow: 1 }}
+              >
+              Edit Post
+          </Typography>
+          <TextField
+            required
+            id="title"
+            name="title"
+            label="Title"
+            fullWidth
+            autoComplete="family-name"
+            variant="standard"
+            onChange={e => setPostUpdateTitle(e.target.value)}
+            value={postUpdateTitle}
+          />
+          <TextField className='mt-3'
+            required
+            id="slug"
+            name="slug"
+            label="Slug"
+            fullWidth
+            autoComplete="family-name"
+            variant="standard"
+            onChange={ e => setPostUpdateSlug(postUpdateTitle.replace(/ /g, '-').toLowerCase())}
+            value={postUpdateSlug}
+          />
+          <FormControl fullWidth sx={{
+                  marginTop: '10px'
+                }}>
+            <InputLabel variant="standard" htmlFor="uncontrolled-native">
+              Type
+            </InputLabel>
+            <NativeSelect
+              defaultValue={1}
+              inputProps={{
+                name: 'age',
+                id: 'uncontrolled-native',
+              }}
+              onChange={e => setPostUpdateType(e.target.value)}
+              value={postUpdateType}
+            >
+              <option value={2}>NotPublished</option>
+              <option value={1}>Published</option>
+              <option value={3}>Draft</option>
+              <option value={3}>PendingApproval</option>
+            </NativeSelect>
+          </FormControl>
+          <TextareaAutosize className='w-100 mt-2'
+            minRows={3}
+            placeholder="Excerpt"
+            onChange={e => setPostUpdateExcerpt(e.target.value)}
+            value={postUpdateExcerpt}
+          />
+          <TextareaAutosize className='w-100 mt-2'
+            minRows={6}
+            placeholder="Content"
+            onChange={e => setPostUpdateContent(e.target.value)}
+            value={postUpdateContent}
+          />
+          <TextField
+            required
+            id="readingTime"
+            name="readingTime"
+            label="Reading time"
+            fullWidth
+            autoComplete="family-name"
+            variant="standard"
+            onChange={e => setPostUpdateReadingTime(e.target.value)}
+            value={postUpdateReadingTime}
+          />
+          <TextField
+            required
+            id="fileId"
+            name="fileId"
+            label="File id"
+            fullWidth
+            autoComplete="family-name"
+            variant="standard"
+            onChange={e => setPostUpdateFileId(e.target.value)}
+            value={postUpdateFileId}
+          />
+          <Button onClick={SendPost} className='mt-5 w-100' variant="contained">Update post</Button>
+        </Modal>
+        <PostsData posts={getPosts} removePost={id} addPost={post} updatePost={updatePost}/>
         <Box sx={{ display: 'flex' }}>
           <CssBaseline />
           <AppBar position="absolute" open={open}>
@@ -321,7 +451,7 @@ const Posts = () => {
             <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
               <Grid container spacing={3}>
                 {/* Posts */}
-                <ListPosts posts={posts} removePost={removePost}/>
+                <ListPosts posts={posts} removePost={removePost} editPost={editPost}/>
               </Grid>
               <Copyright sx={{ pt: 4 }} />
             </Container>
