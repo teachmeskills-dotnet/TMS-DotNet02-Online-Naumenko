@@ -16,7 +16,7 @@ const RecommendedSection = (props) => {
         <section className="section-main pt__3">
             <PostsData posts={getPosts} getAll={true}/>
             <div className="row g__3">
-                {posts.slice(2, 6).map(element => 
+                {posts.slice(0, 4).map(element => 
                     <div className="col-xl-6">
                         <PostAuthorOpinion 
                                 handleToggle={props.handleToggle} 
