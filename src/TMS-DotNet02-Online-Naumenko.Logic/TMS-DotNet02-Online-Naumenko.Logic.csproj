@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>TMS_DotNet02_Online_Naumenko.Logic</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TMS-DotNet02-Online-Naumenko.Data\TMS-DotNet02-Online-Naumenko.Data.csproj" />
+  </ItemGroup>
+
+</Project>
